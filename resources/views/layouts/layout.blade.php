@@ -28,9 +28,9 @@
 
             <ul>
                 <li>
-                    <a class="hover-btn" href="../index.html">Inicio</a>
-                    <a class="hover-btn" href="./menu.html">Menu</a>
-                    <a class="hover-btn" href="./sobreNosotros.html">Sobre
+                    <a class="hover-btn" href="{{route('inicio')}}">Inicio</a>
+                    <a class="hover-btn" href="{{route('productos')}}">Menu</a>
+                    <a class="hover-btn" href="{{route('sobreMi')}}">Sobre
                         Nosotros</a>
                 </li>
                 <li class="lista__desplegable">
@@ -79,7 +79,7 @@
 
             <div class="parteabajo">
                 <div class="botones_abajo">
-                    <a href="./factura.html"><button class="pay-button">Ir a
+                    <a href="{{route('factura')}}"><button class="pay-button">Ir a
                             Pagar</button> </a>
                     <div class="subtotal">
                         $0
@@ -117,7 +117,7 @@
                 <h3>Ayuda</h3>
                 <ul class="section__info">
                     <li><a href="#">Legales</a></li>
-                    <li><a href="./paginas/informacion_legal.html">Politicas de
+                    <li><a href="{{route('informacionLegal')}}">Politicas de
                             privacidad</a></li>
                 </ul>
             </div>
@@ -173,11 +173,12 @@
     <script src="{{ asset('js/modales_login.js') }}"></script>
     <script src="{{ asset('js/carrito.js') }}"></script>
     <script src="{{ asset('js/modalPerfil.js') }}"></script>
-    <script src="{{ asset('js/modalPerfil-dos') }}"></script>
+    <script src="{{ asset('js/modalPerfil-dos.js') }}"></script>
     <script src="{{ asset('js/modalDomicilio.js') }}"></script>
+    <script src="{{ asset('js/modalcarta.js')}}"></script>
+
     {{-- icon scrip --}}
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
 </body>
-
 </html>

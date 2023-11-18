@@ -16,13 +16,11 @@
         <section class="contenedor__info__superior">
             <!-- botones -->
 
-            <form action="#" class="form__button__acciones">
-
+            <div class="form__button__acciones">
                 <button id="youreditar" type="submit" class="form__submit">Editar
                     Perfil</button>
                 <button id="misComprasButton" type="submit" class="form__submit">Mis Compras</button>
-
-            </form>
+                </div>
         </section>
     </section>
 
