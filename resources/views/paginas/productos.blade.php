@@ -1,6 +1,5 @@
 @extends('layouts.layout')
 
-
 @section('titulo', 'Productos')
 
 @section('contenido')
@@ -269,5 +268,6 @@
         </div>
 
         <!-- fin cartas -->
+
 
     @endsection
