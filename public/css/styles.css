@@ -13,16 +13,15 @@
 
 @font-face {
     font-family: "boring-sans-atrial";
-    src: url('/font/boring-sans-a-trial.light.ttf');
+    src: url("/font/boring-sans-a-trial.light.ttf");
 }
 
 @font-face {
     font-family: "borsing-sans-trial-bold";
-    src: url('/font/Boring-Sans-A-Bold-trial.ttf');
+    src: url("/font/Boring-Sans-A-Bold-trial.ttf");
 }
 
 /* Moller */
-
 
 @font-face {
     font-family: "fuente_footer";
@@ -31,10 +30,8 @@
 
 @font-face {
     font-family: "moller-use-boldCondensed";
-    src: url('/font/Mollen\ Personal\ Use-BoldCondensed.otf');
+    src: url("/font/Mollen\ Personal\ Use-BoldCondensed.otf");
 }
-
-
 
 body {
     margin: 0;
@@ -44,11 +41,7 @@ body {
     overflow: hidden;
 }
 
-
-
-
 /* iniciio header */
-
 
 /* contenedor principal */
 .header-container {
@@ -67,7 +60,11 @@ body {
 
 /*fondo */
 .efecto-espejo {
-    background-image: linear-gradient(rgba(98, 29, 29, 0.8), rgba(98, 29, 29, 0)), url('/img/img-header/headerbg.jpg');
+    background-image: linear-gradient(
+            rgba(98, 29, 29, 0.8),
+            rgba(98, 29, 29, 0)
+        ),
+        url("/img/img-header/headerbg.jpg");
     background-position: center;
     opacity: 0.2;
     position: absolute;
@@ -86,7 +83,6 @@ body {
     align-items: center;
     padding: 10px;
     font-size: 1.5rem;
-
 }
 
 .logo {
@@ -109,13 +105,11 @@ body {
     height: max-content;
 }
 
-
 .hover-btn {
     color: rgb(255, 255, 255);
     text-decoration: none;
     max-width: max-content;
 }
-
 
 .icon {
     width: 3.6rem;
@@ -142,7 +136,6 @@ nav li {
     display: flex;
     gap: 50px;
 }
-
 
 .navegacion__header ul .submenu {
     display: none;
@@ -180,8 +173,6 @@ nav li {
     background: #800000;
 }
 
-
-
 /* estilos para el menu hamburgesa */
 
 .desplegar__menu {
@@ -217,22 +208,22 @@ nav li {
 
 /* fin estilos para el menu hamburgesa */
 
-
-
 /* fin header */
 
 /* fondo del documento */
 
 .fondo__mesa {
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-        url('/img/img-fondo/fondo_interior.jpeg');
+    background-image: linear-gradient(
+            rgba(255, 255, 255, 0.9),
+            rgba(255, 255, 255, 0.9)
+        ),
+        url("/img/img-fondo/fondo_interior.jpeg");
     background-attachment: fixed;
     background-size: cover;
 }
 
 .fondo__contenedor_logo {
-    background-image: url('/img/img-fondo/logo-opacidad.png');
+    background-image: url("/img/img-fondo/logo-opacidad.png");
     /* background-attachment: fixed; */
     background-position: bottom center;
     background-repeat: no-repeat;
@@ -295,7 +286,6 @@ nav li {
     appearance: textfield;
 }
 
-
 .login-button {
     background-color: #531415;
     color: white;
@@ -339,10 +329,7 @@ nav li {
 
 /* fin del modal de login */
 
-
-
 /* modal de reservas */
-
 
 /* modal de reservas */
 .contenedor__reserva {
@@ -385,9 +372,6 @@ nav li {
     background: none;
     text-align: center;
     color: #17305f;
-
-
-
 }
 
 .columnas .textarea__asunto {
@@ -401,7 +385,6 @@ nav li {
     background: none;
     resize: none;
     color: #17305f;
-
 }
 
 .columnas .textarea__comentario {
@@ -418,14 +401,12 @@ nav li {
     color: #17305f;
 }
 
-
 .filas {
     display: grid;
     /* divir en filas de dos */
     grid-template-columns: repeat(2, 1fr);
     gap: 1.2rem;
     align-items: center;
-
 }
 
 .filas input {
@@ -437,13 +418,10 @@ nav li {
     background: none;
     text-align: center;
     color: #17305f;
-
-
 }
 
 .filas input[type="date"] {
     font-family: "fuente_footer";
-
 }
 
 .titulo__campos {
@@ -475,7 +453,6 @@ nav li {
     height: 20px;
     width: 20px;
     font-family: "fuente_footer";
-
 }
 
 .botom__reservas {
@@ -493,24 +470,24 @@ nav li {
 }
 
 .columnas input[type="text"]:focus {
-    outline: 2px solid rgba(120, 115, 115, .3);
+    outline: 2px solid rgba(120, 115, 115, 0.3);
     border-radius: 5px;
 }
 
 .columnas .textarea__asunto:focus,
 .columnas .textarea__comentario:focus {
-    outline: 2px solid rgba(120, 115, 115, .3);
+    outline: 2px solid rgba(120, 115, 115, 0.3);
     border-radius: 5px;
 }
 
 .filas input[type="date"]:focus {
-    outline: 2px solid rgba(120, 115, 115, .3);
+    outline: 2px solid rgba(120, 115, 115, 0.3);
     border-radius: 5px;
 }
 
 .filas input[type="text"]:focus,
 .filas input[type="email"]:focus {
-    outline: 2px solid rgba(120, 115, 115, .3);
+    outline: 2px solid rgba(120, 115, 115, 0.3);
     border-radius: 5px;
 }
 
@@ -548,12 +525,10 @@ nav li {
     flex-direction: column;
     align-items: center;
     gap: 3rem;
-
 }
 
-
 .columnas__domicilio select {
-    font-size: .9em;
+    font-size: 0.9em;
     height: 30px;
     width: 25rem;
     border: none;
@@ -562,17 +537,15 @@ nav li {
     text-align: center;
     color: #17305f;
     cursor: pointer;
-
 }
 
 .columnas__domicilio select option {
     background: #7b1c19;
     color: #fff;
-
 }
 
 .filas select {
-    font-size: .9em;
+    font-size: 0.9em;
     height: 30px;
     width: 15rem;
     border: none;
@@ -599,16 +572,14 @@ nav li {
 .filas select option {
     background: #7b1c19;
     color: #fff;
-
 }
 
 .columnas__domicilio .textarea__comentario:focus {
-    outline: 2px solid rgba(120, 115, 115, .3);
+    outline: 2px solid rgba(120, 115, 115, 0.3);
     border-radius: 5px;
 }
 
 /* fin del modal de domicilio */
-
 
 /* inicio slider */
 
@@ -636,7 +607,6 @@ nav li {
     height: 100%;
     object-fit: cover;
 }
-
 
 /* Estilos de los botones de control */
 .slider-controls {
@@ -692,7 +662,6 @@ nav li {
     opacity: 0.8;
 }
 
-
 .header-titulo-categoria .title {
     color: #531415;
     font-family: "Boring Sans A Light Italic";
@@ -708,7 +677,6 @@ nav li {
     align-items: center;
     flex-direction: column;
     padding-bottom: 100px;
-
 }
 
 .card-container-categorias {
@@ -727,7 +695,6 @@ nav li {
     box-sizing: border-box;
     /* Añadimos position relative para que el botón pueda usar position absolute */
 }
-
 
 .card__categorias img {
     width: 100%;
@@ -749,16 +716,12 @@ nav li {
     border-radius: 40px;
 }
 
-
 .button__categorias:hover {
     background-color: #852121;
     cursor: pointer;
-
 }
 
 /* fin cartas de la categorias (index) */
-
-
 
 /* inicio menu*/
 
@@ -776,19 +739,16 @@ nav li {
     justify-content: center;
     margin-top: 20px;
     color: #531415;
-
 }
-
 
 .word-container {
     text-transform: capitalize;
-    font-family: 'Boring Sans A Heavy';
+    font-family: "Boring Sans A Heavy";
     margin: 0 20px;
     width: 500px;
     font-size: 3.4rem;
     text-align: center;
 }
-
 
 .button {
     width: 80px;
@@ -799,16 +759,15 @@ nav li {
     font-weight: bold;
     border-radius: 50%;
     cursor: pointer;
-
 }
 
 .button::before {
-    content: '←';
+    content: "←";
     /* Para la flecha izquierda */
 }
 
 .button.next::before {
-    content: '→';
+    content: "→";
     /* Para la flecha derecha */
 }
 
@@ -835,7 +794,6 @@ nav li {
     width: 100%;
     height: auto;
     box-sizing: content-box;
-
 }
 
 .content__car__menu img {
@@ -845,19 +803,18 @@ nav li {
 }
 
 .parrafo__price {
-    font-family: 'moller-use-boldCondensed';
+    font-family: "moller-use-boldCondensed";
     font-weight: 500;
     margin: 8px;
 }
 
 .parrafo__cart {
-    font-family: 'boring-sans-atrial';
+    font-family: "boring-sans-atrial";
     font-size: 1.2rem;
     font-weight: 1000;
     max-width: 80%;
     color: #531415;
     margin: 8px;
-
 }
 
 .content__parrafo__agregar {
@@ -887,7 +844,6 @@ nav li {
     text-decoration: none;
 }
 
-
 .add-button {
     fill: #531415;
 }
@@ -906,7 +862,6 @@ nav li {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 996;
-
 }
 
 /* Estilos del modal */
@@ -920,8 +875,6 @@ nav li {
     position: fixed;
     height: min-content;
 }
-
-
 
 .ladoizq {
     background-color: #f5deb3;
@@ -957,7 +910,7 @@ nav li {
     padding: 20px;
     background: #f5deb3;
     /* Cambia el color de fondo a RGB #f5deb3 */
-    transition: right .5s ease;
+    transition: right 0.5s ease;
     z-index: 1010;
 }
 
@@ -1005,7 +958,6 @@ nav li {
     font-family: "Boring Sans A Light Italic";
     font-size: 1.2rem;
     margin: 0px 5px 50px 5px;
-
 }
 
 /* parte de la mitad del modal */
@@ -1043,7 +995,6 @@ nav li {
     font-size: 1rem;
     cursor: pointer;
     border-radius: 10px;
-
 }
 
 .subtotal {
@@ -1106,7 +1057,6 @@ nav li {
     text-transform: uppercase;
 }
 
-
 .cantidad {
     border: 1px solid #852121;
     width: 2.8rem;
@@ -1142,13 +1092,9 @@ nav li {
     background-color: #531415;
 }
 
-
 /* fin carrito de compra */
 
-
 /* inicio factura */
-
-
 
 /* contenedor principal */
 .contenedor__principal__factura {
@@ -1166,7 +1112,6 @@ nav li {
     padding: 20px;
     margin-top: 50px;
     margin-bottom: 50px;
-
 }
 
 /* Estilos para el título del encabezado */
@@ -1333,9 +1278,7 @@ nav li {
     justify-content: center;
 }
 
-
 /* detalle Factura */
-
 
 .detafac {
     display: flex;
@@ -1356,7 +1299,6 @@ nav li {
     color: #531415;
     margin-top: -2px;
 }
-
 
 .cardDF {
     display: flex;
@@ -1395,7 +1337,7 @@ nav li {
     font-family: "moller-use-boldCondensed";
     font-size: 1.8rem;
     font-weight: 300;
-    background-color: #8B0000;
+    background-color: #8b0000;
     color: #fff;
     border: none;
     border-radius: 20px;
@@ -1415,7 +1357,6 @@ nav li {
 /* fin factura */
 
 /* inicio sobre nosotros */
-
 
 .header-titulo__sobre__mi {
     display: flex;
@@ -1500,7 +1441,6 @@ nav li {
 
 /* fin sobre nosotros */
 
-
 /* perfil Usuario */
 
 .contenedor__info {
@@ -1518,7 +1458,6 @@ nav li {
     align-items: baseline;
     width: max-content;
 }
-
 
 .contenedor__info__superior .bi-person-fill {
     font-size: 10rem;
@@ -1538,9 +1477,8 @@ nav li {
     margin: 0;
 }
 
-
 .form__submit {
-    padding: 1rem .5rem 2rem;
+    padding: 1rem 0.5rem 2rem;
     background-color: #852121;
     color: #fff;
     font-size: 1.2rem;
@@ -1552,7 +1490,6 @@ nav li {
     height: 50px;
     margin: 8px;
 }
-
 
 .form__container {
     display: grid;
@@ -1593,8 +1530,6 @@ nav li {
 }
 
 /* fin perfil usuario */
-
-
 
 /* modal editar perfil */
 
@@ -1731,7 +1666,6 @@ nav li {
 
 /*fin del  modal editar perfil */
 
-
 /* modal Historial */
 
 .productos1 {
@@ -1810,11 +1744,9 @@ nav li {
     overflow: hidden;
 }
 
-
 .content__modal {
     width: 100%;
     box-sizing: content-box;
-
 }
 
 .content__modal img {
@@ -1824,14 +1756,13 @@ nav li {
 }
 
 .content__modal p {
-    font-family: 'Boring Sans A Light Italic';
+    font-family: "Boring Sans A Light Italic";
     font-size: 1.2rem;
     font-weight: 600;
     color: #531415;
     margin-left: 20px;
     margin: 8px;
     text-align: center;
-
 }
 
 .like-button:hover {
@@ -1839,7 +1770,6 @@ nav li {
 }
 
 /* fin modal historil */
-
 
 /* contactanos */
 /*Darinson estuvo aqui*/
@@ -1872,7 +1802,6 @@ nav li {
     text-align: center;
     font-size: 1.5rem;
     color: #531415;
-
 }
 
 .contenedor_principal {
@@ -1904,7 +1833,6 @@ nav li {
     margin-bottom: 10%;
     font-family: "Boring Sans A Light Italic";
     text-align: center;
-
 }
 
 .contenedor_formulario_contacto h2 {
@@ -1912,7 +1840,6 @@ nav li {
     font-size: 2rem;
     color: #fff;
 }
-
 
 .contenedor_formulario_contacto label {
     color: #fff;
@@ -1940,7 +1867,6 @@ nav li {
     height: 20px;
 }
 
-
 #label_privacidad {
     margin: 0px auto;
     color: #fff;
@@ -1962,9 +1888,7 @@ nav li {
     cursor: pointer;
 }
 
-
 /* fin contactanos */
-
 
 /* informacion legal */
 
@@ -1978,8 +1902,6 @@ nav li {
     color: #531415;
     font-size: 50px;
     margin-bottom: 100px;
-
-
 }
 
 .sub-title {
@@ -1987,18 +1909,13 @@ nav li {
     color: #531415;
     font-size: 18px;
     margin-bottom: 20px;
-
-
 }
 
 .legal-link {
     text-decoration: none;
     color: blue;
     transition: color 0.3s ease;
-
 }
-
-
 
 .separator-container {
     display: flex;
@@ -2016,8 +1933,6 @@ nav li {
 }
 
 /* fin informacion legal     */
-
-
 
 /* inicio del footer */
 footer {
@@ -2101,9 +2016,7 @@ footer {
 
 /* responsive */
 
-
-@media screen and (max-width:835px) {
-
+@media screen and (max-width: 835px) {
     /* menu hamburguesa */
     .navegacion__header {
         opacity: 0;
@@ -2119,13 +2032,12 @@ footer {
         bottom: 0;
         z-index: 1009;
         padding: 2rem;
-        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .6);
+        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.6);
     }
 
     .navegacion__header li {
         flex-direction: column;
     }
-
 
     .navegacion__header ul {
         flex-direction: column;
@@ -2141,8 +2053,7 @@ footer {
     .navegacion__header.visible {
         opacity: 1;
         visibility: visible;
-        transition: .4s ease-out;
-
+        transition: 0.4s ease-out;
     }
 
     .lista__desplegable a {
@@ -2197,12 +2108,9 @@ footer {
     }
 
     /* fin de contactanos */
-
 }
 
-
 @media (max-width: 768px) {
-
     /* index */
 
     /* cartas del index */
@@ -2254,15 +2162,12 @@ footer {
         margin-left: 0;
     }
 
-
-
     /* cartas del menu(index) */
 
     .cards__menu {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-
     }
 
     .card {
@@ -2284,15 +2189,12 @@ footer {
 
     /* fin de modal de detalle de  producto */
 
-
     /* contactanos */
     .contenedor_descripcion_contacto p {
         font-size: 0.9rem;
     }
 
     /* fin contactanos */
-
-
 
     /* footer */
     footer {
@@ -2304,9 +2206,7 @@ footer {
     }
 }
 
-
 @media (max-width: 500px) {
-
     .logo {
         width: 100px;
         padding: 10px 10px 10px 0px;
@@ -2325,7 +2225,6 @@ footer {
     .contenedor__info {
         display: inherit;
     }
-
 
     .form__submit {
         padding: 1rem;
@@ -2356,11 +2255,9 @@ footer {
         width: 350px;
     }
 
-
     .columnas input {
         width: 20rem;
     }
-
 
     .columnas .textarea__asunto,
     .columnas .textarea__comentario {
@@ -2393,7 +2290,6 @@ footer {
         width: 20rem;
     }
 
-
     .columnas__domicilio select {
         width: 20rem;
     }
@@ -2415,7 +2311,6 @@ footer {
         font-size: 1.5rem;
     }
 
-
     .button {
         width: 60px;
         height: 60px;
@@ -2434,7 +2329,6 @@ footer {
 
     /* fin de modales de login */
 
-
     /* modal de menu productos */
     .cards__menu {
         grid-template-columns: 1fr;
@@ -2442,12 +2336,10 @@ footer {
 
     /* fin del modal de menu productos */
 
-
     /* modal de datalle producto */
     .modal-content-menu {
         width: 330px;
     }
-
 
     .content-modal-cart {
         height: 100%;
@@ -2466,7 +2358,6 @@ footer {
     /* carrito */
     .carrito {
         right: -115%;
-
     }
 
     /* fin carrito */
@@ -2492,5 +2383,39 @@ footer {
     }
 
     /* fin de contactanos */
+}
 
+/* ESTILOS PARA LAS ALERTAS DEL LOGIN*/
+
+.alertaUsuarioCreado, .AlertaInicioSession {
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-right: 40px;
+    padding-left: 10px;
+    width: 35%;
+    text-align: left;
+    letter-spacing: 2px;
+    color: #413f3f;
+    text-shadow: 0px 0px 4px white;
+    background-color: rgba(86, 213, 86, 0.7);
+    box-shadow: 8px 10px 8px rgba(63, 60, 60, 0.7);
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 0px 0px 5px 5px;
+    animation: mensajeAlerta linear 2s;
+}
+
+@keyframes mensajeAlerta {
+    0% {
+        transform: translateY(-140%);
+    }
+}
+
+#mensajeAlertaUsuarioCreado, #mensajeAlertaInicioSession {
+    font-size: 18px;
+    font-style: italic;
+    padding: 2px;
+    text-align: center;
+    color: rgb(52, 50, 50);
 }
