@@ -10,6 +10,7 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
@@ -28,9 +29,9 @@
 
             <ul>
                 <li>
-                    <a class="hover-btn" href="{{route('inicio')}}">Inicio</a>
-                    <a class="hover-btn" href="{{route('productos')}}">Menu</a>
-                    <a class="hover-btn" href="{{route('sobreMi')}}">Sobre
+                    <a class="hover-btn" href="{{ route('inicio') }}">Inicio</a>
+                    <a class="hover-btn" href="{{ route('productos') }}">Menu</a>
+                    <a class="hover-btn" href="{{ route('sobreMi') }}">Sobre
                         Nosotros</a>
                 </li>
                 <li class="lista__desplegable">
@@ -79,7 +80,7 @@
 
             <div class="parteabajo">
                 <div class="botones_abajo">
-                    <a href="{{route('factura')}}"><button class="pay-button">Ir a
+                    <a href="{{ route('factura') }}"><button class="pay-button">Ir a
                             Pagar</button> </a>
                     <div class="subtotal">
                         $0
@@ -117,7 +118,7 @@
                 <h3>Ayuda</h3>
                 <ul class="section__info">
                     <li><a href="#">Legales</a></li>
-                    <li><a href="{{route('informacionLegal')}}">Politicas de
+                    <li><a href="{{ route('informacionLegal') }}">Politicas de
                             privacidad</a></li>
                 </ul>
             </div>
@@ -175,10 +176,14 @@
     <script src="{{ asset('js/modalPerfil.js') }}"></script>
     <script src="{{ asset('js/modalPerfil-dos.js') }}"></script>
     <script src="{{ asset('js/modalDomicilio.js') }}"></script>
-    <script src="{{ asset('js/modalcarta.js')}}"></script>
+    <script src="{{ asset('js/modalcarta.js') }}"></script>
+
+    {{-- Alertas DEL LOGIN --}}
+    <script src="{{ asset('js/alertasLogin.js') }}"></script>
 
     {{-- icon scrip --}}
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
 </body>
+
 </html>

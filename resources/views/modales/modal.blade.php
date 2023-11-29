@@ -4,45 +4,64 @@
         <span class="close closeModalUno">&times;</span>
 
         <h2>Bienvenidos a Frutos del Castillo</h2>
-        <form action="#" method="post">
+        <form action="{{route('iniciarSesion')}}" method="post">
+
+            @csrf
+
             <div>
-                <input class="input__login" type="text" placeholder="Email">
+                <input class="input__login" name="email" type="text" placeholder="Email">
             </div>
+            @if ($errors->has('email'))
+                <div><i class="bi bi-x-circle"></i> {{ $errors->first('email') }}</div>
+            @endif
+
             <div>
-                <input class="input__login" type="password" placeholder="Contraseña">
+                <input class="input__login" name="password" type="password" placeholder="Contraseña">
+                @if ($errors->has('password'))
+                    <div><i class="bi bi-x-circle"></i> {{ $errors->first('password') }}</div>
+                @endif
 
                 <button class="login-button">Iniciar Sesión</button>
                 <a class="password-forgot" href="#" id="modalOlvidarContrasena">¿Olvidaste
                     la contraseña?</a>
             </div>
         </form>
-        <div class="signup-link">
 
+        <div class="signup-link">
             <p>¿No tienes cuenta? <span id="logoAbrirModalDos">Registrate</span></p>
         </div>
     </div>
+    
     <!-- fin del modal de registro -->
 
     <!-- modal no tienes cuenta -->
     <div class="modal-content-perfil" id="modalSignup">
         <span class="close closeModalDos">&times;</span>
         <h2>Bienvenidos a Frutos del Castillo</h2>
-        <form>
-            <div>
-                <input id="signup-name" class="input__login" type="text" placeholder="Nombre">
-            </div>
-            <div>
+        <form action="{{ route('crearUsuario') }}" method="POST">
 
-                <input id="signup-email" class="input__login" type="text" placeholder="Email">
+            @csrf
+
+            <div>
+                <input id="signup-name" name="nombre" class="input__login" type="text" placeholder="Nombre">
             </div>
             <div>
-                <input id="signup-phone" class="input__login" type="number" placeholder="Teléfono">
+                <input id="signup-email" name="email" class="input__login" type="text" placeholder="Email">
             </div>
             <div>
-                <input id="signup-password" class="input__login" type="password" placeholder="Contraseña">
+                <input id="signup-phone" name="celular" class="input__login" type="number" placeholder="Teléfono">
             </div>
             <div>
-                <input id="signup-confirm-password" class="input__login" type="password" placeholder="Confirmar Contraseña">
+                <input id="signup-password" name="password" class="input__login" type="password" placeholder="Contraseña">
+            </div>
+            <div>
+                <input id="signup-confirm-password" name="password_verification" class="input__login" type="password" placeholder="Confirmar Contraseña">
+
+                @if ($errors->has('password_verification'))
+                    <div><i class="bi bi-x-circle"></i> {{ $errors->first('password_verification') }}</div>
+                @endif
+
+
             </div>
             <div id="policy-checkbox">
                 <input type="checkbox" id="accept-policy">
@@ -102,7 +121,7 @@
         <div>
             <button class="login-button">Recuperar Contraseña</button>
         </div>
-        </form> 
+        </form>
     </div>
     <!-- fin del modal de recuperar Contraseña -->
 

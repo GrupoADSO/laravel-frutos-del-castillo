@@ -5,6 +5,18 @@
 
 @section('contenido')
 
+    @if (session('logueado'))
+        <div class="AlertaInicioSession">
+            <h1 id="mensajeAlertaInicioSession">{{session('logueado')}}</h1>
+        </div>
+    @endif
+
+    @if (session('usuarioCreado'))
+        <div class="alertaUsuarioCreado">
+            <h1 id="mensajeAlertaUsuarioCreado">{{ session('usuarioCreado') }} <i class="bi bi-check2-square"></i></h1>
+        </div>
+    @endif
+
     <!-- contenedor del slider -->
     <main class="slider-container">
         <!-- Contenedor imagen slider -->
@@ -72,7 +84,7 @@
                 <img src="img/img-cartas/pexels-marta-dzedyshko-7441761.jpg" alt="Imagen 4">
                 <button class="button__categorias">carta extra</button>
             </div>
-            
+
         </div>
     </section>
 
