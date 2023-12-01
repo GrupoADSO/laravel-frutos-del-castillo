@@ -14,11 +14,11 @@ class UsersSeeder extends Seeder
      */
     public function run(): void
     {
-        // el super administrador tiene control total
         $usuario = Role::create(['name'=>'usuario']);
+        // el super administrador tiene control total
         $superAdmin = Role::create(['name'=>'super_admin']);
         // el admin solo se encarga de controlar tareas pequeñas(productos,imagenes,etc)
-        $empleado = Role::create(['name'=>'admin']);
+        $empleado = Role::create(['name'=>'empleado']);
 
         Permission::create(['name'=>'ver'])->syncRoles([$usuario]);
         

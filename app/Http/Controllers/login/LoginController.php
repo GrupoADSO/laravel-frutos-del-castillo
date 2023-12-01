@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+
 class LoginController extends Controller
 {
 
@@ -30,7 +31,7 @@ class LoginController extends Controller
         } else {
             $datosUsuario["password"] = Hash::make($request->input('password'));
 
-            User::create($datosUsuario);
+            User::create($datosUsuario)->assignRole('usuario');
 
             return redirect()->route('inicio')->with('usuarioCreado', 'La creación de la cuenta se realizó con éxito. ¡Accede a tu cuenta ahora mismo!');
         }
