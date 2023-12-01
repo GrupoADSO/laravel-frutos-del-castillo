@@ -23,15 +23,16 @@ class User extends Authenticatable
     // protected $table = 'usuarios';
 
     protected $fillable = [
-        // 'identificacion',
         'nombre',
-        // 'apellido',
-        // 'fecha_nacimiento',
+        'apellido',
+        'fecha_nacimiento',
         'email',
         'password',
         'celular',
-        // 'direccion'
     ];
+
+    // desactiva los campos de fecha que trae laravel
+    public $timestamps = false;
 
     /**
      * The attributes that should be hidden for serialization.
