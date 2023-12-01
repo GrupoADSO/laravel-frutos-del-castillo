@@ -78,7 +78,7 @@
 
             <div class="card__categorias">
                 <img src="img/img-cartas/pexels-marta-dzedyshko-7441761.jpg" alt="Imagen 4">
-                <button class="button__categorias">carpta extra</button>
+                <button class="button__categorias">carta extra</button>
             </div>
             <div class="card__categorias">
                 <img src="img/img-cartas/pexels-marta-dzedyshko-7441761.jpg" alt="Imagen 4">
@@ -87,6 +87,8 @@
 
         </div>
     </section>
+    
+    <script src="{{ asset('js/script.js') }}"></script>
 
     <!-- Fin contenedor cartas o categorias -->
 @endsection

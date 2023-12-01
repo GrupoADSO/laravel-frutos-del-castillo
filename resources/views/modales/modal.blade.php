@@ -39,11 +39,17 @@
         <span class="close closeModalDos">&times;</span>
         <h2>Bienvenidos a Frutos del Castillo</h2>
         <form action="{{ route('crearUsuario') }}" method="POST">
-
             @csrf
 
             <div>
                 <input id="signup-name" name="nombre" class="input__login" type="text" placeholder="Nombre">
+            </div>
+            <div>
+                <input id="signup-lastaname" name="apellido" class="input__login" type="text" placeholder="Apellido">
+            </div>
+            <div>
+                <label for="signup-fecha-nacimiento">Fecha de Nacimiento</label>
+                <input id="signup-fecha-nacimiento" name="fecha_nacimiento" class="input__login" type="date">
             </div>
             <div>
                 <input id="signup-email" name="email" class="input__login" type="text" placeholder="Email">
@@ -216,6 +222,6 @@
 
             <button class="botom__reservas">Reserva Ya!!</button>
         </form>
-
     </div>
-    <!-- fin modal de reserva -->
+
+<script src="{{ asset('js/modal_reserva_domicilio.js') }}"></script>
