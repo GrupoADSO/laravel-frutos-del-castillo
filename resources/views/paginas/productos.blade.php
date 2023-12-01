@@ -268,6 +268,6 @@
         </div>
 
         <!-- fin cartas -->
-
-
+        <script src="{{ asset('js/funcionalidad.js') }}"></script>
+        <script src="{{ asset('js/modalcarta.js') }}"></script>
     @endsection

@@ -262,11 +262,18 @@ nav li {
     z-index: 994;
 }
 
+
+.modal-content-perfil h2{
+    margin: 10px 0;
+}
+
 .modal-content-perfil h2,
 .modal-content-perfil form {
     text-align: center;
     font-family: "Boring Sans A Light Italic";
 }
+
+
 
 /* modal de login  */
 
@@ -320,6 +327,7 @@ nav li {
 .signup-link span {
     font-size: 1.2rem;
     color: #862d2e;
+    cursor: pointer;
 }
 
 .signup-link a {
@@ -667,7 +675,6 @@ nav li {
     font-family: "Boring Sans A Light Italic";
     font-size: 4.7rem;
     font-weight: 600;
-    letter-spacing: 0.2em;
     margin: 0;
 }
 
@@ -1370,9 +1377,11 @@ nav li {
     justify-content: center;
     display: flex;
     align-items: center;
+    padding: 10px;
 }
 
 .title-container .title {
+    margin: 0;
     color: #531415;
     font-family: "Boring Sans A Light Italic";
     /* Usa la fuente cargada */

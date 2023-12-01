@@ -207,4 +207,6 @@
 
             </div>
         </div>
+
+        <script src="{{ asset('js/modalPerfil.js') }}"></script>
     @endsection

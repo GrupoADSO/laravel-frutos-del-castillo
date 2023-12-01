@@ -44,3 +44,4 @@ startAutoSlide();
 const sliderContainer = document.querySelector('.slider-container');
 sliderContainer.addEventListener('mouseenter', stopAutoSlide);
 sliderContainer.addEventListener('mouseleave', startAutoSlide);
+

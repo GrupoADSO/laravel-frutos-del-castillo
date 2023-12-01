@@ -166,24 +166,16 @@
     </footer>
     <!-- fin del footer -->
 
-    <!-- js controles -->
-    <script src="{{ asset('js/script.js') }}"></script>
-    <script src="{{ asset('js/funcionalidad.js') }}"></script>
-    <script src="{{ asset('js/reserva.js') }}"></script>
-    <script src="{{ asset('js/modalDomicilio.js') }}"></script>
-    <script src="{{ asset('js/modales_login.js') }}"></script>
-    <script src="{{ asset('js/carrito.js') }}"></script>
-    <script src="{{ asset('js/modalPerfil.js') }}"></script>
-    <script src="{{ asset('js/modalPerfil-dos.js') }}"></script>
-    <script src="{{ asset('js/modalDomicilio.js') }}"></script>
-    <script src="{{ asset('js/modalcarta.js') }}"></script>
-
-    {{-- Alertas DEL LOGIN --}}
-    <script src="{{ asset('js/alertasLogin.js') }}"></script>
-
     {{-- icon scrip --}}
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-
+    <!-- js controles -->
+    {{-- <script src="{{ asset('js/reserva.js') }}"></script>
+    <script src="{{ asset('js/modalDomicilio.js') }}"></script> --}}
+    <script src="{{ asset('js/modales_login.js') }}"></script>
+    <script src="{{ asset('js/carrito.js') }}"></script>
+    <script src="{{ asset('js/menuHamburguesa.js') }}"></script>
+    {{-- Alertas DEL LOGIN --}}
+    <script src="{{ asset('js/alertasLogin.js') }}"></script>
 </body>
 
 </html>
