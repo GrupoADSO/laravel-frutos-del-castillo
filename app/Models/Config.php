@@ -13,6 +13,8 @@ class Config extends Model
 
     protected $fillable = [
         'nombre',
-        'descripcion'
+        'descripcion',
+        'created_at',
+        'updated_at'
     ];
 }

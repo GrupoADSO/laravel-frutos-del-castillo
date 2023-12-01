@@ -9,14 +9,15 @@ class Compra extends Model
 {
     use HasFactory;
 
-    protected $table = 'compra';
-
     protected $fillable = [
         'fecha_hora',
         'iva',
         'costo_total',
         'comentario',
-        'usuarios_id',
-        'usuarios_reservas_id'
+        'direccion',
+        'user_id',
+        'mesa_id',
+        'created_at',
+        'updated_at'
     ];
 }

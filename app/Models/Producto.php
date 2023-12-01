@@ -14,12 +14,14 @@ class Producto extends Model
     protected $fillable = [
         'nombre',
         'precio',
-        'tamaño',
+        'tamanio',
         'descripcion',
         'disponibilidad',
         'imagen_1',
         'imagen_2',
         'descuento',
-        'categorias_id'
+        'categoria_id',
+        'created_at',
+        'updated_at'
     ];
 }

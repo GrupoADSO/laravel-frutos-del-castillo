@@ -14,8 +14,9 @@ class Calificacion extends Model
     protected $fillable = [
         'comentario',
         'puntuacion',
-        'productos_id',
-        'productos_categorias_id',
-        'usuarios_id'
+        'producto_id',
+        'user_id',
+        'created_at',
+        'updated_at'
     ];
 }

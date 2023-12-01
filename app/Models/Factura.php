@@ -9,14 +9,13 @@ class Factura extends Model
 {
     use HasFactory;
 
-    protected $table = 'factura';
-
     protected $fillable = [
         'cantidad_producto',
         'subtotal',
+        'precio',
         'compra_id',
-        'compra_usuarios_id',
-        'compra_usuarios_reservas',
-        'productos_id'
+        'producto_id',
+        'created_at',
+        'updated_at'
     ];
 }

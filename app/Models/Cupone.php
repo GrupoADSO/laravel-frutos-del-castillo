@@ -17,8 +17,9 @@ class Cupone extends Model
         'fecha_inicio',
         'fecha_fin',
         'imagen_1',
-        'categorias_id',
-        'productos_id',
-        'productos_categorias_id',
+        'categoria_id',
+        'producto_id',
+        'created_at',
+        'updated_at'
     ];
 }

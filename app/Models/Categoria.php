@@ -9,10 +9,10 @@ class Categoria extends Model
 {
     use HasFactory;
 
-    // protected $table = 'elementos_catalogo';
-
     protected $fillable = [
         'nombre',
-        'imagen'
+        'imagen',
+        'created_at',
+        'updated_at'
     ];
 }
