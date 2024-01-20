@@ -1,94 +1,49 @@
 @extends('layouts.layout')
 
-
 @section('titulo', 'inicio')
 
 @section('contenido')
 
-    @if (session('logueado'))
-        <div class="AlertaInicioSession">
-            <h1 id="mensajeAlertaInicioSession">{{session('logueado')}}</h1>
-        </div>
-    @endif
+    {{-- importante: se debe de organizar las rutas para cada caso, es decir slider para slider y asi. --}}
 
-    @if (session('usuarioCreado'))
-        <div class="alertaUsuarioCreado">
-            <h1 id="mensajeAlertaUsuarioCreado">{{ session('usuarioCreado') }} <i class="bi bi-check2-square"></i></h1>
-        </div>
-    @endif
-
-    <!-- contenedor del slider -->
-    <main class="slider-container">
-        <!-- Contenedor imagen slider -->
+    <div class="slider-container">
         <div class="slider-slide">
-            <img src="./img/img-slider/pexels-dana-tentis-1213710 (1).jpg" alt="Imagen 1" />
+            @foreach ($categorias as $slider)
+                <img src="{{ asset('assets/img/img-categorias/' . $slider->imagen) }}" alt="{{ $slider->name }}"
+                    class="img-slider" />
+            @endforeach
         </div>
-
-        <!-- Contenedor imagen slider -->
-        <div class="slider-slide">
-            <img src="./img/img-slider/pexels-naim-benjelloun-2110923.jpg" alt="Imagen 2" />
-        </div>
-
-        <!-- Contenedor imagen slider -->
-        <div class="slider-slide">
-            <img src="./img/img-slider/pexels-valeria-boltneva-1251198 (5).jpg" alt="Imagen 3" />
-        </div>
-
         <!-- Botones de control slider -->
         <div class="slider-controls">
             <button class="btn-prev" onclick="changeSlide(-1)">&#10094;</button>
             <button class="btn-next" onclick="changeSlide(1)">&#10095;</button>
         </div>
-    </main>
-
-    <!-- fin contenedor principal -->
+    </div>
 
     <!-- Inicio contenedor cartas o categorias -->
 
+    <section class="card__container">
 
-    <section class="section-cart">
+        <h1 class="titulo__categorias">
+            <span class="logo-queso"><i class="fa-solid fa-cheese"></i></span>
+            Categorías
+        </h1>
 
-        <div class="header-titulo-categoria">
-            <!-- <div class="title-container"> -->
-            <img src="./img/img-cartas/logo-menu.png" alt="Logo de queso rojo" class="logo__queso" />
-            <h1 class="title">Categorías</h1>
-            <!-- </div> -->
-        </div>
+        @foreach ($categorias as $categoria)
+            <article class="card__categoria">
+                <div class="header__card">
+                    <img src="{{ asset('assets/img/img-categorias/' . $categoria->imagen) }}"
+                        alt="{{ $categoria->nombre }}">
+                </div>
+                <div class="boton__categoria">
+                    <h2 class="titulo__articulo-categoria"><button
+                            class="enlace__categoria">{{ $categoria->nombre }}</button></h2>
+                </div>
+            </article>
+        @endforeach
 
-        <div class="card-container-categorias">
-            <div class="card__categorias">
-                <img src="img/img-cartas/pexels-rajesh-tp-1633578.jpg" alt="Imagen 1" />
-                <button class="button__categorias ">Comidas rapidas</button>
-            </div>
-
-            <div class="card__categorias">
-                <img src="img/img-cartas/pexels-anna-tukhfatullina-food-photographerstylist-2638026.jpg" alt="Imagen 2" />
-                <button class="button__categorias">Postres</button>
-            </div>
-
-            <div class="card__categorias">
-                <img src="img/img-cartas/pexels-streetwindy-4055138 (1).jpg" alt="Imagen 3" />
-                <button class="button__categorias">Bebidas</button>
-            </div>
-
-            <div class="card__categorias">
-                <img src="img/img-cartas/pexels-marta-dzedyshko-7441761.jpg" alt="Imagen 4">
-                <button class="button__categorias">Extra</button>
-            </div>
-
-            <div class="card__categorias">
-                <img src="img/img-cartas/pexels-marta-dzedyshko-7441761.jpg" alt="Imagen 4">
-                <button class="button__categorias">carta extra</button>
-            </div>
-            <div class="card__categorias">
-                <img src="img/img-cartas/pexels-marta-dzedyshko-7441761.jpg" alt="Imagen 4">
-                <button class="button__categorias">carta extra</button>
-            </div>
-
-        </div>
     </section>
-    
-    <script src="{{ asset('js/script.js') }}"></script>
 
-    <!-- Fin contenedor cartas o categorias -->
+    <script src="{{ asset('assets/js/script.js') }}"></script>
+
 @endsection

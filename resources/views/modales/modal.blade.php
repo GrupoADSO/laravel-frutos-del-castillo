@@ -1,227 +1,142 @@
-    <div id="login-modal" class="modal-perfil"></div>
+<div class="modal-content-perfil" id="modalPerfil">
+    <span class="close closeModalUno">&times;</span>
 
-    <div class="modal-content-perfil" id="modalPerfil">
-        <span class="close closeModalUno">&times;</span>
+    <h2>Bienvenidos a Frutos del Castillo</h2>
+    <form action="{{ route('iniciarSesion') }}" method="post">
+        @csrf
 
-        <h2>Bienvenidos a Frutos del Castillo</h2>
-        <form action="{{route('iniciarSesion')}}" method="post">
 
-            @csrf
-
-            <div>
-                <input class="input__login" name="email" type="text" placeholder="Email">
-            </div>
-            @if ($errors->has('email'))
-                <div><i class="bi bi-x-circle"></i> {{ $errors->first('email') }}</div>
-            @endif
-
-            <div>
-                <input class="input__login" name="password" type="password" placeholder="Contraseña">
-                @if ($errors->has('password'))
-                    <div><i class="bi bi-x-circle"></i> {{ $errors->first('password') }}</div>
-                @endif
-
-                <button class="login-button">Iniciar Sesión</button>
-                <a class="password-forgot" href="#" id="modalOlvidarContrasena">¿Olvidaste
-                    la contraseña?</a>
-            </div>
-        </form>
-
-        <div class="signup-link">
-            <p>¿No tienes cuenta? <span id="logoAbrirModalDos">Registrate</span></p>
+        <div class="contenedor__input__login">
+            <i class="fa-solid fa-envelope icon__login"></i>
+            <input class="input__login" name="email" type="text" placeholder="Email">
         </div>
-    </div>
-    
-    <!-- fin del modal de registro -->
-
-    <!-- modal no tienes cuenta -->
-    <div class="modal-content-perfil" id="modalSignup">
-        <span class="close closeModalDos">&times;</span>
-        <h2>Bienvenidos a Frutos del Castillo</h2>
-        <form action="{{ route('crearUsuario') }}" method="POST">
-            @csrf
-
-            <div>
-                <input id="signup-name" name="nombre" class="input__login" type="text" placeholder="Nombre">
-            </div>
-            <div>
-                <input id="signup-lastaname" name="apellido" class="input__login" type="text" placeholder="Apellido">
-            </div>
-            <div>
-                <label for="signup-fecha-nacimiento">Fecha de Nacimiento</label>
-                <input id="signup-fecha-nacimiento" name="fecha_nacimiento" class="input__login" type="date">
-            </div>
-            <div>
-                <input id="signup-email" name="email" class="input__login" type="text" placeholder="Email">
-            </div>
-            <div>
-                <input id="signup-phone" name="celular" class="input__login" type="number" placeholder="Teléfono">
-            </div>
-            <div>
-                <input id="signup-password" name="password" class="input__login" type="password" placeholder="Contraseña">
-            </div>
-            <div>
-                <input id="signup-confirm-password" name="password_verification" class="input__login" type="password" placeholder="Confirmar Contraseña">
-
-                @if ($errors->has('password_verification'))
-                    <div><i class="bi bi-x-circle"></i> {{ $errors->first('password_verification') }}</div>
-                @endif
+        @if ($errors->has('email'))
+            <div><i class="bi bi-x-circle"></i> {{ $errors->first('email') }}</div>
+        @endif
 
 
-            </div>
-            <div id="policy-checkbox">
-                <input type="checkbox" id="accept-policy">
-                <label for="accept-policy">Acepto las políticas y condiciones</label>
-            </div>
-            <button id="signup-button" class="login-button">Crear Cuenta</button>
-        </form>
-    </div>
-    <!--modal no tienes cuenta -->
+        <div class="contenedor__input__login">
+            <i class="fa-solid fa-lock icon__login"></i>
+            <input class="input__login" name="password" type="password" placeholder="Contraseña">
+        </div>
+        @if ($errors->has('password'))
+            <div><i class="bi bi-x-circle"></i> {{ $errors->first('password') }}</div>
+        @endif
 
-    <!-- modal de recuperar Contraseña email -->
-    <div class="modal_content_recuperar_contraseña_email" id="content_recuperar_contraseña_email">
-        <span class="close cerrarModalOlvidar">&times;</span>
-
-        <h2>Recupera tu cuenta con tu email</h2>
-        <form action="#" method="post">
-            <div>
-
-                <input class="input__login" type="text" placeholder="Email">
-            </div>
-            <div>
-                <button class="login-button" type="submit" id="abrirModalEnviarCodigo">Enviar
-                    Codigo</button>
-            </div>
-        </form>
-    </div>
-
-    <!-- modal de recuperar contraseña Codigo -->
-
-    <div class="modal_content_recuperar_contraseña" id="modalDosEnviar">
-        <span class="close closeModalDosEnviar">&times;</span>
-
-        <h2>Ingresa el codigo de validacón</h2>
-        <form action="#" method="post">
-            <div>
-
-                <input class="input__login" type="text" placeholder="Codigo">
-            </div>
-            <div>
-                <button class="login-button" id="abrirModalCambiarContrasena">Recuperar</button>
-            </div>
-        </form>
-    </div>
-
-    <!--fin del  modal de recuperar contraseña Codigo -->
-
-    <!-- modal de recuperar Contraseña -->
-    <div class="modal_content_recuperar_contraseña_codigo" id="modalTresRecuperar">
-        <span class="close  closeTresRecuperar">&times;</span>
-
-        <h2>Ingresa tu nueva contraseña</h2>
-        <form action="#" method="post">
         <div>
-            <input class="input__login" type="text" placeholder="Contraseña">
-            <input class="input__login" type="text" placeholder="Nueva Contraseña">
+            <button class="login-button">Iniciar Sesión</button>
+        </div>
+    </form>
+
+    <div class="signup-link">
+
+        <p class="password-forgot" id="modalOlvidarContrasena">¿Olvidaste
+            la contraseña?</p>
+        <p class="crear__cuenta">¿No tienes cuenta? <span id="logoAbrirModalDos">Registrate</span></p>
+    </div>
+</div>
+
+
+<div class="modal-content-perfil" id="modalSignup">
+    <span class="close closeModalDos">&times;</span>
+    <h2>Registrate Ya!!</h2>
+    <form action="{{ route('crearUsuario') }}" method="post">
+        @csrf
+        <div class="contenedor__input__login">
+            <i class="fa-solid fa-user icon__login"></i>
+            <input class="input__login" name="nombre" type="text" placeholder="Nombre">
+        </div>
+
+        <div class="contenedor__input__login">
+            <i class="fa-solid fa-user icon__login"></i>
+            <input class="input__login" name="apellido" type="text" placeholder="apellido">
+        </div>
+
+        <div class="contenedor__input__login">
+            <i class="fa-solid fa-calendar icon__login"></i>
+            <label for="signup-fecha-nacimiento">Fecha de Nacimiento</label>
+            <input id="signup-fecha-nacimiento" name="fecha_nacimiento" class="input__login" type="date">
+        </div>
+
+        <div class="contenedor__input__login">
+            <i class="fa-solid fa-envelope icon__login"></i>
+            <input class="input__login" name="email" type="text" placeholder="Email">
+        </div>
+
+        <div class="contenedor__input__login">
+            <i class="fa-solid fa-mobile icon__login"></i>
+            <input class="input__login" name="celular" type="number" placeholder="Teléfono">
+        </div>
+
+        <div class="contenedor__input__login">
+            <i class="fa-solid fa-lock icon__login"></i>
+            <input class="input__login" name="password" type="password" placeholder="Contraseña">
+        </div>
+        <div class="contenedor__input__login">
+            <i class="fa-solid fa-lock icon__login"></i>
+            <input class="input__login" name="password_verification" type="password" placeholder="Confirmar Contraseña">
+        </div>
+        @if ($errors->has('password_verification'))
+            <div><i class="bi bi-x-circle"></i> {{ $errors->first('password_verification') }}</div>
+        @endif
+
+        <div id="policy-checkbox">
+            <input type="checkbox" id="accept-policy" required>
+            <label for="accept-policy">Acepto las políticas y condiciones</label>
+        </div>
+        <button id="signup-button" class="login-button">Crear Cuenta</button>
+    </form>
+</div>
+
+
+
+
+<div class="modal_content_recuperar_contraseña_email" id="content_recuperar_contraseña_email">
+    <span class="close cerrarModalOlvidar">&times;</span>
+
+    <h2>Recupera tu cuenta con tu email</h2>
+    <form action="#" method="post">
+        <div class="contenedor__input__login">
+            <i class="fa-solid fa-envelope icon__login"></i>
+            <input class="input__login" type="text" placeholder="Email">
         </div>
         <div>
-            <button class="login-button">Recuperar Contraseña</button>
+            <button class="login-button" type="submit" id="abrirModalEnviarCodigo">Enviar
+                Codigo</button>
         </div>
-        </form>
+    </form>
+</div>
+
+<div class="modal_content_recuperar_contraseña" id="modalDosEnviar">
+    <span class="close closeModalDosEnviar">&times;</span>
+
+    <h2>Ingresa el codigo de validacón</h2>
+    <form action="#" method="post">
+        <div class="contenedor__input__login">
+            <i class="fa-solid fa-lock icon__login"></i>
+            <input class="input__login" type="codigo-email" placeholder="codigo">
+        </div>
+        <div>
+            <button class="login-button" id="abrirModalCambiarContrasena">Recuperar</button>
+        </div>
+    </form>
+</div>
+
+<div class="modal_content_recuperar_contraseña_codigo" id="modalTresRecuperar">
+    <span class="close  closeTresRecuperar">&times;</span>
+
+    <h2>Ingresa tu nueva contraseña</h2>
+    <!-- <form action="#" method="post"> -->
+    <div class="contenedor__input__login">
+        <i class="fa-solid fa-lock icon__login"></i>
+        <input class="input__login" type="password" placeholder="Contraseña">
     </div>
-    <!-- fin del modal de recuperar Contraseña -->
-
-    <!-- modal de Domicilio -->
-    <div id="tarjetaDomicilio" class="contenedor__domicilio">
-        <span id="cerra__domicilio" class="close">&times;</span>
-        <form action="#" class="form__domicilio">
-            <div class="columnas">
-                <p class="titulo__campos">
-                    Nombre<input type="text" name id>
-                </p>
-            </div>
-
-            <div class="filas">
-                <p class="titulo__campos">
-                    Dirección de Correo<input type="email" name id>
-                </p>
-                <p class="titulo__campos">
-                    Telefono<input type="text" name id>
-                </p>
-                <p class="titulo__campos">
-                    Dirección<input type="text" name id>
-                </p>
-                <p class="titulo__campos">
-                    Categoría <select name id>
-                        <option value>Selecciona la Categoría</option>
-                        <option value>Comidas Rapidas</option>
-                        <option value>Bebidas</option>
-                        <option value>postres</option>
-                        <option value>extra</option>
-                    </select>
-                </p>
-            </div>
-
-            <div class="columnas__domicilio">
-                <p class="titulo__campos">
-                    Categoría <select name id>
-                        <option value>Selecciona el producto</option>
-                        <option value>Productos 1</option>
-                        <option value>productos 2</option>
-                        <option value>productos 3</option>
-                    </select>
-                </p>
-                <textarea class="textarea__comentario" name id cols="30" rows="5" placeholder="Indicaciones"></textarea>
-            </div>
-
-            <div class="aceptar__informacion">
-                <label for="aceptacion">Acepto la información enviada</label>
-                <input type="checkbox" id="aceptacion" name="aceptacion" required>
-            </div>
-
-            <button class="botom__reservas">Reserva Ya!!</button>
-        </form>
-
-    </div>
-    <!-- fin del modal de Domicilio -->
-
-    <!-- Modal de reserva -->
-    <div id="tarjetaReserva" class="contenedor__reserva">
-        <span id="cerra__reserva" class="close">&times;</span>
-        <form action="#" class="form__reserva">
-            <div class="columnas">
-                <p class="titulo__campos">
-                    Nombre<input type="text" name id>
-                </p>
-            </div>
-
-            <div class="filas">
-                <p class="titulo__campos">
-                    Direccion Correo<input type="email" name id>
-                </p>
-                <p class="titulo__campos">
-                    Telefono<input type="text" name id>
-                </p>
-                <p class="titulo__campos">
-                    Fecha de reservacion<input type="date" name id>
-                </p>
-                <p class="titulo__campos">
-                    Numero de Personas<input type="text" name id>
-                </p>
-            </div>
-
-            <div class="columnas">
-                <textarea class="textarea__asunto" name id cols="30" rows="5" placeholder="Asusto"></textarea>
-                <textarea class="textarea__comentario" name id cols="30" rows="5" placeholder="Comentario"></textarea>
-            </div>
-
-            <div class="aceptar__informacion">
-                <label for="aceptacion">Acepto la información enviada</label>
-                <input type="checkbox" id="aceptacion" name="aceptacion" required>
-            </div>
-
-            <button class="botom__reservas">Reserva Ya!!</button>
-        </form>
+    <div class="contenedor__input__login">
+        <i class="fa-solid fa-lock icon__login"></i>
+        <input class="input__login" type="password" placeholder="Repetir Contraseña">
     </div>
 
-<script src="{{ asset('js/modal_reserva_domicilio.js') }}"></script>
+    <div>
+        <button class="login-button">Recuperar Contraseña</button>
+    </div>
+</div>
