@@ -46,7 +46,7 @@
 
     <!--jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="{{ asset('assets/js/funcionalidad.js') }}"></script>
+    <script src="{{ asset('assets/js/menuDeProductos.js') }}"></script>
     <script src="{{ asset('assets/js/modalcarta.js') }}"></script>
 
 

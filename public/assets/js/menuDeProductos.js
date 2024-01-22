@@ -1,4 +1,4 @@
-// Verificamos si el jquery está definido antes de usarlo
+// Verificar si jQuery está definido antes de usarlo
 if (typeof jQuery != "undefined") {
   $(document).ready(function () {
     // Ejecutamos la funcion para cargar las categorias que tengamos en la bd
@@ -77,34 +77,49 @@ function cargarProductosPorCategoria(categoriaId) {
     success: function (response) {
       // Actualizar la lista de productos
       $(".card__container").html("");
-
+      
       response.forEach(function (producto) {
+        
+        // Construir el HTML para cada producto
         let productoHtml = `
-              <article class="card__menu card__producto__historia">
-              <div class="product">
-                  <a class="like-button" href="#"><i
-                          class="fa-regular fa-heart"></i><strong>145M</strong></a>
-                  <div class="content__car__menu " id="image-container"
-                      data-modal-target="myModal">
-                      <img src="assets/img/img-carta-producto/${producto.imagen_2}" alt="${producto.nombre}">
-                  </div>
-              </div>
+        <article class="card__menu card__producto__historia">
+        <div class="product">
+            <a class="like-button" href="#"><i
+                    class="fa-regular fa-heart"></i><strong>145M</strong></a>
+            <div class="content__car__menu " id="image-container"
+                data-modal-target="myModal">
+                <img src="assets/img/img-carta-producto/${producto.imagen_2}" alt="${producto.nombre}">
+            </div>
+        </div>
 
-              <div class="content__parrafo__agregar">
-                  <h2 class="parrafo-titulo">${producto.nombre}</h2>
-                  <p class="parrafo__price">$ ${producto.precio}</p>
-                  <p class="parrafo__cart">${producto.descripcion}</p>
-              </div>
-              <div class="agregar__carrito">
-                  <a class="add-button" href="#"><i
-                          class="fa-solid fa-plus"></i></a>
-              </div>
-              <div class="pie__card"></div>
-          </article>
-              `;
+        <div class="content__parrafo__agregar">
+            <h2 class="parrafo-titulo">${producto.nombre}</h2>
+            <p class="parrafo__price">$ ${producto.precio}</p>
+            <p class="parrafo__cart">${producto.descripcion}</p>
+        </div>
+        <div class="agregar__carrito">
+            <a class="add-button" href="#"><i
+                    class="fa-solid fa-plus"></i></a>
+        </div>
+        <div class="pie__card"></div>
+    </article>
+        `;
         // Agregar el producto al contenedor
         $(".card__container").append(productoHtml);
       });
+
+      /* NOTA IMPORTANTE: se vuelve a llamar a la funcion ready() despues
+      de cargar los productos para que estos esten disponibles en el DOM.
+            
+      Ya que todos los productos se cargan de forma dinamica mediante el
+      Ajax estos elementos no van a estar presentes al momento de cargar
+      los eventos del carrito de compras.
+            
+      Por ende si se llama nuevamente a este funcion todos los productos
+      van a estar cargador dentro del DOM para ser utilizados por el
+      carrito de compras y que este funcione de buena manera. */
+
+      ready();
     },
     error: function (error) {
       console.error("Error al obtener productos por categoría", error);
@@ -112,74 +127,3 @@ function cargarProductosPorCategoria(categoriaId) {
     },
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const wordElement = document.getElementById("word");
-// const imageElements = document.querySelectorAll("#image-container img");
-// const prevButton = document.getElementById("prevBtn");
-// const nextButton = document.getElementById("nextBtn");
-
-// const wordsAndImages = [
-//   {
-//     word: "Perros",
-//     imageSrc: "/assets/img/imagenes/perro.jpg", // Ruta a la imagen de perros
-//   },
-//   {
-//     word: "Hamburguesas",
-//     imageSrc: "/assets/img/imagenes/hamburguesa.jpg", // Ruta a la imagen de hamburguesas
-//   },
-//   {
-//     word: "Salchipapas",
-//     imageSrc: "/assets/img/imagenes/salchipapa.jpg", // Ruta a la imagen de salchipapas
-//   },
-// ];
-
-// let currentIndex = 0;
-
-// function updateWordAndImage() {
-//   const currentWord = wordsAndImages[currentIndex].word;
-//   const currentImageSrc = wordsAndImages[currentIndex].imageSrc;
-
-//   if(wordElement){
-
-//     wordElement.textContent = currentWord;
-//     imageElements.forEach((imageElement) => {
-//       imageElement.src = currentImageSrc;
-//     });
-//   }
-// }
-
-// if (prevButton) {
-//   prevButton.addEventListener("click", () => {
-//     currentIndex =
-//       (currentIndex - 1 + wordsAndImages.length) % wordsAndImages.length;
-//     updateWordAndImage();
-//   });
-// }
-
-// if (nextButton) {
-//   nextButton.addEventListener("click", () => {
-//     currentIndex = (currentIndex + 1) % wordsAndImages.length;
-//     updateWordAndImage();
-//   });
-// }
-
-// // Inicializa la palabra e imagen inicial
-// updateWordAndImage();
