@@ -18,6 +18,7 @@ return new class extends Migration
             $table->double('costo_total');
             $table->string('comentario')->nullable();
             $table->string('direccion')->nullable();
+            $table->tinyInteger('estado');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('mesa_id');
             $table->foreign('user_id')->references('id')->on('users');

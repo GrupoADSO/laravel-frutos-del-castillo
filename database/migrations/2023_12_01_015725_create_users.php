@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('fecha_nacimiento');
             $table->string('email')->unique();
             $table->string('password');
+            $table->tinyInteger('estado');
             $table->string('celular')->nullable();        
             $table->rememberToken();
             $table->timestamps();
