@@ -102,7 +102,7 @@
             </div>
             <div class="clear-cart">
                 <a href="#" class="clear-button">
-                    <ion-icon name="trash-outline" class="clear-icon"></ion-icon>
+                    <i class="fa-solid fa-trash-can clear-icon"></i>
                     Limpiar Canasta
                 </a>
             </div>
@@ -153,8 +153,6 @@
     <script src="{{ asset('assets/js/modales_login.js') }}"></script>
     <script src="{{ asset('assets/js/carrito.js') }}"></script>
     <script src="{{ asset('assets/js/menuHamburguesa.js') }}"></script>
-    {{-- Alertas DEL LOGIN. JHON-AGREGAR EL ARCHIVO BORRADOR DESPUES DE TERMINAR LAS PRUEBAS --}}
-    {{-- <script src="{{ asset('js/alertasLogin.js') }}"></script> --}}
 </body>
 
 </html>

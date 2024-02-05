@@ -19,4 +19,17 @@ class ProductoController extends Controller
         $productos = Producto::where('categoria_id', $categoria)->get();
         return response()->json($productos);
     }
+
+    public function mostrarProductos(){
+        return view('admin.productos');
+    }
+    
+    public function create(){
+        return view('admin.crear-productos');
+    }
+
+    public function edit(){
+        return view('admin.editar-productos');
+    }
+
 }

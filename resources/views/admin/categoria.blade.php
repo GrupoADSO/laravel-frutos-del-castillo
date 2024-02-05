@@ -1,9 +1,16 @@
 @extends('layouts.dashboard')
 
 
-@section('titulo', 'Inicio')
+{{-- @section('titulo', 'Inicio') --}}
 
 @section('contenido')
+
+<section class="tabular--wrapper">
+
+
+<div class="contendor__boton">
+    <a class="btn__categoria" href="{{ route('crear-categoria') }}" >Crear Categoria</a>
+</div>
 
 <table>
     <thead>
@@ -13,12 +20,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($dataCategory as $category)
+        {{-- @foreach ($dataCategory as $category) --}}
         <tr>
-            <td>{{ $category->nombre }}</td>
+            {{-- <td>{{ $category->nombre }}</td> --}}
+            <td>Comidad</td>
             <td>
-                <form action="{{ route('categories.edit',$category->id)}}" method="GET" style="margin: 0">
-                    @csrf
+                <form action="#" method="GET" style="margin: 0">
+                {{-- <form action="{{ route('categories.edit',$category->id)}}" method="GET" style="margin: 0"> --}}
+                    {{-- @csrf --}}
                     <button>
                         <svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -30,9 +39,10 @@
                     </button>
                 </form>
                 {{-- Eliminar --}}
-                <form action="{{ url('categories',$category->id)}}" method="POST" style="margin: 0">
-                    @csrf
-                    @method('DELETE')
+                {{-- <form action="{{ url('categories',$category->id)}}" method="POST" style="margin: 0"> --}}
+                <form action="#" method="POST" style="margin: 0">
+                    {{-- @csrf
+                    @method('DELETE') --}}
                     <button>
                         <svg class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -48,7 +58,11 @@
                 </form>
             </td>
         </tr>
-        @endforeach
+        {{-- @endforeach  --}}
     </tbody>
 </table>
+
+</section>
+
+
 @endsection

@@ -16,4 +16,8 @@ class HomeController extends Controller
         // return view('index', compact('categorias'));
         return view('index', compact('categorias','sliders'));
     }
+
+    public function datosDashboard(){
+        return view('admin.index');
+    }
 }

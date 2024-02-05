@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 /* declaracion de variables */
+
+
+
 :root {
     --color-primary: rgb(83, 20, 21);
     --color-primary-opacity: rgb(83 20 21 / .9);
@@ -131,6 +134,7 @@
     padding: 10px 2rem;
 }
 
+
 .header--title {
     color: var(--color-secondary-opacity);
 }
@@ -140,7 +144,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    width: 284px;
+    /* width: 284px; */
     height: 50px;
 
     picture {
@@ -190,10 +194,136 @@
     }
 }
 
+
+/*carta contenedor*/
+.card--container {
+    background: var(--color-neutral);
+    /*box today's data*/
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.card--wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.main--title {
+    color: var(--color-secondary-opacity);
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+.payment--card {
+    background: var(--color-secondary-opacity-card);
+    border-radius: 10px;
+    padding: 1.3rem;
+    width: 300px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+}
+
+.payment--card:hover {
+    transform: translateY(-5px);
+}
+
+.card--header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.amount {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 200;
+    padding-bottom: 10px;
+}
+
+
+.amount--value {
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+.icon {
+    color: var(--color-neutral);
+    padding: .6rem;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background: var(--color-secondary);
+}
+
+.card-detail {
+    font-size: 18px;
+    /* color: #777777; */
+    color: var(--color-secondary-opacity);
+    letter-spacing: 2px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+/*seccion tabla*/
+.tabular--wrapper {
+    background: var(--color-neutral);
+    /*fondo tabla*/
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding: 2rem;
+    overflow: auto;
+}
+
+
+/* boton para crear categoria */
+.contendor__boton {
+    margin-bottom: 8px;
+    padding: .8em .5em;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    text-align: center;
+}
+
+.btn__categoria {
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--color-neutral);
+}
+
+
+.contendor__boton:hover {
+    box-shadow: 2px 3px 15px var(--color-secondary-opacity);
+}
+
+.contendor__boton:active {
+    transform: scale(1.1);
+}
+
+/* color inputs */
+.form__control__input {
+    background-color: rgb(231, 234, 237);
+}
+
 /*Next thing*/
 
 table {
     border-collapse: collapse;
+    width: 100%;
+    text-align: center;
 
     thead {
         background: var(--color-primary-opacity);
@@ -254,4 +384,86 @@ textarea {
     border: none;
     padding: 5px;
     box-sizing: border-box;
+}
+
+
+/* creacion de categoria */
+
+.control-form{
+    position: relative;
+}
+
+.btn__formulario-button{
+    /* position: absolute;
+    bottom: 0; */
+    /* left: 25em; */
+    width: 200px;
+    /* height: 40px; */
+    padding: .4em;
+    background-color: var(--color-primary);
+    color: var(--color-neutral);
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    
+}
+
+.form__control-img {
+    width: 220px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+    text-align: center;
+}
+
+.control-form img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 5px solid var(--color-secondary);
+    object-fit: fill;
+    text-align: center;
+}
+
+.control-form .form__control-img:first-child input {
+    display: none;
+}
+
+.control-form .form__control-img:first-child label {
+    margin-bottom: 20px;
+    padding: 6px 20px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 8px var(--color-secondary-opacity);
+    background-color: var(--color-primary);
+    color: var(--color-neutral);
+    cursor: pointer;
+}
+
+/* carta de los productos */
+.card__admin-producto{
+    width: 18rem;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.form__productos{
+    display: flex;
+    gap: 1em;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form__productos-button{
+    border: none;
+    background-color: transparent;
+}
+
+.form__productos-button svg:hover{
+    color: var(--color-primary);
+}
+
+.color--text{
+    color: var(--color-secondary);
 }

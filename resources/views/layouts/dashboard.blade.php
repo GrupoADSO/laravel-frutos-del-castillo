@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="shortcut icon" href="{{ asset('img/img-header/FrutosDelCastillo-logo.png')}}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="shortcut icon" href="{{ asset('img/img-header/FrutosDelCastillo-logo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
     <title>Dashboard</title>
 </head>
@@ -13,68 +15,49 @@
 <body class="body__dashboard">
     <header class="sidebar">
         <picture class="container__dashboard-logo">
-            <img src="{{ asset('img/img-header/FrutosDelCastillo-logo.png') }}" alt="">
+            <img src="{{ asset('assets/img/img-utileria/FrutosDelCastillo-logo.png') }}" alt="">
         </picture>
         <nav>
             <ul class="menu">
                 <li class="active">
-                    <a href="{{ url('#') }}">
+                    <a href={{ route('inicio-admin') }}>
                         <i class="fas fa-tachometer-alt"></i>
                         Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('#') }}>
+                    <a href="#">
                         <i class=" fas fa-user"></i>
                         Profile
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('') }}">
+                    <a href="{{ route('categorias') }}">
                         <i class="fas fa-chart-bar"></i>
                         Categorias
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('#') }}">
-                        <i class="fas fa-briefcase"></i>
-                        Cupones
+                    <a href="{{ route('usuarios') }}">
+                        <i class="fas fa-users"></i>
+                        Usuarios
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('#') }}">
-                        <i class="fas fa-question-circle"></i>
-                        Informacion
+                    <a href="{{ route('crear-productos') }}">
+                        <i class="fa-brands fa-product-hunt"></i>
+                        Crear Productos
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('#') }}">
-                        <i class="fas fa-star"></i>
-                        Mesas
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('#') }}">
-                        <i class="fas fa-cog"></i>
+                    <a href="{{ route('productos') }}">
+                        <i class="fa-brands fa-product-hunt"></i>
                         Productos
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('#') }}">
-                        <i class="fas fa-cog"></i>
-                        Slider
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('#') }}">
-                        <i class="fas fa-cog"></i>
-                        Config
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('#') }}">
-                        <i class="fas fa-cog"></i>
-                        T.Reserva
+                    <a href="{{ route('slider') }}">
+                        <i class="fa-solid fa-sliders"></i> Slider
                     </a>
                 </li>
                 <li class="logout">
@@ -88,6 +71,7 @@
     </header>
 
     <main class="main--content">
+
         <section class="header--wrapper">
             <div class="header--title">
                 <h2>Dashboard</h2>
@@ -108,6 +92,11 @@
         @yield('contenido')
 
     </main>
+
+
+
+
+
 </body>
 
 </html>

@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
 use Illuminate\Http\Request;
 
-class CategoriaController extends Controller
+class UsuariosController extends Controller
 {
-    public function obtenerCategorias()
-    {
-        $categorias = Categoria::all();
-        return response()->json($categorias);
-    }
-
-
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        return view('admin.categoria');
+        return view('admin.usuarios');
     }
 
     /**
@@ -25,10 +19,10 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('admin.crear-categoria');
+        //
     }
 
-    /**  
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -67,7 +61,4 @@ class CategoriaController extends Controller
     {
         //
     }
-
-
-    
 }
