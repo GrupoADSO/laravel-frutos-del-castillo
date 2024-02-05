@@ -24,4 +24,10 @@ class Producto extends Model
         'created_at',
         'updated_at'
     ];
+
+    protected $attributes = [
+        'disponibilidad' => 1,
+        'imagen_2' => 'null',
+    ];
+
 }

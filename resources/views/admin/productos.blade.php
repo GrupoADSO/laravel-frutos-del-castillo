@@ -4,7 +4,7 @@
     <section class="tabular--wrapper">
 
         <div class="contendor__boton">
-            <a class="btn__categoria" href="{{ route('editar-productos') }}" >editar producto</a>
+            <a class="btn__categoria" href="{{ route('crear-productos') }}" >editar producto</a>
         </div>
         <h1 class="title header--title">Producto actuales</h1>
 

@@ -48,13 +48,16 @@ Route::get("/usuarios",[UsuariosController::class, 'index'])->name('usuarios');
 
 
 Route::get('/admin-productos', [ProductoController::class, 'mostrarProductos'])->name('productos');
+
 Route::get('/admin-productos/crear', [ProductoController::class, 'create'])->name('crear-productos');
-Route::get('/admin-productos/editar', [ProductoController::class, 'edit'])->name('editar-productos');
+Route::post('/admin-productos/crear/nuevos', [ProductoController::class, 'store'])->name('nuevo-producto');
+
+// Route::get('/admin-productos/editar', [ProductoController::class, 'edit'])->name('editar-productos');
 
 Route::get('/admin-slider', [SliderController::class, 'index'])->name('slider');
 Route::get('/admin-slider/crear', [SliderController::class, 'create'])->name('crear-slider');
 
-// crear las rutas para las demas vistas faltantes 
+// crear las rutas para las demas vistas faltantes
 
 
 // agregar los controladores de estas rutas

@@ -44,12 +44,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('crear-productos') }}">
-                        <i class="fa-brands fa-product-hunt"></i>
-                        Crear Productos
-                    </a>
-                </li>
-                <li>
                     <a href="{{ route('productos') }}">
                         <i class="fa-brands fa-product-hunt"></i>
                         Productos

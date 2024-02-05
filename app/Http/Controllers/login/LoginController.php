@@ -21,7 +21,7 @@ class LoginController extends Controller
             'fecha_nacimiento'=>'required|date_format:Y-m-d',
             'email' => 'required|email',
             'celular' => 'required|numeric',
-            'password' => 'required|min:4|max:15'
+            'password' => 'required|min:4|max:15',
         ]);
 
         if ($datosUsuario['password'] !== $request->input('password_verification')) {
@@ -30,6 +30,7 @@ class LoginController extends Controller
             ])->onlyInput('password_verification');
         } else {
             $datosUsuario["password"] = Hash::make($request->input('password'));
+
 
             User::create($datosUsuario)->assignRole('usuario');
 

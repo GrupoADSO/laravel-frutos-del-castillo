@@ -137,14 +137,14 @@ body {
     background-color: transparent;
     padding: .5em;
     border-radius: 10px;
+    cursor: pointer;
 }
+
 
 .boton-icon i {
     font-size: 1.8rem;
     color: var(--color-neutral);
 }
-
-
 
 .submenu {
     display: none;
@@ -231,7 +231,7 @@ body {
     background-color: var(--color-primary);
 }
 
-.mensaje__alerta{
+.mensaje__alerta {
     margin: 0;
     font-family: 'moller-use-boldCondensed', Tahoma;
     font-size: 1.3rem;
@@ -300,14 +300,14 @@ body {
     display: none;
     padding: 20px;
     border: 2px solid var(--color-secondary);
-    border-radius: 20px;  
+    border-radius: 20px;
     background-color: var(--color-tertiary);
     color: var(--color-primary);
     transform: translate(-50%, -50%);
     z-index: 994;
 }
 
-.modal-content-perfil{
+.modal-content-perfil {
     width: 500px;
 }
 
@@ -317,11 +317,11 @@ body {
     font-family: "Boring-Sans-A-Light-Italic";
 }
 
-.contenedor__input__login{
+.contenedor__input__login {
     position: relative;
 }
 
-.icon__login{
+.icon__login {
     position: absolute;
     top: 10px;
     left: 0;
@@ -391,10 +391,11 @@ body {
     color: var(--color-primary);
 }
 
-.password-forgot:active{
+.password-forgot:active {
     color: var(--color-secondary);
 }
-.signup-link span:active{
+
+.signup-link span:active {
     color: var(--color-primary);
 }
 
@@ -1174,7 +1175,7 @@ body {
     text-decoration: none;
 }
 
-.botones_abajo  a{
+.botones_abajo a {
     text-decoration: none;
 }
 
@@ -1221,7 +1222,7 @@ body {
     margin-right: 10px;
 }
 
-.clear-cart:hover .clear-button{
+.clear-cart:hover .clear-button {
     cursor: pointer;
 
 }
@@ -1836,7 +1837,7 @@ body {
     color: var(--color-primary);
 }
 
-.form__submit-editar:active{
+.form__submit-editar:active {
     background-color: var(--color-primary-opacity);
     transform: scale(1.1);
 }
@@ -1858,7 +1859,7 @@ body {
 
 /* modal Historial */
 
-.contenedor__card__historia{
+.contenedor__card__historia {
     max-height: 400px;
     overflow: auto;
 }
@@ -1890,7 +1891,7 @@ body {
     margin-left: auto;
     border-radius: 10px;
     background-color: var(--color-tertiary);
-    transform: translate( 0, 25%);
+    transform: translate(0, 25%);
 }
 
 .close {
@@ -1909,7 +1910,7 @@ body {
 }
 
 
-.cards__modal__historial{
+.cards__modal__historial {
     width: 15em;
 }
 
@@ -2149,6 +2150,7 @@ body {
     .form__group .form__input {
         width: 100%;
     }
+
     .productos1 {
         font-size: 2.5rem;
     }
@@ -2268,7 +2270,7 @@ body {
 
 
 
-    
+
 
 
     /* modal reservas */
@@ -2412,7 +2414,7 @@ body {
         font-size: 1.5rem;
     }
 
-    .cards__modal__historial{
+    .cards__modal__historial {
         width: 11em;
     }
 

@@ -53,7 +53,7 @@ function limpiarbutton() {
       cartContent.removeChild(cartContent.firstChild);
     }
 
-    document.querySelector(".subtotal").innerText = "$0.00";
+    document.querySelector(".subtotal").innerText = "$0";
     cantidadProductosEnCarrito = 0;
     actualizarContadorCarrito();
   }
@@ -127,7 +127,7 @@ function addProductToCart(title, precio, imagen, cantidad) {
         <input type="number" class="cantidad" value="${cantidad}">
         <i class="fa-solid fa-times cart-remove"></i>
         </div>
-  
+
   `;
 
   cartShopBox.innerHTML = cartBoxContent;
