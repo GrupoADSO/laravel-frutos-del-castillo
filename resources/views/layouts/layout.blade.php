@@ -29,7 +29,7 @@
             <ul class="lista__paginas-header">
                 <li><a href="{{ route('inicio') }}">Inicio</a></li>
                 <li><a href="{{ route('producto') }}">Menu</a></li>
-                <li><a href="/paginas/sobreNosotros.html">Sobre
+                <li><a href="{{ route('sobreMi') }}">Sobre
                         Nosotros</a></li>
 
                 <li class="lista__desplegable">
