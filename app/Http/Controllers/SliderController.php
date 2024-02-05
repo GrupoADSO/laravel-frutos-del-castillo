@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Slider;
+use Validator;
 class SliderController extends Controller
 {
     /**
@@ -28,6 +29,24 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+            '' => 'required|string',
+            '' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+        
+        $dataCategoria = [
+            'nombre' => $request->get(''),
+            'ruta' => $request->get(''),
+        ];
+
+        Slider::create($dataCategoria);
+        return redirect()->route('slider');
     }
 
     /**
@@ -36,6 +55,8 @@ class SliderController extends Controller
     public function show(string $id)
     {
         //
+        $sliderId = Slider::find($id);
+        return view('', compact(''));
     }
 
     /**
@@ -44,6 +65,8 @@ class SliderController extends Controller
     public function edit(string $id)
     {
         //
+        $sliderId = Slider::find($id);
+        return view('', compact(''));
     }
 
     /**
@@ -52,6 +75,23 @@ class SliderController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $sliderId = Slider::find($id);
+        $validator = Validator::make($request->all(),[
+            '' => 'required|string',
+            '' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+        
+        $sliderId->update([
+            'nombre' => $request->get(''),
+            'ruta' => $request->get(''),
+        ]);
+
     }
 
     /**
@@ -59,6 +99,8 @@ class SliderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $sliderId = Slider::find($id);
+        $sliderId->delete();
+        return redirect()->route('slider');
     }
 }

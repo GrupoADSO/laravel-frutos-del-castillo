@@ -431,7 +431,7 @@ textarea {
     display: none;
 }
 
-.control-form .form__control-img:first-child label {
+.control-form .form__control-img label {
     margin-bottom: 20px;
     padding: 6px 20px;
     border-radius: 3px;

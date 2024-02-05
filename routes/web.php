@@ -42,6 +42,7 @@ Route::get('/admin', [HomeController::class, 'datosDashboard'])->name('inicio-ad
 
 Route::get("admin-categorias",[CategoriaController::class, 'index'])->name('categorias');
 Route::get("admin-categorias/crear",[CategoriaController::class, 'create'])->name('crear-categoria');
+Route::post("admin-categorias/crear",[CategoriaController::class, 'store'])->name('categoria.store');
 
 Route::get("/usuarios",[UsuariosController::class, 'index'])->name('usuarios');
 

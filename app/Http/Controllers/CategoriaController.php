@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
-
+use Validator;
 class CategoriaController extends Controller
 {
     public function obtenerCategorias()
@@ -17,6 +17,7 @@ class CategoriaController extends Controller
 
     public function index()
     {
+        // $data = Categoria::all();
         return view('admin.categoria');
     }
 
@@ -25,7 +26,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('admin.crear-categoria');
+        $data = Categoria::all();
+        return view('admin.crear-categoria', compact('data'));
     }
 
     /**  
@@ -33,7 +35,25 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->toArray());
+        $validator = Validator::make($request->all(),[
+            'nombre__categoria' => 'required|string',
+            'foto__categoria' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+        
+        $dataCategoria = [
+            'nombre' => $request->get('nombre__categoria'),
+            'imagen' => $request->get('foto__categoria'),
+        ];
+
+        Categoria::create($dataCategoria);
+        return redirect()->route('categorias');
     }
 
     /**
@@ -41,7 +61,8 @@ class CategoriaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $Categoriaid = Categoria::find($id);
+        return view('', compact('Categoriaid'));
     }
 
     /**
@@ -50,6 +71,8 @@ class CategoriaController extends Controller
     public function edit(string $id)
     {
         //
+        $Categoriaid = Categoria::find($id);
+        return view('', compact('Categoriaid'));
     }
 
     /**
@@ -57,7 +80,25 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $Categoriaid = Categoria::find($id);
+        // Poner el nombre de los campos
+        $validator = Validator::make($request->all(),[
+            '' => 'required|string',
+            '' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $Categoriaid->update([
+            'nombre' => $request->get(''),
+            'imagen' => $request->get(''),
+        ]);
+
+        return redirect()->route('categorias');
     }
 
     /**
@@ -66,8 +107,8 @@ class CategoriaController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-
-    
+        $Categoriaid = Categoria::find($id);
+        $Categoriaid->delete();
+        return back();
+    }    
 }

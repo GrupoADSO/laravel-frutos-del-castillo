@@ -13,10 +13,6 @@
                         alt="avatar" id="img" />
                     <input type="file" name="foto" id="foto" accept="image/*" />
                     <label for="foto">imagen producto</label>
-
-
-                    
-                
                     <div class="col-12">
                         <button class="btn__formulario-button">Enviar</button>
                     </div>
