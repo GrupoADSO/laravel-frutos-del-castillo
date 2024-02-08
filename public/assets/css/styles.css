@@ -784,6 +784,9 @@ body {
     overflow: hidden;
     border: .2em solid var(--color-primary);
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
 .header__card {
@@ -802,7 +805,6 @@ body {
 .boton__categoria {
     position: absolute;
     bottom: 0;
-    left: 3rem;
     border: 2px solid var(--color-neutral);
     border-radius: 15px;
     overflow: hidden;

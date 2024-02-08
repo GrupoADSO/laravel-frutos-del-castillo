@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Validator;
+
 class CategoriaController extends Controller
 {
+    // cambiar la consulta || el boton de la categoria debe ser un formulario con el id
     public function obtenerCategorias()
     {
         $categorias = Categoria::all();
@@ -17,8 +20,8 @@ class CategoriaController extends Controller
 
     public function index()
     {
-        // $data = Categoria::all();
-        return view('admin.categoria');
+        $categorias = Categoria::all();
+        return view('admin.categoria', compact('categorias'));
     }
 
     /**
@@ -26,8 +29,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        $data = Categoria::all();
-        return view('admin.crear-categoria', compact('data'));
+        return view('admin.crear-categoria');
     }
 
     /**  
@@ -35,35 +37,30 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->toArray());
-        $validator = Validator::make($request->all(),[
-            'nombre__categoria' => 'required|string',
-            'foto__categoria' => 'required|string',
+        //  dd($request->toArray());
+        $validator = Validator::make($request->all(), [
+            'nombre__categoria' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'foto__categoria' => 'required|mimes:png,jpg,jpeg',
         ]);
 
         if ($validator->fails()) {
             return back()
-            ->withErrors($validator)
-            ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
-        
+
+        $imagen = $request->file('foto__categoria')->store('public/imagen-categoria');
+        $url = Storage::url($imagen);
+
         $dataCategoria = [
             'nombre' => $request->get('nombre__categoria'),
-            'imagen' => $request->get('foto__categoria'),
+            'imagen' => $url,
         ];
 
         Categoria::create($dataCategoria);
         return redirect()->route('categorias');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $Categoriaid = Categoria::find($id);
-        return view('', compact('Categoriaid'));
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -72,30 +69,33 @@ class CategoriaController extends Controller
     {
         //
         $Categoriaid = Categoria::find($id);
-        return view('', compact('Categoriaid'));
+        return view('admin.editar-categoria', compact('Categoriaid'));
     }
 
     /**
      * Update the specified resource in storage.
      */
+
+    /*se debe de borrar la foto*/
     public function update(Request $request, string $id)
     {
+        // dd($request);
+        dd($request->toArray());
         $Categoriaid = Categoria::find($id);
-        // Poner el nombre de los campos
-        $validator = Validator::make($request->all(),[
-            '' => 'required|string',
-            '' => 'required|string',
+        $validator = Validator::make($request->all(), [
+            'cambiar__nombre__cate' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'cambiar__foto__cate' => 'required|image',
         ]);
 
         if ($validator->fails()) {
             return back()
-            ->withErrors($validator)
-            ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $Categoriaid->update([
-            'nombre' => $request->get(''),
-            'imagen' => $request->get(''),
+            'nombre' => $request->get('cambiar__nombre__cate'),
+            'imagen' => $request->get('cambiar__foto__cate'),
         ]);
 
         return redirect()->route('categorias');
@@ -106,9 +106,8 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
         $Categoriaid = Categoria::find($id);
         $Categoriaid->delete();
-        return back();
-    }    
+        return redirect()->route('categorias');
+    }
 }

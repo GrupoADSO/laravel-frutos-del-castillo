@@ -6,13 +6,16 @@
 
         <div class="container">
 
-            <form action="#" class="row g-3 control-form" method="POST" enctype="multipart/form-data">
-
+            <form action="{{ route('update-producto', $productoId->id) }}" class="row g-3 control-form" method="post"
+                enctype="multipart/form-data">
+                @csrf
                 <div class="form__control-img col-4">
-                    <img src="https://img.freepik.com/vector-gratis/ilustracion-nube-concepto-almacenamiento-nube_53876-8485.jpg?w=740&t=st=1706836474~exp=1706837074~hmac=003e490e6fc999fae93f04198110fcde48e4306da40637ac8047ef2c222df811"
-                        alt="avatar" id="img" />
-                    <input type="file" name="foto" id="foto" accept="image/*" />
+                    <img src="{{ $productoId->imagen_1 }}" alt="{{ $productoId->nombre }}" id="img" />
+                    <input type="file" name="foto__producto" id="foto" accept="image/*" />
                     <label for="foto">imagen producto</label>
+                    @if ($errors->has('foto__producto'))
+                        <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> la url es invalidad</small>
+                    @endif
 
                     <div class="col-12">
                         <button class="btn__formulario-button">Enviar</button>
@@ -24,51 +27,60 @@
 
                         <div class="col-md-6">
                             <label for="inputState" class="form-label">Categoria</label>
-                            <select id="inputState" class="form-select form__control__input">
-                                <option disabled>Selecciona la categoría</option>
-                                <option>...</option>
-                                <option>...</option>
-                                <option>...</option>
-                                <option>...</option>
-                                <option>...</option>
+                            <select id="inputState" name='seleccion__subcategoria' class="form-select form__control__input">
+                                <option selected value="{{ $productoId->subcategoria_id }}">{{ $productoId->nombre }}
+                                </option>
+                                @foreach ($subcategorias as $subcategoria)
+                                    <option value="{{ $subcategoria->id }}">{{ $subcategoria->nombre }}</option>
+                                @endforeach
                             </select>
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="inputState" class="form-label">Subcategoria</label>
-                            <select id="inputState" class="form-select form__control__input">
-                                <option disabled>selecciona la subcategoría</option>
-                                <option>...</option>
-                                <option>...</option>
-                                <option>...</option>
-                                <option>...</option>
-                            </select>
-                        </div>
 
                         <div class="col-md-6">
                             <label for="nombre-input">Nombre</label>
-                            <input type="text" class="form-control form__control__input" id="nombre-input">
+                            <input type="text" class="form-control form__control__input" name="nombre__producto"
+                                id="nombre-input" value="{{ $productoId->nombre }}">
+                            @if ($errors->has('nombre__producto'))
+                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> el nombre
+                                    es invalidad</small>
+                            @endif
                         </div>
 
                         <div class="col-md-6">
                             <label for="nombre-input">Precio</label>
-                            <input type="text" class="form-control form__control__input" id="nombre-input">
+                            <input type="text" class="form-control form__control__input" name="precio__precio"
+                                id="nombre-input" value="{{ $productoId->precio }}">
+                            @if ($errors->has('precio__precio'))
+                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> solo se aceptan numeros</small>
+                            @endif
                         </div>
 
                         <div class="col-md-6">
                             <label for="nombre-input">Tamaño</label>
-                            <input type="text" class="form-control form__control__input" id="nombre-input"
-                                placeholder="ejem: Grande,paqueño,mediano...">
+                            <input type="text" class="form-control form__control__input" name="tamanio__producto"
+                                id="nombre-input" value="{{ $productoId->tamanio }}">
+                            @if ($errors->has('tamanio__producto'))
+                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> el tamaño del producto es invalido</small>
+                            @endif
                         </div>
 
                         <div class="col-md-6">
                             <label for="nombre-input">Descuento</label>
-                            <input type="text" class="form-control form__control__input" id="nombre-input">
+                            <input type="text" class="form-control form__control__input" name="descuento__producto"
+                                id="nombre-input" value="{{ $productoId->descuento }}">
+                            @if ($errors->has('descuento__producto'))
+                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> solo se aceptan numeros</small>
+                            @endif
                         </div>
 
                         <div class="form-floating g-3">
-                            <textarea class="form-control form__control__input" id="floatingTextarea"></textarea>
+                            <textarea class="form-control form__control__input" id="floatingTextarea" name="descripcion__producto">{{ $productoId->descripcion }}</textarea>
                             <label for="floatingTextarea">Descripcion del producto</label>
+                            @if ($errors->has('descripcion__producto'))
+                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> la descripcion no acepta caracteres como: @-/* y
+                                    demas</small>
+                            @endif
                         </div>
 
                     </div>

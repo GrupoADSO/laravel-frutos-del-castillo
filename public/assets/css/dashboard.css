@@ -288,10 +288,15 @@
 
 
 /* boton para crear categoria */
+.contenedor__btns {
+    display: flex;
+    gap: 1em;
+}
+
 .contendor__boton {
     margin-bottom: 8px;
     padding: .8em .5em;
-    width: 150px;
+    width: max-content;
     height: 50px;
     border-radius: 10px;
     background-color: var(--color-primary);
@@ -389,6 +394,7 @@ textarea {
 
 /* creacion de categoria */
 
+
 .control-form{
     position: relative;
 }
@@ -427,7 +433,7 @@ textarea {
     text-align: center;
 }
 
-.control-form .form__control-img:first-child input {
+.control-form .form__control-img input {
     display: none;
 }
 
@@ -465,5 +471,11 @@ textarea {
 }
 
 .color--text{
+    color: var(--color-secondary);
+}
+
+
+/* color para las alertas */
+.alerta__color-rojo{
     color: var(--color-secondary);
 }

@@ -16,11 +16,9 @@ class Producto extends Model
         'precio',
         'tamanio',
         'descripcion',
-        'disponibilidad',
         'imagen_1',
-        'imagen_2',
         'descuento',
-        'categoria_id',
+        'subcategoria_id',
         'created_at',
         'updated_at'
     ];

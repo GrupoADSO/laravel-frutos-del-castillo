@@ -32,7 +32,7 @@
         @foreach ($categorias as $categoria)
             <article class="card__categoria">
                 <div class="header__card">
-                    <img src="{{ asset('assets/img/img-categorias/' . $categoria->imagen) }}"
+                    <img src="{{ asset($categoria->imagen) }}"
                         alt="{{ $categoria->nombre }}">
                 </div>
                 <div class="boton__categoria">

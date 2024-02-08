@@ -88,7 +88,7 @@ function cargarProductosPorCategoria(categoriaId) {
                     class="fa-regular fa-heart"></i><strong>145M</strong></a>
             <div class="content__car__menu " id="image-container"
                 data-modal-target="myModal">
-                <img src="assets/img/img-carta-producto/${producto.imagen_2}" alt="${producto.nombre}">
+                <img src="${producto.imagen_1}" alt="${producto.nombre}">
             </div>
         </div>
 

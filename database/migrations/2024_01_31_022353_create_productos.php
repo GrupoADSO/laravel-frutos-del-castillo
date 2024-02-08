@@ -17,7 +17,7 @@ return new class extends Migration
             $table->double('precio');
             $table->string('tamanio')->nullable(); 
             $table->string('descripcion');
-            $table->tinyInteger('disponibilidad');
+            $table->integer('disponibilidad');
             $table->string('imagen_1');
             $table->string('imagen_2');
             $table->integer('descuento')->nullable();

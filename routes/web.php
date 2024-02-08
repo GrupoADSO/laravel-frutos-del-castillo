@@ -20,7 +20,7 @@ Route::get('/', [HomeController::class, 'index'])->name('inicio');
 
 
 // Rutas para los productos
-Route::get('/productos',[ProductoController::class,'index'])->name('producto');
+Route::get('/productos', [ProductoController::class, 'index'])->name('producto');
 
 // RUTAS PARA MANEJAR EL MENÚ
 // trae las subcategorias de la categoria principal
@@ -32,30 +32,44 @@ Route::get('/productos/{categoria}', [ProductoController::class, 'obtenerProduct
 
 
 
+// ruta admin principal
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/admin', 'datosDashboard')->name('inicio-admin');
+});
+
+
+//ruta de las categorias
+Route::controller(CategoriaController::class)->group(function () {
+    Route::get("admin-categorias", 'index')->name('categorias');
+    Route::get("admin-categorias/crear", 'create')->name('crear-categoria');
+    Route::post("admin-categorias/crear", 'store')->name('categoria.store');
+    Route::get("admin-categorias/editar/{idcategoria}", 'edit')->name('editar-categoria');
+    Route::post("admin-categorias/actualizar/{idcategoria}", 'update')->name('update-categoria');
+    Route::delete("admin-categorias/eliminar/{idcategoria}", [CategoriaController::class, 'destroy'])->name('eliminar-categoria');
+});
+
+
+Route::get("/usuarios", [UsuariosController::class, 'index'])->name('usuarios');
 
 
 
-// temporales-admin
+Route::controller(ProductoController::class)->group(function () {
+    Route::get('/admin-productos', 'mostrarProductos')->name('productos');
+    Route::get('/admin-productos/crear', 'create')->name('crear-productos');
+    Route::post('/admin-productos/crear/nuevos', 'store')->name('nuevo-producto');
+    Route::get('/admin-productos/editar-producto/{idproducto}','edit')->name('editar-producto');
+    Route::post('/admin-productos/actualizar-producto/{idproducto}','update')->name('update-producto');
+    Route::delete('/admin-productos/eliminar-producto/{idproducto}','destroy')->name('eliminar-producto');
 
-Route::get('/admin', [HomeController::class, 'datosDashboard'])->name('inicio-admin');
+});
 
 
-Route::get("admin-categorias",[CategoriaController::class, 'index'])->name('categorias');
-Route::get("admin-categorias/crear",[CategoriaController::class, 'create'])->name('crear-categoria');
-Route::post("admin-categorias/crear",[CategoriaController::class, 'store'])->name('categoria.store');
 
-Route::get("/usuarios",[UsuariosController::class, 'index'])->name('usuarios');
+Route::controller(SliderController::class)->group(function () {
+    Route::get('/admin-slider', 'index')->name('slider');
+    Route::get('/admin-slider/crear', 'create')->name('crear-slider');
+});
 
-
-Route::get('/admin-productos', [ProductoController::class, 'mostrarProductos'])->name('productos');
-
-Route::get('/admin-productos/crear', [ProductoController::class, 'create'])->name('crear-productos');
-Route::post('/admin-productos/crear/nuevos', [ProductoController::class, 'store'])->name('nuevo-producto');
-
-// Route::get('/admin-productos/editar', [ProductoController::class, 'edit'])->name('editar-productos');
-
-Route::get('/admin-slider', [SliderController::class, 'index'])->name('slider');
-Route::get('/admin-slider/crear', [SliderController::class, 'create'])->name('crear-slider');
 
 // crear las rutas para las demas vistas faltantes
 
