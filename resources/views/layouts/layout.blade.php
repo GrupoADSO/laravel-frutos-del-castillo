@@ -20,7 +20,7 @@
     <header class="header-container">
         <div class="efecto-espejo"></div>
         <div class="logo">
-            <img src="/assets/img/img-utileria/FrutosDelCastillo-logo.png" alt="Logo Frutos">
+            <img src="/assets/img/img-utileria/la-romana-logo.png" alt="Logo Frutos">
         </div>
 
         <nav id="nav__hamburguesa" class="navegacion__header">
@@ -48,8 +48,8 @@
             @else
                 <button class="boton-icon" id="logoAbrirModal"><i class="fa-solid fa-user"></i></button>
             @endif
-            <button class="boton-icon" id="cart-icon"><i class="fa-solid fa-cart-shopping"></i><span
-                    id="contador-carrito">0</span></button>
+            <a href="#" class="boton-icon" id="cart-icon"><i class="fa-solid fa-cart-shopping"></i><span
+                    id="contador-carrito">0</span></a>
             <!--organizar js para el carrito-->
         </nav>
 
@@ -97,7 +97,7 @@
 
         <div class="parteabajo">
             <div class="botones_abajo">
-                <a href="./factura.html">
+                <a href="{{ route('factura') }}">
                     <p class="pay-button">Ir a
                         Pagar</p>
                 </a>

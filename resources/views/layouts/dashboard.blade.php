@@ -15,7 +15,7 @@
 <body class="body__dashboard">
     <header class="sidebar">
         <picture class="container__dashboard-logo">
-            <img src="{{ asset('assets/img/img-utileria/FrutosDelCastillo-logo.png') }}" alt="">
+            <img src="{{ asset('assets/img/img-utileria/la-romana-logo.png') }}" alt="logo">
         </picture>
         <nav>
             <ul class="menu">

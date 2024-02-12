@@ -99,7 +99,6 @@ body {
 .logo img {
     width: 100%;
     height: 100%;
-    opacity: 0.9;
     object-fit: contain;
 }
 
@@ -235,12 +234,11 @@ body {
 
 .alerta__inicio__session,
 .alerta__usuario__creado {
-    position: fixed;
-    top: 0;
-    z-index: 1000;
+    /* position: fixed; */
     width: 100%;
     padding: .8em;
-    animation: mensaje-alerta linear 2s;
+    transform: translateY(-10em);
+    animation: mensaje-alerta ease-out 5s;
 
     background-color: var(--color-primary);
 }
@@ -254,10 +252,18 @@ body {
     color: var(--color-neutral);
 }
 
-/*agregar la finalizacion de la animacion para las alertas del login*/
+/* agregar la finalizacion de la animacion para las alertas del login*/
 @keyframes mensaje-alerta {
-    0% {
-        transform: translateY(-140%);
+    /* 0%{
+        transform: translateY(-10em);
+    } */
+
+    50%{
+        transform: translateY(0em);
+    }
+
+    100%{
+        transform: translateY(-10em);
     }
 }
 

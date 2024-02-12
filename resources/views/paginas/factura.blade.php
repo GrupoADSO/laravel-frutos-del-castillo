@@ -37,29 +37,9 @@
                     </div>
                 </form>
             </div>
-
-            <section class="cupon separador">
-                <h2 class="titulo__header">Cupon</h2>
-                <form action="#" class="form_control">
-                    <div class="check">
-                        <p class="texto"><input type="radio" class="input__radio" name="desicion" />
-                            No
-                            tengo cupon</p>
-                        <p class="texto"><input type="radio" class="input__radio" name="desicion" />
-                            Si
-                            tengo</p>
-
-                        <div class="sub__cupon">
-                            <input type="text" class="input__text" placeholder="codigo..">
-                            <button class="btn__val">Validar</button>
-                        </div>
-                    </div>
-                </form>
-            </section>
-
             <section class="pago separador">
                 <h2 class="titulo__header">Metodo de Pago</h2>
-                <form action="#" class="form__control subcontenedor__pago">
+                <div action="#" class="form__control subcontenedor__pago">
                     <div class="titulos__pago">
                         <p class="texto">Disponible</p>
                         <p class="texto">disponible</p>
@@ -67,17 +47,15 @@
                     <div class="metodo__pago ">
                         <div class="tarjeta">
                             <i class="fa fa-usd center"></i>
-                            <input type="radio" class="input__radio" name="pago">
                         </div>
 
                         <div class="metodo__pago">
                             <div class="tarjeta">
                                 <i class="fa fa-credit-card-alt center"></i>
-                                <input type="radio" class="input__radio" name="pago">
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </section>
 
         </section>

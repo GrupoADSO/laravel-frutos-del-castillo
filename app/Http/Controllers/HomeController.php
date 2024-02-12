@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+
+
     // trae los datos del slider y la categoria
     public function index()
     {

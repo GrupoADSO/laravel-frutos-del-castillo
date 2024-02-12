@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\login\LoginController;
 use App\Http\Controllers\ProductoController;
@@ -15,12 +16,11 @@ Route::post('Login/sesion', [LoginController::class, 'iniciarSesion'])->name('in
 Route::post('/login/crear/usuario', [LoginController::class, 'crearUsuario'])->name('crearUsuario');
 Route::get('Login/cerrarSesion', [LoginController::class, 'finalizarSesionUsuario'])->name('cerrarSesion');
 
+
 // controla las imagenes de la categoria/slider
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
 
 Route::get('perfil-usuario/{id}', [UsuariosController::class, 'index'])->name('perfil');
-
-
 // Rutas para los productos
 Route::get('/productos', [ProductoController::class, 'index'])->name('producto');
 
@@ -32,13 +32,17 @@ Route::get('/categorias', [CategoriaController::class, 'obtenerCategorias']);
 Route::get('/productos/{categoria}', [ProductoController::class, 'obtenerProductosDeCategoria']);
 
 
+Route::get('/factura',[FacturaController::class, 'index'])->name('factura');
+
+
+
+
 
 
 // ruta admin principal
 Route::controller(HomeController::class)->group(function () {
     Route::get('/admin', 'datosDashboard')->name('inicio-admin');
 });
-
 
 //ruta de las categorias
 Route::controller(CategoriaController::class)->group(function () {
@@ -88,10 +92,6 @@ Route::get('/sobre_mi', function () {
 
 
 
-
-Route::get('/factura', function () {
-    return view('paginas.factura');
-})->name('factura');
 
 
 
