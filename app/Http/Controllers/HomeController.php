@@ -13,7 +13,6 @@ class HomeController extends Controller
     {
         $categorias = Categoria::all();
         $sliders = Slider::all();
-        // return view('index', compact('categorias'));
         return view('index', compact('categorias','sliders'));
     }
 

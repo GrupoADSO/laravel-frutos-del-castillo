@@ -395,11 +395,11 @@ textarea {
 /* creacion de categoria */
 
 
-.control-form{
+.control-form {
     position: relative;
 }
 
-.btn__formulario-button{
+.btn__formulario-button {
     /* position: absolute;
     bottom: 0; */
     /* left: 25em; */
@@ -437,7 +437,7 @@ textarea {
     display: none;
 }
 
-.control-form .form__control-img  label {
+.control-form .form__control-img label {
     margin-bottom: 20px;
     padding: 6px 20px;
     border-radius: 3px;
@@ -448,34 +448,40 @@ textarea {
 }
 
 /* carta de los productos */
-.card__admin-producto{
+.card__admin-producto {
     width: 18rem;
     margin-right: 1em;
     margin-bottom: 1em;
 }
 
-.form__productos{
+.form__productos {
     display: flex;
     gap: 1em;
     justify-content: space-around;
     align-items: center;
 }
 
-.form__productos-button{
+.form__productos-button {
     border: none;
     background-color: transparent;
 }
 
-.form__productos-button svg:hover{
+.form__productos-button svg:hover {
     color: var(--color-primary);
 }
 
-.color--text{
+.color--text {
     color: var(--color-secondary);
 }
 
 
 /* color para las alertas */
-.alerta__color-rojo{
+.alerta__color-rojo {
     color: var(--color-secondary);
+}
+
+.card-img-top-modificada {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

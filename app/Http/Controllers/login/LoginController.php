@@ -18,7 +18,7 @@ class LoginController extends Controller
         $datosUsuario = $request->validate([
             'nombre' => 'required|min:4|max:30|string',
             'apellido' => 'required|min:4|max:30|string',
-            'fecha_nacimiento'=>'required|date_format:Y-m-d',
+            'fecha_nacimiento' => 'required|date_format:Y-m-d',
             'email' => 'required|email',
             'celular' => 'required|numeric',
             'password' => 'required|min:4|max:15',
@@ -48,8 +48,9 @@ class LoginController extends Controller
 
         if (Auth::attempt($datosUsuario)) {
             $usuarioLogueado = Auth::user();
+            $request->session()->put('usuario_id', $usuarioLogueado->id);
             $request->session()->put('usuarioLogueado', $usuarioLogueado);
-            return redirect()->route('inicio')->with('logueado', 'A iniciado sesión correctamente '.$usuarioLogueado->nombre);
+            return redirect()->route('inicio')->with('logueado', 'A iniciado sesión correctamente ' . $usuarioLogueado->nombre);
         }
 
         return back()->withErrors([
@@ -67,5 +68,4 @@ class LoginController extends Controller
 
         return redirect()->route('inicio')->with('finalizarSesion', 'Se cerro la sesión correctamente');
     }
-
 }

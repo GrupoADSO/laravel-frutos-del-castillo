@@ -6,52 +6,7 @@
 
 @section('contenido')
 
-    <section class="contenedor__info__superior">
 
-        <h1 class="form__title">
-            <i class="bi bi-person-fill"></i>
-            Perfil
-        </h1>
-
-        <div class="form__button__acciones">
-            <button id="youreditar" type="submit" class="form__submit">Editar
-                Perfil</button>
-            <button id="misComprasButton" class="form__submit">Mis Compras</button>
-        </div>
-    </section>
-
-    <section class="form__control__perfil">
-        <h1 class="form__subtitle">Datos de usuario</h1>
-        <div class="form__container">
-
-            <div class="form__group">
-                <i class="bi bi-person-fill"></i>
-                <input type="text" id="name" class="form__input" value="Juan Camilo">
-            </div>
-
-            <div class="form__group">
-                <i class="bi bi-envelope-fill"></i>
-                <input type="text" id="email" class="form__input" value="Correo@correo.com" readonly>
-            </div>
-
-            <div class="form__group">
-                <i class="bi bi-telephone-fill"></i>
-                <input type="tel" name="tel" id="tel" class="form__input" value="3186479655" readonly>
-            </div>
-
-            <div class="form__group">
-                <i class="bi bi-geo-alt"></i>
-                <input type="text" name="dir" id="dir" class="form__input" value="Mi casa" readonly>
-            </div>
-
-            <div class="form__group">
-                <i class="bi bi-tags-fill"></i>
-                <input type="text" name="cup" id="cup" class="form__input" value="No tiene Cupones Disponibles"
-                    readonly>
-            </div>
-
-        </div>
-    </section>
 
     <!-- inicio editar perfil -->
 
@@ -66,12 +21,12 @@
 
                     <div class="form__group-dos">
                         <i class="bi bi-person-fill"></i>
-                        <input type="text" name="nombre" class="form__input-dos" placeholder="Nombre">
+                        <input type="text" name="nombre" class="form__input-dos" value="{{ $usuario->nombre }}">
                     </div>
 
                     <div class="form__group-dos">
                         <i class="bi bi-telephone-fill"></i>
-                        <input type="tel" name="telefono" placeholder="Telefono" class="form__input-dos">
+                        <input type="tel" name="telefono" class="form__input-dos"  value="{{ $usuario->celular }}">
                     </div>
 
                     <div class="form__group-dos">
@@ -212,5 +167,57 @@
         </div>
     </aside>
 
+
+    <section class="contenedor__info__superior">
+
+        <h1 class="form__title">
+            <i class="bi bi-person-fill"></i>
+            Perfil
+        </h1>
+
+        <div class="form__button__acciones">
+            <button id="youreditar" type="submit" class="form__submit">Editar
+                Perfil</button>
+            <button id="misComprasButton" class="form__submit">Mis Compras</button>
+        </div>
+
+    </section>
+
+    <section class="form__control__perfil">
+        <h1 class="form__subtitle">Datos de usuario</h1>
+        <div class="form__container">
+
+            <div class="form__group">
+                <i class="bi bi-person-fill"></i>
+                <input type="text" id="name" class="form__input" value="{{ $usuario->nombre }}">
+            </div>
+
+            <div class="form__group">
+                <i class="bi bi-envelope-fill"></i>
+                <input type="text" id="email" class="form__input" value="{{ $usuario->email }}" readonly>
+            </div>
+
+            <div class="form__group">
+                <i class="bi bi-telephone-fill"></i>
+                <input type="tel" name="tel" id="tel" class="form__input" value="{{ $usuario->celular }}" readonly>
+            </div>
+
+            <div class="form__group">
+                <i class="bi bi-geo-alt"></i>
+                <input type="text" name="dir" id="dir" class="form__input" value="pasarla desde la compra" readonly>
+            </div>
+
+            {{-- <div class="form__group">
+                <i class="bi bi-tags-fill"></i>
+                <input type="text" name="cup" id="cup" class="form__input"
+                    value="No tiene Cupones Disponibles" readonly>
+            </div> --}}
+
+        </div>
+    </section>
+
+
+
     <script src="{{ asset('assets/js/modalPerfil.js') }}"></script>
+    <script src="{{ asset('assets/js/modalPerfil-dos.js') }}"></script>
 @endsection

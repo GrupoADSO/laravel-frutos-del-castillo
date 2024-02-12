@@ -49,7 +49,7 @@
 
                         <div class="col-md-6">
                             <label for="nombre-input">Precio</label>
-                            <input type="text" class="form-control form__control__input" name="precio__precio"
+                            <input type="text" class="form-control form__control__input" name="precio__producto"
                                 id="nombre-input" value="{{ $productoId->precio }}">
                             @if ($errors->has('precio__precio'))
                                 <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> solo se aceptan numeros</small>

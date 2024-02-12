@@ -12,7 +12,7 @@
 
             @foreach ($productos as $producto)
                 <article class="card card__admin-producto  col-6">
-                    <img src="{{ asset($producto->imagen_1) }}" class="card-img-top" alt="{{ $producto->nombre }}">
+                    <img src="{{ asset($producto->imagen_1) }}" class="card-img-top card-img-top-modificada" alt="{{ $producto->nombre }}">
 
                     <div class="card-body">
                         <h4 class="header--title"> {{ $producto->nombre }} </h4>

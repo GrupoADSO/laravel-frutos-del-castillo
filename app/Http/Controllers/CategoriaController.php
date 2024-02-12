@@ -80,11 +80,11 @@ class CategoriaController extends Controller
     public function update(Request $request, string $id)
     {
         // dd($request);
-        dd($request->toArray());
+        // dd($request->toArray());
         $Categoriaid = Categoria::find($id);
         $validator = Validator::make($request->all(), [
             'cambiar__nombre__cate' => 'required|string|regex:/^[a-zA-Z\s]+$/',
-            'cambiar__foto__cate' => 'required|image',
+            'cambiar__foto__cate' => 'required|mimes:png,jpg,jpeg',
         ]);
 
         if ($validator->fails()) {
@@ -93,9 +93,18 @@ class CategoriaController extends Controller
                 ->withInput();
         }
 
+        $url = '';
+        if($request->hasFile( "cambiar__foto__cate" )) {
+            $rutaImagen = str_replace('storage', 'public', $Categoriaid->imagen);
+            Storage::delete($rutaImagen);
+
+            $imagen = $request->file('cambiar__foto__cate')->store('public/imagen-categoria');
+            $url = Storage::url($imagen);
+        }
+
         $Categoriaid->update([
             'nombre' => $request->get('cambiar__nombre__cate'),
-            'imagen' => $request->get('cambiar__foto__cate'),
+            'imagen' => $url,
         ]);
 
         return redirect()->route('categorias');

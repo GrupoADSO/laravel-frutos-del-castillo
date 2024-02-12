@@ -31,19 +31,23 @@
                 <li><a href="{{ route('producto') }}">Menu</a></li>
                 <li><a href="{{ route('sobreMi') }}">Sobre
                         Nosotros</a></li>
-
-                <li class="lista__desplegable">
-                    <span class="a-submenu">Domicilio-Reserva</span>
-                    <ul class="submenu">
-                        <li><a id="mostrarDomicilio" class="a-submenu" href="#">Domicilio</a></li>
-                        <li><a id="mostrarReservas" class="a-submenu" href="#">Reserva</a></li>
-                    </ul>
-                </li>
             </ul>
         </nav>
 
         <nav class="header__icon">
-            <button class="boton-icon" id="logoAbrirModal"><i class="fa-solid fa-user"></i></button>
+            @if (session('logueado'))
+                <div class="contenedor__seccion">
+                    <button class="boton-icon"><i class="fa-solid fa-user"></i></button>
+                    <div class="menu__usuario">
+                        <ul>
+                            <li><a href="{{ route('perfil',session('usuario_id')) }}">Mi Perfil</a></li>
+                            <li><a href="{{ route('cerrarSesion') }}">Cerrar sección</a></li>
+                        </ul>
+                    </div>
+                </div>
+            @else
+                <button class="boton-icon" id="logoAbrirModal"><i class="fa-solid fa-user"></i></button>
+            @endif
             <button class="boton-icon" id="cart-icon"><i class="fa-solid fa-cart-shopping"></i><span
                     id="contador-carrito">0</span></button>
             <!--organizar js para el carrito-->
@@ -62,7 +66,8 @@
 
     @if (session('usuarioCreado'))
         <div class="alerta__usuario__creado">
-            <h1 class="mensaje__alerta" id="mensajeAlertaUsuarioCreado">{{ session('usuarioCreado') }} <i class="bi bi-check2-square"></i></h1>
+            <h1 class="mensaje__alerta" id="mensajeAlertaUsuarioCreado">{{ session('usuarioCreado') }} <i
+                    class="bi bi-check2-square"></i></h1>
         </div>
     @endif
 

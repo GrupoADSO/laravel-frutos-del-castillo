@@ -43,12 +43,12 @@ class ProductoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nombre__producto' => 'required|string|regex:/^[a-zA-Z\s]+$/',
-            'precio__producto' => 'required|int',
+            'precio__producto' => 'required|numeric',
             'tamanio__producto' => 'required|string|regex:/^[a-zA-Z\s]+$/   ',
             'foto__producto' => 'required|mimes:png,jpg,jpeg ',
-            'descuento__producto' => 'required|int',
+            'descuento__producto' => 'required|numeric',
             'descripcion__producto' => 'required|string',
-            'seleccion__subcategoria' => 'required|int',
+            'seleccion__subcategoria' => 'required|numeric',
         ]);
 
 
@@ -89,16 +89,15 @@ class ProductoController extends Controller
     {
 
         // dd($request);    
-        // solucionar problema con el envio de datos//
         $dataProducto =  Producto::find($id);
         $validator = Validator::make($request->all(), [
             'nombre__producto' => 'required|string||regex:/^[a-zA-Z\s]+$/',
-            'precio__producto' => 'required|int',
+            'precio__producto' => 'required|numeric',
             'tamanio__producto' => 'required|string||regex:/^[a-zA-Z\s]+$/',
             'foto__producto' => 'required|mimes:png,jpg,jpeg',
-            'descuento__producto' => 'required|int',
+            'descuento__producto' => 'required|numeric',
             'descripcion__producto' => 'required|string',
-            'seleccion__subcategoria' => 'required|int',
+            'seleccion__subcategoria' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -107,15 +106,23 @@ class ProductoController extends Controller
                 ->withInput();
         }
 
-        // $imagen = $request->file('foto__producto')->store('public/imagen-produto');
-        // $url = Storage::url($imagen);
+        $url = '';
+        if($request->hasFile( "foto__producto" )) {
+            $rutaImagen = str_replace('storage', 'public', $dataProducto->imagen_1);
+            Storage::delete($rutaImagen);
+
+            $imagen = $request->file('foto__producto')->store('public/imagen-produto');
+            $url = Storage::url($imagen);
+        }
+
+        //
 
         $dataProducto->update([
             'nombre' => $request->get('nombre__producto'),
             'precio' => $request->get('precio__producto'),
             'tamanio' => $request->get('tamanio__producto'),
             'descripcion' => $request->get('descripcion__producto'),
-            'imagen_1' => $request->get('foto__producto'),
+            'imagen_1' => $url,
             'descuento' => $request->get('descuento__producto'),
             'subcategoria_id' => $request->get('seleccion__subcategoria'),
         ]);

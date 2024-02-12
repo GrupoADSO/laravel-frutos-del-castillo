@@ -12,14 +12,17 @@
 
         <div class="container row">
 
-            <article class="card" style="width: 18rem;">
-                <img src="{{ asset('assets/img/img-carta-producto/hamburguesa.jpg') }}" class="card-img-top" alt="...">
+            @foreach ($sliders as $slider)
+
+            <article class="card card__admin-producto" style="width: 18rem;">
+                <img src="{{ asset($slider->ruta) }}" class="card-img-top card-img-top-modificada"  alt="{{ $slider->nombre }}">
                 <div class="card-body">
-                    <h5 class="card-title header--title">slider del mes de algo jeje</h5>
+                    <h5 class="card-title header--title">{{ $slider->nombre }}</h5>
                 </div>
                 <div class="card-footer">
                     <div class="card-body form__productos ">
-                        <form action="#" method="GET" style="margin: 0">
+                        @csrf
+                        <form action="{{ route('editar-slider', $slider->id) }}" method="GET" style="margin: 0">
                             <button class="form__productos-button">
                                 <svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -30,7 +33,9 @@
                                 </svg>
                             </button>
                         </form>
-                        <form action="#" method="POST" style="margin: 0">
+                        <form action="{{ route('eliminar-slider', $slider->id) }}" method="POST" style="margin: 0">
+                            @csrf
+                            @method('delete')
                             <button class="form__productos-button">
                                 <svg class="icon icon-tabler icon-tabler-trash" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -47,6 +52,10 @@
                     </div>
                 </div>
             </article>
+
+                
+            @endforeach
+
 
         </div>
 

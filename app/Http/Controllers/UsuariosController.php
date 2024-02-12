@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
@@ -9,9 +10,11 @@ class UsuariosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $id)
     {
-        return view('admin.usuarios');
+        // return $usuario;
+        $usuario =  User::find($id);
+        return view('paginas.perfil_usuario', compact('usuario'));
     }
 
     /**

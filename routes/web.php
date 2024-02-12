@@ -18,6 +18,8 @@ Route::get('Login/cerrarSesion', [LoginController::class, 'finalizarSesionUsuari
 // controla las imagenes de la categoria/slider
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
 
+Route::get('perfil-usuario/{id}', [UsuariosController::class, 'index'])->name('perfil');
+
 
 // Rutas para los productos
 Route::get('/productos', [ProductoController::class, 'index'])->name('producto');
@@ -68,6 +70,11 @@ Route::controller(ProductoController::class)->group(function () {
 Route::controller(SliderController::class)->group(function () {
     Route::get('/admin-slider', 'index')->name('slider');
     Route::get('/admin-slider/crear', 'create')->name('crear-slider');
+    Route::post('/admin-slider/nuevo-slider', 'store')->name('nuevo-slider');
+    Route::get('/admin-slider/editar/{idSlider}', 'edit')->name('editar-slider');
+    Route::post('/admin-slider/editar-slider/{idSlider}', 'update')->name('actualizar-slider');
+
+    Route::delete('/admin-slider/eliminar/{idSlider}', 'destroy')->name('eliminar-slider');
 });
 
 
@@ -80,9 +87,6 @@ Route::get('/sobre_mi', function () {
 })->name('sobreMi');
 
 
-Route::get('/perfil', function () {
-    return view('paginas.perfil_usuario');
-})->name('perfil');
 
 
 Route::get('/factura', function () {

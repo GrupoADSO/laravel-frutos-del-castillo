@@ -2,7 +2,6 @@
 
 @section('contenido')
 
-
     <div class="tabular--wrapper">
         <form action="#" class="row" method="POST">
             <div class="col-6">

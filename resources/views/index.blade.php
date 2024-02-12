@@ -8,9 +8,8 @@
 
     <div class="slider-container">
         <div class="slider-slide">
-            @foreach ($categorias as $slider)
-                <img src="{{ asset('assets/img/img-categorias/' . $slider->imagen) }}" alt="{{ $slider->name }}"
-                    class="img-slider" />
+            @foreach ($sliders as $slider)
+                <img src="{{ asset($slider->ruta) }}" alt="{{ $slider->nombre }}" class="img-slider" />
             @endforeach
         </div>
         <!-- Botones de control slider -->
@@ -32,8 +31,7 @@
         @foreach ($categorias as $categoria)
             <article class="card__categoria">
                 <div class="header__card">
-                    <img src="{{ asset($categoria->imagen) }}"
-                        alt="{{ $categoria->nombre }}">
+                    <img src="{{ asset($categoria->imagen) }}" alt="{{ $categoria->nombre }}">
                 </div>
                 <div class="boton__categoria">
                     <h2 class="titulo__articulo-categoria"><button

@@ -14,8 +14,8 @@
                     <input type="file" name="cambiar__foto__cate" id="foto" accept="image/*" />
                     
                     <label for="foto">imagen categoría</label>
-                    @if($errors->has('foto__categoria'))
-                        <small for="">La url de la imagen es valido</small>
+                    @if($errors->has('cambiar__foto__cate'))
+                        <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> La url de la imagen es valido</small>
                     @endif
                     <div class="col-12">
                         <button class="btn__formulario-button">Enviar</button>
@@ -27,8 +27,8 @@
                         <label for="nombre-input">Nombre Categoria</label>
                         <input type="text" class="form-control form__control__input" id="nombre-input" name="cambiar__nombre__cate" value="{{ $Categoriaid->nombre }}">
                     </div>
-                    @if($errors->has('nombre__categoria')) 
-                        <small for="">El nombre no es valido</small>                      
+                    @if($errors->has('cambiar__nombre__cate')) 
+                        <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> El nombre no es valido</small>                      
                     @endif
                 </div>
 
