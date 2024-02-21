@@ -18,7 +18,7 @@ class Producto extends Model
         'descripcion',
         'imagen_1',
         'descuento',
-        'subcategoria_id',
+        'categoria_id',
         'created_at',
         'updated_at'
     ];
@@ -27,5 +27,10 @@ class Producto extends Model
         'disponibilidad' => 1,
         'imagen_2' => 'null',
     ];
+
+
+    public function categoria(){
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
 
 }

@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('comentario')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('mesa_id');
-            $table->unsignedBigInteger('tipo_reserva_id');
+            // $table->unsignedBigInteger('tipo_reserva_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('mesa_id')->references('id')->on('mesas');
-            $table->foreign('tipo_reserva_id')->references('id')->on('tipo_reservas');
+            // $table->foreign('tipo_reserva_id')->references('id')->on('tipo_reservas');
             $table->timestamps();
         });
     }

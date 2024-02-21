@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <link rel="shortcut icon" href="{{ asset('img/img-header/FrutosDelCastillo-logo.png') }}" type="image/x-icon">
+    
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
     <title>Dashboard</title>
 </head>
@@ -37,14 +39,14 @@
                         Categorias
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('usuarios') }}">
                         <i class="fas fa-users"></i>
                         Usuarios
                     </a>
-                </li>
+                </li> --}}
                 <li>
-                    <a href="{{ route('productos') }}">
+                    <a href="{{ route('admin-productos') }}">
                         <i class="fa-brands fa-product-hunt"></i>
                         Productos
                     </a>
@@ -70,7 +72,7 @@
             <div class="header--title">
                 <h2>Dashboard</h2>
             </div>
-            <section class="user--info">
+            {{-- <section class="user--info">
                 <article class="search--box">
                     <i class="fa-solid fa-search"></i>
                     <input type="text" placeholder="Search">
@@ -79,7 +81,7 @@
                     <img src="https://as2.ftcdn.net/v2/jpg/03/48/47/85/1000_F_348478516_mXBDHijg9EcV7y9Bpxixwm193Ntx2Ntf.jpg"
                         alt="La mamba negra" title="La mamba negra">
                 </picture>
-            </section>
+            </section> --}}
         </section>
 
         {{-- Contenido principal --}}

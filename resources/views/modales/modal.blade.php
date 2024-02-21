@@ -2,10 +2,8 @@
     <span class="close closeModalUno">&times;</span>
 
     <h2>Bienvenidos a Frutos del Castillo</h2>
-    <form action="{{ route('iniciarSesion') }}" method="post">
+    <form action="{{ route('login') }}" method="post">
         @csrf
-
-
         <div class="contenedor__input__login">
             <i class="fa-solid fa-envelope icon__login"></i>
             <input class="input__login" name="email" type="text" placeholder="Email">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\Subcategoria;
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ class ProductoController extends Controller
 
     public function index()
     {
-        return view('paginas.productos');
+        $categorias = Categoria::all();
+        return view('paginas.productos', compact('categorias'));
     }
 
     public function obtenerProductosDeCategoria($categoria)
@@ -33,9 +35,8 @@ class ProductoController extends Controller
 
     public function create()
     {
-        // $categorias=  Categoria::all();
-        $subcategorias =  Subcategoria::all();
-        return view('admin.crear-productos', compact('subcategorias'));
+        $categorias =  Categoria::all();
+        return view('admin.crear-productos', compact('categorias'));
     }
 
 
@@ -48,7 +49,7 @@ class ProductoController extends Controller
             'foto__producto' => 'required|mimes:png,jpg,jpeg ',
             'descuento__producto' => 'required|numeric',
             'descripcion__producto' => 'required|string',
-            'seleccion__subcategoria' => 'required|numeric',
+            'seleccion__categoria' => 'required|numeric',
         ]);
 
 
@@ -69,11 +70,11 @@ class ProductoController extends Controller
             'descripcion' => $request->get('descripcion__producto'),
             'imagen_1' => $url,
             'descuento' => $request->get('descuento__producto'),
-            'subcategoria_id' => $request->get('seleccion__subcategoria'),
+            'categoria_id' => $request->get('seleccion__categoria'),
         ];
 
         Producto::create($dataProducto);
-        return redirect()->route('productos');
+        return redirect()->route('admin-productos')->with('alertaDeAccion', 'El producto fue creado correctamente');
     }
 
 
@@ -81,8 +82,8 @@ class ProductoController extends Controller
     public function edit(string $id)
     {
         $productoId = Producto::find($id);
-        $subcategorias = Subcategoria::all();
-        return view('admin.editar-productos', compact('productoId', 'subcategorias'));
+        $categorias = Categoria::all();
+        return view('admin.editar-productos', compact('productoId', 'categorias'));
     }
 
     public function update(Request $request, string $id)
@@ -91,13 +92,13 @@ class ProductoController extends Controller
         // dd($request);    
         $dataProducto =  Producto::find($id);
         $validator = Validator::make($request->all(), [
-            'nombre__producto' => 'required|string||regex:/^[a-zA-Z\s]+$/',
+            'nombre__producto' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'precio__producto' => 'required|numeric',
-            'tamanio__producto' => 'required|string||regex:/^[a-zA-Z\s]+$/',
+            'tamanio__producto' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'foto__producto' => 'required|mimes:png,jpg,jpeg',
             'descuento__producto' => 'required|numeric',
             'descripcion__producto' => 'required|string',
-            'seleccion__subcategoria' => 'required|numeric',
+            'seleccion__categoria' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -124,10 +125,10 @@ class ProductoController extends Controller
             'descripcion' => $request->get('descripcion__producto'),
             'imagen_1' => $url,
             'descuento' => $request->get('descuento__producto'),
-            'subcategoria_id' => $request->get('seleccion__subcategoria'),
+            'categoria_id' => $request->get('seleccion__categoria'),
         ]);
 
-        return redirect()->route('productos');
+        return redirect()->route('admin-productos')->with('alertaDeAccion', 'El producto fue aptualizado correctamente');
     }
 
 
@@ -138,6 +139,6 @@ class ProductoController extends Controller
         Storage::delete($rutaImagen);
 
         $ruta->delete();
-        return redirect()->route('productos');
+        return redirect()->route('admin-productos')->with('alertaDeAccion', 'El producto fue eliminado correctamente');
     }
 }

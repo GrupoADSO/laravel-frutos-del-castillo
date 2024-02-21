@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Subcategoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Validator;
@@ -13,7 +14,14 @@ class CategoriaController extends Controller
     public function obtenerCategorias()
     {
         $categorias = Categoria::all();
-        return response()->json($categorias);
+        return view('paginas.productos', compact('categorias'));
+    }
+
+
+    public function obtenerSubcategorias()
+    {
+        $subcategorias = Subcategoria::all();
+        return response()->json($subcategorias);
     }
 
 
@@ -58,7 +66,7 @@ class CategoriaController extends Controller
         ];
 
         Categoria::create($dataCategoria);
-        return redirect()->route('categorias');
+        return redirect()->route('categorias')->with('alertaDeAccion', 'La categoria fue creada correctamente');
     }
 
 
@@ -107,7 +115,7 @@ class CategoriaController extends Controller
             'imagen' => $url,
         ]);
 
-        return redirect()->route('categorias');
+        return redirect()->route('categorias')->with('alertaDeAccion', 'La categoria fue actualizada correctamente');
     }
 
     /**
@@ -117,6 +125,6 @@ class CategoriaController extends Controller
     {
         $Categoriaid = Categoria::find($id);
         $Categoriaid->delete();
-        return redirect()->route('categorias');
+        return redirect()->route('categorias')->with('alertaDeAccion', 'La categoria fue eliminada correctamente');
     }
 }

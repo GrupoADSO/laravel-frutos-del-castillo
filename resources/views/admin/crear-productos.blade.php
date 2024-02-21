@@ -29,11 +29,11 @@
 
                         <div class="col-md-6">
 
-                            <label for="inputState" class="form-label">Subcategoria</label>
-                            <select id="inputState" name="seleccion__subcategoria" class="form-select form__control__input">
-                                <option selected disabled>Selecciona la subcategoría</option>
-                                @foreach ($subcategorias as $subcategoria)
-                                    <option value="{{ $subcategoria->id }}">{{ $subcategoria->nombre }}</option>
+                            <label for="inputState" class="form-label">Categoria</label>
+                            <select id="inputState" name="seleccion__categoria" class="form-select form__control__input">
+                                <option selected disabled>Selecciona la categoria</option>
+                                @foreach ($categorias as $categoria)
+                                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                                 @endforeach
                             </select>
                         </div>

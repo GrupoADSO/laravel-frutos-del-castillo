@@ -21,7 +21,6 @@ function changeSlide(offset) {
     currentSlideIndex = 0;
   }
 
-  console.log(slides);
 
   showSlide(currentSlideIndex);
 

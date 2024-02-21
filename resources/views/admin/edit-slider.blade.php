@@ -14,7 +14,7 @@
                     <img src="{{ $slider->ruta }}"
                         alt="avatar" id="img" />
                     <input type="file" name="foto__slider" id="foto" accept="image/*" />
-                    <label for="foto">imagen categoría</label>
+                    <label for="foto">imagen slider</label>
                     @if ($errors->has('foto__slider'))
                     <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> La url de la imagen es invalida</small>
                 @endif

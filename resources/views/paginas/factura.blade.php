@@ -5,98 +5,159 @@
 
 @section('contenido')
 
-    <div class="contenedor">
+    <style>
+      
 
-        <section class="contenedor__factura">
-            <h1 class="titulo__header">Datos Generales</h1>
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
 
-            <div class="separador">
-                <form action="#" class="form_control">
+       
+    </style>
 
-                    <div class="sub__contenedor__general">
-                        <p class="texto">Nombre: <input type="text" class="control__input" /></p>
-
-                        <p class="texto">Telefono: <input type="tel" class="control__input" /></p>
-
-                    </div>
-
-                    <div class="check">
-                        <p class="texto"><input type="radio" class="input__radio" name="nn" id="l"
-                                value="l" />
-                            Recoger en tienda</p>
-                        <p class="texto"><input type="radio" class="input__radio" name="nn" id="m"
-                                value="m" />
-                            Domicilio</p>
-
-                        <div class="sub__informacion">
-                            <a href="#"><i class="fa-solid fa-location-dot"></i></a>
-                            <h3>los almendros</h3>
-                            <h4>Instrucción de entrega</h4>
-                            <textarea class="control__input control__textarea" cols="30" rows="2" placeholder="opcional"></textarea>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <section class="pago separador">
-                <h2 class="titulo__header">Metodo de Pago</h2>
-                <div action="#" class="form__control subcontenedor__pago">
-                    <div class="titulos__pago">
-                        <p class="texto">Disponible</p>
-                        <p class="texto">disponible</p>
-                    </div>
-                    <div class="metodo__pago ">
-                        <div class="tarjeta">
-                            <i class="fa fa-usd center"></i>
-                        </div>
-
-                        <div class="metodo__pago">
-                            <div class="tarjeta">
-                                <i class="fa fa-credit-card-alt center"></i>
+    <div class="container">
+        <h1 class="titulo__header titulo__header-button">Factura</h1>
+        <main class="main-content">
+            <div class="row g-5">
+                <div class="col-md-5 col-lg-4 order-md-last">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="color-text-factura">Tu Carrito</span>
+                        <!-- agregar color a fuente -->
+                    </h4>
+                    <ul class="list-group mb-3">
+                        {{-- <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Nombre producto</h6>
+                                <small class="text-muted-color text-muted ">breve descripción</small>
                             </div>
-                        </div>
-                    </div>
+                            <span class="text-muted-color text-muted ">$12000</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Second product</h6>
+                                <small class="text-muted-color text-muted ">Brief description</small>
+                            </div>
+                            <span class="text-muted-color text-muted ">$8</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">Third item</h6>
+                                <small class="text-muted-color text-muted ">Brief description</small>
+                            </div>
+                            <span class="text-muted-color text-muted ">$5</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="text-success">
+                                <h6 class="my-0">Promo code</h6>
+                                <small class="text-muted-color">EXAMPLECODE</small>
+                            </div>
+                            <span class="text-muted-color">−$5</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (COP)</span>
+                            <strong>$120000</strong>
+                        </li> --}}  
+                    </ul>
+
+
                 </div>
-            </section>
+                <div class="col-md-7 col-lg-8">
+                    <h4 class="mb-3">Direccion de envio</h4>
+                    <form class="needs-validation control__form" novalidate>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label form-label-color">Nombre</label>
+                                <input type="text" class="form-control" id="firstName"  value=""
+                                    required />
+                                <div class="invalid-feedback">
+                                    Valid first name is required.
+                                </div>
+                            </div>
 
-        </section>
+                            <div class="col-sm-6">
+                                <label for="lastName" class="form-label form-label-color">Apellido</label>
+                                <input type="text" class="form-control" id="lastName"  value=""
+                                    required />
+                                <div class="invalid-feedback">
+                                    Valid last name is required.
+                                </div>
+                            </div>
 
-        <section class="detafac">
-            <h1>Detalle de la factura</h1>
-            <table class="tbl__detalle__factura">
-                <tr class="tbl__contenido-titulo">
-                    <th>productos</th>
-                    <th>subtotal</th>
-                </tr>
-                <tr class="tbl__contenido-text tbl__linea">
-                    <td class="tbl__contenido-producto">
-                        <p>hamburguesa x1</p>
-                        <p>hamburguesa x1</p>
-                        <p>hamburguesa x1</p>
-                        <p>hamburguesa x1</p>
-                        <p>hamburguesa x1</p>
-                        <p>hamburguesa x1</p>
-                        <p>hamburguesa x1</p>
-                    </td>
-                    <td>$25.000</td>
-                </tr>
-                <tr class="tbl__contenido-text">
-                    <td>subtotal</td>
-                    <td>$25.000</td>
-                </tr>
-                <tr class="tbl__contenido-text">
-                    <td>Envio</td>
-                    <td>Recoger o enviar</td>
-                </tr>
-                <tr class="tbl__contenido-text">
-                    <th>Total</th>
-                    <th>$25.000</th>
-                </tr>
-            </table>
-            <div class="btnrp-container">
-                <button class="btn-rp">Realizar Pago</button>
+                            <div class="col-12">
+                                <label for="username" class="form-label form-label-color">email</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text bgr-color-span">@</span>
+                                    <input type="email" class="form-control" id="email"  value=""
+                                        required />
+                                    <div class="invalid-feedback">
+                                        Please enter a valid email address for shipping updates.
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-12">
+                                <label for="address" class="form-label form-label-color">Address</label>
+                                <input type="text" class="form-control" id="address" placeholder="1234 Main St"
+                                    required />
+                                <div class="invalid-feedback">
+                                    Please enter your shipping address.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address2" class="form-label form-label-color">Indicaciones <span
+                                        class="text-muted-color text-muted ">(Optional)</span></label>
+                                <input type="text" class="form-control" id="address2"
+                                    placeholder="apartam ento o casa" />
+                            </div>
+
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <h4 class="mb-3">Metodo de Pago</h4>
+
+                        <div class="my-3">
+                            <div class="metodo__pago ">
+                                <div class="tarjeta">
+                                    <input id="credit" name="paymentMethod" type="checkbox" class="form-check-input"
+                                        checked required />
+                                    <label class="form-check-label" for="credit">Efectivo</label>
+                                    <i class="fa fa-usd center"></i>
+                                </div>
+
+                                <div class="metodo__pago">
+                                    <div class="tarjeta metodo__pago-efecto">
+                                        {{-- <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked
+                                    required /> --}}
+                                        <a href="https://www.paypal.com/co/home">
+                                            Paypal
+                                            <i class="fa fa-usd center"></i>
+                                        </a>
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+
+
+                            <hr class="my-4" />
+
+                            <button class="w-100 btn btn-primary btn-lg bgr-color-boton" type="submit">
+                                Paga Ya!!
+                            </button>
+                    </form>
+                </div>
             </div>
-        </section>
-
+        </main>
     </div>
+
+    <script src="{{ 'assets/dist/js/bootstrap.bundle.min.js' }}"></script>
+
 
 @endsection

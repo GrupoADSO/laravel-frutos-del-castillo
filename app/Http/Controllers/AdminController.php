@@ -5,17 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class FacturaController extends Controller
+class AdminController extends Controller
 {
-
-    public function __construct(){
-        $this->middleware('auth')->only('index'); // Solo se permiten estas acciones a los usuarios autenticados
-    }
-
-    public function index()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
     {
-        $datosUsuario = User::all();
-        return  view('paginas.factura', compact('datosUsuario'));
+        $texto = $request->get('buscar_usuario');
+        $DatosUsuarios = User::where('nombre', 'LIKE', '%' . $texto . '%')
+            ->orWhere('apellido', 'LIKE', '%' . $texto . '%')
+            ->get();
+
+        if ($DatosUsuarios->isEmpty()) {
+            $mensaje = 'No se encontraron usuarios.';
+        } else {
+            $mensaje = '';
+        }
+
+        return view('admin.index', compact('DatosUsuarios', 'mensaje', 'texto'));
     }
 
     /**

@@ -34,14 +34,18 @@
                     <img src="{{ asset($categoria->imagen) }}" alt="{{ $categoria->nombre }}">
                 </div>
                 <div class="boton__categoria">
-                    <h2 class="titulo__articulo-categoria"><button
-                            class="enlace__categoria">{{ $categoria->nombre }}</button></h2>
+                    <h2>
+                        <a href="{{ route('producto') }}" class="enlace__categoria" >{{ $categoria->nombre }}</a>
+                    </h2>
                 </div>
             </article>
         @endforeach
 
     </section>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/menuDeProductos.js') }}"></script>
+
 
 @endsection

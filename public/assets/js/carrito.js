@@ -1,167 +1,222 @@
-let cartIcon = document.querySelector("#cart-icon");
-let cart = document.querySelector(".carrito");
-let closeCart = document.querySelector("#close-cart");
+"use strict";
+const openCartIcon = document.getElementById("cart-icon");
+const cart = document.querySelector(".carrito");
+const closeCartIcon = document.getElementById("close-cart");
+// -------------------- Text content cart -------------?
+const containerProduct = document.querySelectorAll(
+    ".card__producto__historia"
+);
+const subtotalValue = document.getElementById("subtotal__value"); // No
+const totalValue = document.getElementById("total__value"); // No
+const envioValue = document.getElementById("envio__value"); // No
+const imageSource = document.querySelectorAll(".content__car__menu img");
+const valueProducts = document.querySelectorAll(".parrafo__price");
+const addButton = document.getElementsByClassName("agregar__carrito");
+const nameProduct = document.getElementsByClassName("parrafo-titulo");
+const containerCartContent = document.getElementById(
+    "cart__content"
+);
+const addProductAlert = document.getElementById("add__alert-product");
+const descriptionProduct = document.getElementsByClassName('parrafo__cart')
+const containerFactura = document.querySelector('.list-group')
+let contadorCarrito = document.getElementById("contador-carrito");
+let HTML = ''
+let additionQuantity = 0; // Beta
+// ---------------------------------------------------------
 
-cartIcon.onclick = () => {
-  cart.classList.add("active");
+const openCart = () => {
+    openCartIcon.addEventListener('click', () => {
+        cart.classList.add("active");
+        showCart();
+    })
 };
 
-closeCart.onclick = () => {
-  cart.classList.remove("active");
+const closeCart = () => {
+    closeCartIcon.addEventListener("click", () => {
+        cart.classList.remove("active");
+    });
+    openCart()
 };
 
-if (document.readyState == "loading") {
-  document.addEventListener("DOMContentLoaded", ready);
-} else {
-  ready();
-}
 
-let cantidadInput; // declarar aquí para que esté disponible en todo el ámbito de la función
-let cantidadProductosEnCarrito = 0;
 
-function ready() {
-  // remueve los items de las cartas
-  let removeCartButton = document.getElementsByClassName("cart-remove");
-  for (let i = 0; i < removeCartButton.length; i++) {
-    let button = removeCartButton[i];
-    button.addEventListener("click", removeCartItem);
-  }
+//--------------- Beta ------------------------>
 
-  // cambios en la cantidad
-  let quantityInputs = document.getElementsByClassName("cantidad");
-  for (let i = 0; i < quantityInputs.length; i++) {
-    let input = quantityInputs[i];
-    input.addEventListener("change", quantityChanged);
-  }
+const addProductToLocalStorage = ({
+    uuid,
+    nombre,
+    img,
+    costo,
+    quantity,
+    description
+}) => {
+    const product = {
+        id: uuid,
+        title: nombre,
+        imagen: img,
+        precio: costo,
+        cantidad: quantity,
+        descripcion : description
+    };
 
-  // add to cart
-  let addCart = document.getElementsByClassName("add-button");
-  for (let i = 0; i < addCart.length; i++) {
-    let button = addCart[i];
-    button.addEventListener("click", addCartClicked);
-  }
-}
+    return product;
+};
 
-document
-  .querySelector(".clear-button")
-  .addEventListener("click", limpiarbutton);
+const showCart = () => {
+    let data = getLocalStorage();
+    let createTagProduct = "";
+    if (data.length > 0) {
+        data.forEach((producto) => {
+            const { id, title, imagen, precio, cantidad } = producto;
+            // let totalProduct = value * quantity;
+            createTagProduct += `    
+            <div class=>
+            <h4 class="titulo__carta-carrito">${title}</h4>
+            <div class="cart-content-producto">
+            <div class="header__card header__card-img">
+              <img src="${imagen}" class="imagen-cart">
+              </div>
+              <div class="detail-box">
+                  <p class="parrafo__price parrafo__cart-menu">${precio}</p>
+                  <input type="number" class="cantidad" value="${cantidad}">
+                  <i class="fa-solid fa-times cart-remove" data-id='${id}'></i>
+                  </div>
+                  </div>
+                  </div>
+            `
+        });
+    } else
+        createTagProduct = `<p class="message__cart--empty" >No hay elementos en el carrito :(</p>`;
 
-function limpiarbutton() {
-  if (confirm("¿Desea borrar todas las compras?")) {
-    let cartContent = document.querySelector(".cart-content");
-    while (cartContent.firstChild) {
-      cartContent.removeChild(cartContent.firstChild);
+    containerCartContent.innerHTML = createTagProduct;
+    handleClickDelete();
+};
+
+const addLocalStorage = (arrayProducts) => {
+    localStorage.setItem("ordenCarrito", JSON.stringify(arrayProducts));
+};
+
+const getLocalStorage = () => {
+    let data = JSON.parse(localStorage.getItem("ordenCarrito"));
+
+    if (data) return data;
+    else return [];
+};
+
+const validateProducts = (newProduct) => {
+    let previousProducts = [...getLocalStorage()];
+    let newProducts = [];
+
+    if (previousProducts.length <= 0) newProducts = [...newProduct];
+    else newProducts = [...previousProducts, ...newProduct];
+
+    addLocalStorage(newProducts);
+};
+
+const deleteProductFromLocalStorage = (dataId) => {
+    const deleteProduct = getLocalStorage().filter((product) => {
+        return product.id !== dataId;
+    });
+    return deleteProduct;
+};
+
+const validateExistenceProduct = (uuid) => {
+    return getLocalStorage().map((product) => {
+        return product.id === uuid;
+    });
+};
+
+const handleClickAddProduct = () => {
+    let products = [];
+    for (let i = 0; i < addButton.length; i++) {
+        addButton[i].addEventListener("click", () => {
+            const id = containerProduct[i].getAttribute("data-id");
+            // if (validateExistenceProduct(id).includes(true)) return;
+
+            products.push(
+                addProductToLocalStorage({
+                    uuid: id,
+                    nombre: nameProduct[i].textContent,
+                    img: imageSource[i].src,
+                    costo: valueProducts[i].textContent,
+                    quantity: 1,
+                    description : descriptionProduct[i].textContent
+                })
+            );
+            validateProducts(products);
+            // updateValues();
+            products = [];
+            // openAlert(addProductAlert, 700);
+            updateCounter()
+        });
     }
+};
 
-    document.querySelector(".subtotal").innerText = "$0";
-    cantidadProductosEnCarrito = 0;
-    actualizarContadorCarrito();
-  }
-}
-
-function removeCartItem(event) {
-  let buttonClicked = event.target;
-  let cartBox = buttonClicked.closest(".cart-box");
-  let cantidadElement = cartBox.querySelector(".cantidad");
-
-  if (cantidadElement !== undefined) {
-    let cantidad = parseInt(cantidadElement.value);
-    cantidadProductosEnCarrito -= cantidad;
-  }
-
-  cartBox.remove();
-  updateTotal();
-  actualizarContadorCarrito();
-}
-
-
-// function removeCartItem(event) {
-//   let buttonClicked = event.target;
-//   buttonClicked.parentElement.remove();
-//   updateTotal();
-//   cantidadProductosEnCarrito--;
-//   actualizarContadorCarrito();
-// }
-
-function actualizarContadorCarrito() {
-  let contadorCarrito = document.querySelector("#contador-carrito");
-  contadorCarrito.textContent = cantidadProductosEnCarrito.toString();
-}
-
-function quantityChanged(event) {
-  let input = event.target;
-  if (isNaN(input.value) || input.value <= 0) {
-    input.value = 1;
-  }
-  updateTotal();
-}
-
-function addCartClicked(event) {
-  event.preventDefault();
-  let button = event.target;
-
-  let shopProduct = button.closest(".card__menu");
-  let title = shopProduct.querySelector(".parrafo-titulo").textContent;
-  let precio = shopProduct.querySelector(".parrafo__price").textContent;
-  let imagen = shopProduct.querySelector(".content__car__menu img").src;
-
-  cantidadInput = shopProduct.querySelector(".cantidad");
-  let cantidad = cantidadInput ? parseInt(cantidadInput.value) : 1;
-  addProductToCart(title, precio, imagen, cantidad);
-  updateTotal();
-  cantidadProductosEnCarrito += cantidad;
-  actualizarContadorCarrito();
-}
-
-function addProductToCart(title, precio, imagen, cantidad) {
-  let cartShopBox = document.createElement("div");
-  cartShopBox.classList.add("cart-box");
-  let cartItems = document.querySelector(".cart-content");
-  let cartBoxContent = `
-  <p class="titulo__carta-carrito">${title}</p>
-  <div class="header__card header__card-img">
-    <img src="${imagen}" class="imagen-cart">
-    </div>
-    <div class="detail-box">
-        <p class="parrafo__price parrafo__cart-menu">${precio}</p>
-        <input type="number" class="cantidad" value="${cantidad}">
-        <i class="fa-solid fa-times cart-remove"></i>
-        </div>
-
-  `;
-
-  cartShopBox.innerHTML = cartBoxContent;
-  cartItems.appendChild(cartShopBox);
-  cartShopBox
-    .getElementsByClassName("cart-remove")[0]
-    .addEventListener("click", removeCartItem);
-  cartShopBox
-    .getElementsByClassName("cantidad")[0]
-    .addEventListener("change", quantityChanged);
-  updateTotal();
-}
-
-function updateTotal() {
-  let cartContent = document.querySelector(".cart-content");
-  let cartBoxes = cartContent.getElementsByClassName("cart-box");
-  let total = 0;
-  for (let i = 0; i < cartBoxes.length; i++) {
-    let cartBox = cartBoxes[i];
-    let priceElement = cartBox.getElementsByClassName("parrafo__price")[0];
-    let quantityElement = cartBox.getElementsByClassName("cantidad")[0];
-
-    if (quantityElement !== undefined) {
-      let price = parseFloat(priceElement.innerText.replace("$", ""));
-      let quantity = quantityElement.value;
-      total = total + price * quantity;
+const handleClickDelete = () => {
+    let deleteProductIcon = document.getElementsByClassName("cart-remove");
+    for (let i = 0; i < deleteProductIcon.length; i++) {
+        deleteProductIcon[i].addEventListener("click", () => {
+            let dataId = deleteProductIcon[i].getAttribute("data-id");
+            addLocalStorage(deleteProductFromLocalStorage(dataId));
+            showCart();
+            updateCounter()
+            // updateValues();
+        });
     }
+};
 
-    // total = Math.round(total * 100) / 100;
-  }
-  document.querySelector(".subtotal").innerText = "$" + total;
+
+
+const getSubtotalValue = () => {
+    let subtotal = 0;
+    let productsValue = getLocalStorage();
+
+    productsValue.forEach((productValue) => {
+        const { value, quantity } = productValue;
+        let totalProduct = value * quantity;
+        subtotal += totalProduct;
+    });
+
+    return subtotal;
+};
+
+const updateValues = () => {
+    subtotalValue.textContent = getSubtotalValue();
+    totalValue.textContent =
+        getSubtotalValue() + Number(envioValue.textContent);
+};
+
+const updateCounter = () => {
+    contadorCarrito.textContent = getLocalStorage().length
 }
 
-console.log("Title:", title);
-console.log("Precio:", precio);
-console.log("Imagen:", imagen);
-console.log("Cantidad:", cantidadInput);
+let value = 0
+
+const showProductsInBill = () => {
+    getLocalStorage().forEach(product => {
+        console.log(product);
+        const {id, imagen, precio, title, cantidad, descripcion} = product
+        HTML += `
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+                <h6 class="my-0">${title}</h6>
+                <small class="text-muted-color text-muted-longitud text-muted ">${descripcion}</small>
+            </div>
+                <span class="text-muted-color text-muted ">${precio}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+        <span>Total (COP)</span>
+        <strong>$ ${value += +precio.slice(1)}</strong>
+    </li>
+        `   
+    });
+    if(containerFactura) containerFactura.innerHTML = HTML
+}
+
+showProductsInBill()
+
+// handleClickCloseAlert(addProductAlert);
+closeCart()
+handleClickAddProduct()
+updateCounter()
+// updateValues()

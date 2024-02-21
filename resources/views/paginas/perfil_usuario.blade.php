@@ -6,7 +6,12 @@
 
 @section('contenido')
 
-
+@if (session('usuarioEditado'))
+<div class="alerta__usuario__creado">
+    <h1 class="mensaje__alerta" id="mensajeAlertaUsuarioCreado">{{ session('usuarioEditado') }} <i
+            class="bi bi-check2-square"></i></h1>
+</div>
+@endif
 
     <!-- inicio editar perfil -->
 
@@ -14,25 +19,43 @@
         <div class="custom-modal-content">
             <span class="custom-close">&times;</span>
 
-            <form action="#" class="form__control__perfil-dos">
-
+            <form action="{{ route('editar-perfil', $usuario->id) }}" class="form__control__perfil-dos" method="POST">
+                @csrf
                 <div class="form__container-dos">
-                    <i class="bi bi-person-fill form__title-dos"></i>
+                    <i class="fa-solid fa-user form__title-dos"></i>
 
                     <div class="form__group-dos">
-                        <i class="bi bi-person-fill"></i>
+                        <i class="fa-solid fa-user "></i>
                         <input type="text" name="nombre" class="form__input-dos" value="{{ $usuario->nombre }}">
+                        @if ($errors->has('nombre'))
+                        <div></div>
+                            <small class="alerta__color-rojo "><i class=" alert a-tamaño fa-solid fa-circle-exclamation "></i>
+                                Solo letras</small>
+                        @endif
                     </div>
 
                     <div class="form__group-dos">
-                        <i class="bi bi-telephone-fill"></i>
-                        <input type="tel" name="telefono" class="form__input-dos"  value="{{ $usuario->celular }}">
+                        <i class="fa-solid fa-user "></i>
+                        <input type="text" name="apellido" class="form__input-dos" value="{{ $usuario->apellido }}">
+                        @if ($errors->has('apellido'))
+                        <small class="alerta__color-rojo "><i class="fa-solid fa-circle-exclamation alerta-tamaño"></i>
+                            Solo letras</small>
+                    @endif
                     </div>
 
                     <div class="form__group-dos">
-                        <i class="bi bi-geo-alt"></i>
+                        <i class="fa-solid fa-phone"></i>
+                        <input type="tel" name="telefono" class="form__input-dos" value="{{ $usuario->celular }}">
+                        @if ($errors->has('telefono'))
+                        <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation alerta-tamaño"></i>
+                            Solo se acepta un telefono valido</small>
+                    @endif
+                    </div>
+
+                    {{-- <div class="form__group-dos">
+                        <i class="fa-solid fa-location-dot"></i>
                         <input type="text" name="direccion" placeholder="Direccion" class="form__input-dos">
-                    </div>
+                    </div> --}}
 
                     <div class="form__group-dos">
                         <button class="form__submit form__submit-editar"> Gurdar Cambios</button>
@@ -171,7 +194,7 @@
     <section class="contenedor__info__superior">
 
         <h1 class="form__title">
-            <i class="bi bi-person-fill"></i>
+            <i class="fa-solid fa-user"></i>
             Perfil
         </h1>
 
@@ -188,30 +211,28 @@
         <div class="form__container">
 
             <div class="form__group">
-                <i class="bi bi-person-fill"></i>
-                <input type="text" id="name" class="form__input" value="{{ $usuario->nombre }}">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" class="form__input" value="{{ $usuario->nombre }}">
+            </div>
+            <div class="form__group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" class="form__input" value="{{ $usuario->apellido }}">
             </div>
 
             <div class="form__group">
-                <i class="bi bi-envelope-fill"></i>
-                <input type="text" id="email" class="form__input" value="{{ $usuario->email }}" readonly>
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" class="form__input" value="{{ $usuario->email }}" readonly>
             </div>
 
             <div class="form__group">
-                <i class="bi bi-telephone-fill"></i>
-                <input type="tel" name="tel" id="tel" class="form__input" value="{{ $usuario->celular }}" readonly>
+                <i class="fa-solid fa-phone"></i>
+                <input type="tel" class="form__input" value="{{ $usuario->celular }}" readonly>
             </div>
 
             <div class="form__group">
-                <i class="bi bi-geo-alt"></i>
-                <input type="text" name="dir" id="dir" class="form__input" value="pasarla desde la compra" readonly>
+                <i class="fa-solid fa-location-dot"></i>
+                <input type="text" class="form__input" value="pasarla desde la compra" readonly>
             </div>
-
-            {{-- <div class="form__group">
-                <i class="bi bi-tags-fill"></i>
-                <input type="text" name="cup" id="cup" class="form__input"
-                    value="No tiene Cupones Disponibles" readonly>
-            </div> --}}
 
         </div>
     </section>

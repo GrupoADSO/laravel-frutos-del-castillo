@@ -27,11 +27,11 @@
 
                         <div class="col-md-6">
                             <label for="inputState" class="form-label">Categoria</label>
-                            <select id="inputState" name='seleccion__subcategoria' class="form-select form__control__input">
-                                <option selected value="{{ $productoId->subcategoria_id }}">{{ $productoId->nombre }}
+                            <select id="inputState" name='seleccion__categoria' class="form-select form__control__input">
+                                <option selected value="{{ $productoId->categoria_id }}">{{ $productoId->nombre }}
                                 </option>
-                                @foreach ($subcategorias as $subcategoria)
-                                    <option value="{{ $subcategoria->id }}">{{ $subcategoria->nombre }}</option>
+                                @foreach ($categorias as $categoria)
+                                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\HomeController;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // RUTAS PARA EL LOGIN
-Route::post('Login/sesion', [LoginController::class, 'iniciarSesion'])->name('iniciarSesion');
+Route::post('Login/sesion', [LoginController::class, 'iniciarSesion'])->name('login');
 Route::post('/login/crear/usuario', [LoginController::class, 'crearUsuario'])->name('crearUsuario');
 Route::get('Login/cerrarSesion', [LoginController::class, 'finalizarSesionUsuario'])->name('cerrarSesion');
 
@@ -20,13 +21,25 @@ Route::get('Login/cerrarSesion', [LoginController::class, 'finalizarSesionUsuari
 // controla las imagenes de la categoria/slider
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
 
-Route::get('perfil-usuario/{id}', [UsuariosController::class, 'index'])->name('perfil');
+
+
+
+Route::controller(UsuariosController::class)->group(function () {
+    Route::get('perfil-usuario/{id}', 'index')->name('perfil');
+    Route::post('perfil-usuario/editar/{id}', 'store')->name('editar-perfil');
+
+});
+
+
+
+
 // Rutas para los productos
 Route::get('/productos', [ProductoController::class, 'index'])->name('producto');
 
 // RUTAS PARA MANEJAR EL MENÚ
 // trae las subcategorias de la categoria principal
 Route::get('/categorias', [CategoriaController::class, 'obtenerCategorias']);
+    // Route::get('/subcategorias', [CategoriaController::class, 'obtenerSubcategorias']);
 
 
 Route::get('/productos/{categoria}', [ProductoController::class, 'obtenerProductosDeCategoria']);
@@ -40,8 +53,8 @@ Route::get('/factura',[FacturaController::class, 'index'])->name('factura');
 
 
 // ruta admin principal
-Route::controller(HomeController::class)->group(function () {
-    Route::get('/admin', 'datosDashboard')->name('inicio-admin');
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin', 'index')->name('inicio-admin');
 });
 
 //ruta de las categorias
@@ -55,12 +68,15 @@ Route::controller(CategoriaController::class)->group(function () {
 });
 
 
-Route::get("/usuarios", [UsuariosController::class, 'index'])->name('usuarios');
-
+Route::controller(UsuariosController::class)->group(function () {
+Route::get("/usuarios/editar/{id}", 'edit')->name('usuarios-editar');
+Route::post("/usuarios/update/{id}", 'update')->name('usuarios-actualizar');
+Route::delete("/usuarios/eliminar/{id}", 'destroy')->name('usuarios-eliminar');
+});
 
 
 Route::controller(ProductoController::class)->group(function () {
-    Route::get('/admin-productos', 'mostrarProductos')->name('productos');
+    Route::get('/admin-productos', 'mostrarProductos')->name('admin-productos');
     Route::get('/admin-productos/crear', 'create')->name('crear-productos');
     Route::post('/admin-productos/crear/nuevos', 'store')->name('nuevo-producto');
     Route::get('/admin-productos/editar-producto/{idproducto}','edit')->name('editar-producto');
@@ -82,18 +98,10 @@ Route::controller(SliderController::class)->group(function () {
 });
 
 
-// crear las rutas para las demas vistas faltantes
 
-
-// agregar los controladores de estas rutas
 Route::get('/sobre_mi', function () {
     return view('paginas.sobre_nosotros');
 })->name('sobreMi');
-
-
-
-
-
 
 Route::get('/informacion_legal', function () {
     return view('paginas.informacion_legal');

@@ -54,10 +54,15 @@
 body {
     position: relative;
     min-height: 100vh;
+    font-family: 'fuente_footer', sans-serif ;
 }
 
 .bloquear-body {
     overflow: hidden;
+}
+
+.container {
+    max-width: 960px;
 }
 
 
@@ -132,10 +137,11 @@ body {
 
 .boton-icon {
     position: relative;
-    border: 2px solid var(--color-neutral);
-    background-color: transparent;
     padding: .5em;
+    border: 2px solid var(--color-neutral);
     border-radius: 10px;
+    display: inline-block;
+    background-color: transparent;
     cursor: pointer;
 }
 
@@ -146,15 +152,10 @@ body {
 }
 
 .submenu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     border: 2px solid var(--color-neutral);
-    padding: 5px;
-    list-style: none;
+    border-radius: 8px;
+    padding: .3em 1em;
 }
 
 /* Estilos para los enlaces y botónes */
@@ -170,17 +171,29 @@ body {
 .contenedor__seccion .menu__usuario {
     display: none;
     border-radius: 3px;
-    overflow: hidden;
     background-color: var(--color-primary);
     position: absolute;
-    top: 52px;
+    top: 65px;
     min-width: 150px;
 }
 
-.contenedor__seccion:hover .menu__usuario {
-    display: block;
+.contenedor__seccion .menu__usuario::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 35px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent var(--color-neutral);
 }
 
+.boton-icon-checkbox {
+    visibility: hidden;
+}
+
+.boton-icon-checkbox:checked~.menu__usuario {
+    display: block;
+}
 
 .contenedor__seccion .menu__usuario ul {
     padding: 0;
@@ -190,13 +203,13 @@ body {
 }
 
 .contenedor__seccion .menu__usuario li a {
-    /* color: red; */
     display: block;
     padding: 5px;
     text-decoration: none;
 }
 
 .contenedor__seccion .menu__usuario li a:hover {
+    border-radius: 3px;
     background-color: var(--color-secondary);
 }
 
@@ -234,13 +247,13 @@ body {
 
 .alerta__inicio__session,
 .alerta__usuario__creado {
-    /* position: fixed; */
+    position: fixed;
     width: 100%;
     padding: .8em;
     transform: translateY(-10em);
     animation: mensaje-alerta ease-out 5s;
-
     background-color: var(--color-primary);
+    z-index: 50;
 }
 
 .mensaje__alerta {
@@ -258,11 +271,11 @@ body {
         transform: translateY(-10em);
     } */
 
-    50%{
+    50% {
         transform: translateY(0em);
     }
 
-    100%{
+    100% {
         transform: translateY(-10em);
     }
 }
@@ -419,272 +432,8 @@ body {
     color: var(--color-primary);
 }
 
-
-
 /* fin del modal de login */
 
-
-/* modal de reservas */
-.contenedor__reserva {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: 35px;
-    transform: translate(-50%, -50%);
-    z-index: 552;
-    background: var(--color-tertiary);
-    border: 3px solid var(--color-primary);
-    padding: 10px;
-    width: 540px;
-    height: max-content;
-}
-
-.form__reserva {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 10px;
-    padding-left: 16px;
-    width: max-content;
-    font-family: "fuente_footer";
-}
-
-.columnas {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-}
-
-.columnas input {
-    border: none;
-    height: 30px;
-    width: 25rem;
-    border-bottom: 2px solid #7b1c19;
-    background: none;
-    text-align: center;
-    color: var(--color-primary);
-
-
-
-}
-
-.columnas .textarea__asunto {
-    border: none;
-    height: 30px;
-    width: 25rem;
-    font-family: "fuente_footer";
-    font-size: 1.2rem;
-    text-align: center;
-    border-bottom: 2px solid var(--color-secondary);
-    background: none;
-    resize: none;
-    color: var(--color-primary);
-
-}
-
-.columnas .textarea__comentario {
-    border: none;
-    height: 30px;
-    width: 25rem;
-    font-family: "fuente_footer";
-
-    font-size: 1.2rem;
-    text-align: center;
-    border-bottom: 2px solid var(--color-secondary);
-    background: none;
-    resize: none;
-    color: var(--color-primary);
-}
-
-
-.filas {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.2rem;
-    align-items: center;
-
-}
-
-.filas input {
-    font-size: 1rem;
-    height: 30px;
-    width: 15rem;
-    border: none;
-    border-bottom: 2px solid var(--color-secondary);
-    background: none;
-    text-align: center;
-    color: var(--color-primary);
-
-
-}
-
-.filas input[type="date"] {
-    font-family: "fuente_footer";
-
-}
-
-.titulo__campos {
-    width: max-content;
-    height: min-content;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    margin-bottom: 10px;
-    font-family: "fuente_footer";
-    font-size: 1.2rem;
-    text-align: center;
-    color: var(--color-primary);
-}
-
-.aceptar__informacion {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: start;
-    margin-left: 20px;
-    align-items: baseline;
-    gap: 10px;
-    font-size: 1.3rem;
-    position: relative;
-    top: 20px;
-}
-
-.aceptar__informacion input[type="checkbox"] {
-    height: 20px;
-    width: 20px;
-    font-family: "fuente_footer";
-
-}
-
-.botom__reservas {
-    padding: 10px 10px 10px 10px;
-    height: 60px;
-    background: var(--color-secondary);
-    border: none;
-    border-radius: 10px;
-    font-family: "fuente_footer";
-    font-size: 2rem;
-    margin: 0;
-    color: var(--color-neutral);
-    position: relative;
-    top: 35px;
-}
-
-.columnas input[type="text"]:focus {
-    outline: 2px solid rgba(120, 115, 115, .3);
-    border-radius: 5px;
-}
-
-.columnas .textarea__asunto:focus,
-.columnas .textarea__comentario:focus {
-    outline: 2px solid rgba(120, 115, 115, .3);
-    border-radius: 5px;
-}
-
-.filas input[type="date"]:focus {
-    outline: 2px solid rgba(120, 115, 115, .3);
-    border-radius: 5px;
-}
-
-.filas input[type="text"]:focus,
-.filas input[type="email"]:focus {
-    outline: 2px solid rgba(120, 115, 115, .3);
-    border-radius: 5px;
-}
-
-/* fin de modal de reservas */
-
-/* modal de domicilio */
-
-/* el modal de domicio y reservas comparten clases */
-.contenedor__domicilio {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: 50px;
-    transform: translate(-50%, -50%);
-    z-index: 553;
-    background: var(--color-tertiary);
-    border: 3px solid var(--color-secondary);
-    padding: 10px;
-    width: 540px;
-    height: max-content;
-}
-
-.form__domicilio {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 10px;
-    width: max-content;
-    font-family: "fuente_footer";
-}
-
-.columnas__domicilio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-
-}
-
-
-.columnas__domicilio select {
-    font-size: .9em;
-    height: 30px;
-    width: 25rem;
-    border: none;
-    border-bottom: 2px solid var(--color-secondary);
-    background: none;
-    text-align: center;
-    color: var(--color-primary);
-    cursor: pointer;
-
-}
-
-.columnas__domicilio select option {
-    background-color: var(--color-secondary);
-    color: var(--color-neutral);
-
-}
-
-.filas select {
-    font-size: .9em;
-    height: 30px;
-    width: 15rem;
-    border: none;
-    border-bottom: 2px solid var(--color-secondary);
-    background: none;
-    text-align: center;
-    color: var(--color-primary);
-    cursor: pointer;
-}
-
-.columnas__domicilio .textarea__comentario {
-    border: none;
-    height: 30px;
-    width: 25rem;
-    font-family: "fuente_footer";
-    font-size: 1.2rem;
-    text-align: center;
-    border-bottom: 2px solid var(--color-secondary);
-    background: none;
-    resize: none;
-    color: var(--color-primary);
-}
-
-.filas select option {
-    background: var(--color-secondary);
-    color: var(--color-neutral);
-
-}
-
-.columnas__domicilio .textarea__comentario:focus {
-    outline: 2px solid rgba(120, 115, 115, .3);
-    border-radius: 5px;
-}
 
 
 /* inicio slider */
@@ -822,6 +571,7 @@ body {
     object-fit: cover;
 }
 
+
 .boton__categoria {
     position: absolute;
     bottom: 0;
@@ -837,9 +587,10 @@ body {
 }
 
 .enlace__categoria {
-    padding: .6em;
+    display: inline-block;
+    padding: .6em 1em;
     font-size: 1.3rem;
-    border: none;
+    text-decoration: none;
     color: var(--color-neutral);
     background-color: var(--color-primary);
 }
@@ -852,8 +603,30 @@ body {
 /* fin cartas de la categorias (index) */
 
 
+/* Darinson Test */
 
+.container__card-productos {
+    /* outline: 1px solid; */
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+}
 
+.card__container-title-category {
+    width: 200px;
+    padding: .1em 1em;
+    background-color: var(--color-secondary);
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+}
+
+.card__container-title-category h2 {
+    margin: 0;
+    color: var(--color-neutral);
+    text-align: left;
+    text-transform: capitalize;
+}
 
 
 
@@ -910,13 +683,13 @@ body {
 
 .card__menu {
     position: relative;
-    border: 2px solid var(--color-secondary);
     background-color: var(--color-tertiary-opacity);
-    overflow: hidden;
-    border-radius: 10px;
     width: 18em;
     height: max-content;
     color: var(--color-primary);
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 
@@ -925,11 +698,12 @@ body {
     top: .5em;
     right: .5em;
     z-index: 20;
+    width: 120px;
     border-radius: 5px;
     text-align: center;
     font-size: 1.3rem;
     color: var(--color-neutral);
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary-opacity);
     letter-spacing: 5px;
     text-decoration: none;
 }
@@ -986,18 +760,34 @@ body {
     line-height: 1.2;
 }
 
-.agregar__carrito {
-    position: relative;
-    left: 80%;
-    padding: .7em;
-    border-radius: 100%;
-    background-color: var(--color-primary);
-    width: max-content;
+.footer__card {
+    padding: .1em 1em;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
-.add-button {
-    color: var(--color-tertiary);
+.agregar__carrito,
+.agregar__like {
+    width: 50px;
+    height: 50px;
+    padding: .5em;
+    text-align: center;
+    border: 2px solid var(--color-primary);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+
+.add-button,
+.like {
+    color: var(--color-secondary);
     font-size: 1.8rem;
+    text-align: center;
+}
+
+.like {
+    font-size: 1.7em;
 }
 
 .pie__card {
@@ -1083,7 +873,7 @@ body {
     z-index: 1010;
 }
 
-.carrito.active {
+.active {
     right: 0;
 }
 
@@ -1148,6 +938,12 @@ body {
     gap: 1em;
 }
 
+.cart-content-producto {
+    display: flex;
+    width: 100%;
+    height: max-content;
+}
+
 .header__card-img {
     width: 5em;
     height: 4em;
@@ -1156,11 +952,15 @@ body {
 
 .titulo__carta-carrito {
     margin: 0;
-    grid-column: -1/1;
+    text-align: center;
+    font-family: 'moller-use-boldCondensed', Tahoma;
+    font-size: 1.3rem;
+    color: var(--color-primary);
 }
 
 .parrafo__cart-menu {
     margin: 0;
+    margin-left: 28px;
 }
 
 
@@ -1256,9 +1056,8 @@ body {
 
 .detail-box {
     display: flex;
-    grid-row: 2/3;
-    align-items: baseline;
-    gap: 1em;
+    align-items: center;
+    gap: 3em;
 }
 
 .parrafo__cart {
@@ -1309,32 +1108,14 @@ body {
 
 /* inicio factura */
 
-
-
-/* contenedor principal */
-.contenedor {
-    padding: 1em;
-    display: flex;
-    justify-content: space-evenly;
-    gap: 1em;
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
-.contenedor__principal__factura {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-/* Estilos generales para el contenedor de factura */
-.contenedor__factura {
-    width: 450px;
-    height: max-content;
-    border: 2.5px solid var(--color-secondary);
-    background-color: var(--color-tertiary);
-    padding: 1em;
-}
-
-/* Estilos para el título del encabezado */
 .titulo__header {
     font-family: "boring-sans-atrial";
     font-weight: bold;
@@ -1343,137 +1124,66 @@ body {
     margin: 0px;
 }
 
-/* Estilos para texto general */
-.texto {
-    font-family: "boring-sans-atrial";
-    color: var(--color-secondary);
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 8px;
-}
-
-/* Separador entre secciones */
-.separador {
-    width: 100%;
-    padding: 10px 0;
-    border-bottom: 3px solid var(--color-primary);
-}
-
-/* Estilos para los campos de entrada de formulario */
-.form_control {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.control__input {
-    width: 70%;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    color: var(--color-secondary);
-    outline: none;
-    border-bottom: 1px solid var(--color-secondary);
-}
-
-.control__textarea {
-    width: 90%;
-    height: 60px;
-    resize: none;
-}
-
-/* Estilos para los botones */
-.input__radio {
-    width: 20px;
-    height: 20px;
-    accent-color: var(--color-secondary);
-}
-
-.input__text {
-    width: 50%;
-    height: 50px;
-    border-radius: 10px;
-    border: 1px solid var(--color-neutral);
-    outline: none;
+.titulo__header-button{
+    font-size: 4rem;
     text-align: center;
+    margin: .5em 0;
 }
 
-/* Estilos para la subinformación */
-.sub__informacion {
-    margin: 10px;
-}
-
-.sub__informacion h2 {
+.text-muted-longitud{
+    width: 140px;
+    height: 13px;
     display: inline-block;
+    overflow: hidden;
+    writing-mode: lr;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+}
+
+.main-content  h4,
+.main-content h6,
+.main-content span{
     color: var(--color-secondary);
 }
 
-.sub__informacion h3 {
-    font-size: 1.4rem;
+.color-text-factura{
     color: var(--color-secondary);
-    margin: 8px;
 }
 
-.sub__informacion a {
-    font-family: "boring-sans-trial-bold";
-    text-decoration: none;
-    font-size: 1.3rem;
+.metodo__pago-efecto:hover {
+    background-color: var(--color-secondary);  
 }
 
-.sub__informacion i {
-    color: var(--color-secondary);
-    font-size: 2rem;
-    padding-right: 40px;
+.needs-validation input,
+.needs-validation span
+{
+    border-color: var(--color-primary);
 }
 
-/* Estilos para el cupón */
-.sub__cupon {
-    display: flex;
-    justify-content: space-around;
-}
-
-.btn__val {
-    width: 110px;
-    height: 50px;
-    font-family: "boring-sans-trial-bold";
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 20px;
+.bgr-color-span,
+.bgr-color-boton{
+    background: var(--color-primary);
     color: var(--color-neutral);
-    background-color: var(--color-neutral);
 }
 
-.btn__val:hover {
+.bgr-color-boton{
+    border: none;
+}
+
+.bgr-color-boton:hover{
     background: var(--color-secondary);
-    cursor: pointer;
 }
 
-/* Estilos para la sección de pago */
-.pago {
-    height: max-content;
-}
-
-.titulos__pago {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.subcontenedor__pago {
-    display: flex;
-    gap: 20px;
-}
 
 .metodo__pago {
     display: flex;
     flex-direction: column;
 }
 
-/* Estilos para las tarjetas de pago */
 .tarjeta {
     width: 250px;
     height: 60px;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     border-radius: 10px;
     margin: 5px;
     display: flex;
@@ -1481,102 +1191,36 @@ body {
     align-items: center;
 }
 
+.tarjeta label, 
+.tarjeta a{
+    font-size: 1.2rem;
+    color: var(--color-neutral);
 
+}
+
+.tarjeta a {
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    justify-content: space-around;
+    gap: 5em;
+}
 
 .tarjeta i {
     font-size: 1.5rem;
-    border-radius: 50%;
-    background-color: var(--color-secondary);
     color: var(--color-neutral);
     display: flex;
     justify-content: center;
 }
 
-.center {
-    display: flex;
-    align-items: center;
+.text-muted-color,
+.form-label-color{
+    color: var(--color-secondary-opacity)!important;
 }
 
-/* detalle Factura */
-
-
-.detafac {
-    width: 370px;
-    height: 450px;
-    padding: 1em;
-    padding-bottom: 4em;
-    position: relative;
-    background-color: var(--color-tertiary);
-    border: 2px solid var(--color-primary);
+.form-label-color{
+    font-size: 1.2rem;
 }
-
-.detafac h1 {
-    margin: 0;
-    text-align: center;
-    font-family: 'Boring-Sans-A-Light-Italic', sans-serif;
-    font-size: 2rem;
-    color: var(--color-secondary);
-}
-
-.tbl__detalle__factura {
-    width: 100%;
-    height: 80%;
-    margin-top: 10px;
-    border-spacing: 0;
-}
-
-.tbl__detalle__factura tr {
-    outline: 1px solid var(--color-primary);
-}
-
-
-.tbl__contenido-titulo {
-    font-family: 'Boring-Sans-A-Light-Italic', sans-serif;
-    font-size: 1.3rem;
-    color: var(--color-primary);
-}
-
-.tbl__contenido-text {
-    text-align: center;
-    font-family: "fuente_footer", Tahoma;
-    font-size: 1.3rem;
-    color: var(--color-primary);
-    position: relative;
-    z-index: 15;
-}
-
-.tbl__contenido-producto {
-    max-height: 150px;
-    display: block;
-    position: relative;
-    top: 15px;
-    overflow: auto;
-}
-
-.tbl__contenido-producto p {
-    margin: 0;
-}
-
-.btnrp-container {
-    position: absolute;
-    bottom: -20px;
-    left: 25%;
-    cursor: pointer;
-
-}
-
-.btn-rp {
-    font-family: "moller-use-boldCondensed";
-    font-size: 1.8rem;
-    font-weight: 300;
-    background-color: var(--color-secondary);
-    color: var(--color-neutral);
-    border: none;
-    border-radius: 20px;
-    padding: .5em;
-
-}
-
 
 /* fin factura */
 
@@ -1729,11 +1373,18 @@ body {
     margin-left: auto;
     margin-right: auto;
     display: flex;
+    gap: 0.5em;
 }
 
 .form__group i {
-    margin-top: 0.3rem;
     font-size: 1.5rem;
+    width: 50px;
+    /* outline: 2px solid red; */
+    border: 2px solid var(--color-primary);
+    height: 47px;
+    border-radius: 10px;
+    padding: .4em;
+    color: var(--color-primary);
 }
 
 .form__group .form__input {
@@ -1778,7 +1429,7 @@ body {
 
 .custom-modal-content {
     position: relative;
-    width: 90%;
+    width: 500px;
     padding: 0.5px;
     border-radius: 10px;
     display: flex;
@@ -1824,7 +1475,7 @@ body {
 .form__title-dos {
     font-size: 2rem;
     color: var(--color-primary);
-    font-size: 7rem;
+    font-size: 6rem;
 }
 
 .form__group-dos {
@@ -1836,9 +1487,12 @@ body {
 }
 
 .form__group-dos i {
-    /* margin-right: 10px; */
     color: var(--color-primary);
-    font-size: 2.5rem;
+    font-size: 1.8rem;
+}
+
+.alerta__color-rojo i {
+    font-size: 1.2rem;
 }
 
 .form__input-dos {
@@ -2114,24 +1768,6 @@ body {
     }
 
 
-
-    /* contactanos */
-    .contenedor_contacto {
-        width: 95%;
-    }
-
-    .contenedor_descripcion_contacto {
-        width: 50%;
-        height: 39rem;
-        margin-left: 20px;
-        font-size: 0.9rem;
-    }
-
-    .contenedor_formulario_contacto {
-        width: 40%;
-        margin-right: 10px;
-    }
-
     /* fin de contactanos */
 
 
@@ -2177,10 +1813,12 @@ body {
         font-size: 2.5rem;
     }
 
+    /*Factura*/
 
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
 
-
-    /* fin contactanos */
 
 
 
@@ -2222,25 +1860,12 @@ body {
         height: 22em;
     }
 
-    .boton__categoria {
-        left: 1.5rem;
-    }
 
-    .contenedor__factura {
-        width: 100%;
-    }
-
-    .detafac {
-        width: 100%;
-    }
 
     .titulo__header {
         font-size: 2.3rem;
     }
 
-    .tarjeta {
-        width: 150px;
-    }
 
     .main-title {
         font-size: 2rem;
@@ -2285,69 +1910,6 @@ body {
 
     /* fin productos */
 
-
-
-
-
-
-
-
-
-
-
-    /* modal reservas */
-    .contenedor__reserva {
-        top: 60%;
-        width: 350px;
-    }
-
-
-    .columnas input {
-        width: 20rem;
-    }
-
-
-    .columnas .textarea__asunto,
-    .columnas .textarea__comentario {
-        width: 20rem;
-    }
-
-    .filas {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .filas input {
-        width: 20rem;
-    }
-
-    /* fin modal reservas */
-
-    /* modal de domicilio */
-
-    .contenedor__domicilio {
-        top: 60%;
-        width: 350px;
-    }
-
-    .columnas__domicilio {
-        width: 20rem;
-        gap: 2rem;
-    }
-
-    .columnas__domicilio .textarea__comentario {
-        width: 20rem;
-    }
-
-
-    .columnas__domicilio select {
-        width: 20rem;
-    }
-
-    .filas select {
-        width: 20rem;
-    }
-
-    /* fin del modal de domicilio */
 
     /* modales de login */
     .modal-content-perfil,

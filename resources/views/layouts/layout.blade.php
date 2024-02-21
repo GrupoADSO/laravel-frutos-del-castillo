@@ -5,6 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('titulo')</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -27,27 +30,33 @@
             <button id="cerrarVentana" class="cerrar__menu"><i class="fa-solid fa-xmark"></i></button>
 
             <ul class="lista__paginas-header">
-                <li><a href="{{ route('inicio') }}">Inicio</a></li>
-                <li><a href="{{ route('producto') }}">Menu</a></li>
-                <li><a href="{{ route('sobreMi') }}">Sobre
+                <li class="{{ Request::is('/') ? 'submenu' : '' }}"><a href="{{ route('inicio') }}">Inicio</a></li>
+                <li <?php if (basename($_SERVER['PHP_SELF']) == 'productos') {
+                    echo 'class="submenu"';
+                } ?>><a href="{{ route('producto') }}">Menu</a></li>
+                <li <?php if (basename($_SERVER['PHP_SELF']) == 'sobre_mi') {
+                    echo 'class="submenu"';
+                } ?>><a href="{{ route('sobreMi') }}">Sobre
                         Nosotros</a></li>
             </ul>
         </nav>
 
         <nav class="header__icon">
-            @if (session('logueado'))
+            @auth
                 <div class="contenedor__seccion">
-                    <button class="boton-icon"><i class="fa-solid fa-user"></i></button>
+                    <input type="checkbox" id="toggle-menu" class="boton-icon-checkbox">
+                    <label for="toggle-menu" class="boton-icon boton-icon-label"><i class="fa-solid fa-user"></i></label>
                     <div class="menu__usuario">
                         <ul>
-                            <li><a href="{{ route('perfil',session('usuario_id')) }}">Mi Perfil</a></li>
-                            <li><a href="{{ route('cerrarSesion') }}">Cerrar sección</a></li>
+                            <li><a href="{{ route('perfil', session('usuario_id')) }}">Mi Perfil</a></li>
+                            <li><a href="{{ route('cerrarSesion') }}">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
-            @else
+            @endauth
+            @guest
                 <button class="boton-icon" id="logoAbrirModal"><i class="fa-solid fa-user"></i></button>
-            @endif
+            @endguest
             <a href="#" class="boton-icon" id="cart-icon"><i class="fa-solid fa-cart-shopping"></i><span
                     id="contador-carrito">0</span></a>
             <!--organizar js para el carrito-->
@@ -90,9 +99,10 @@
         </div>
         <div class="compras-content">
 
-            <div class="cart-content">
+            <div class="cart-content" id="cart__content">
                 <!-- contenido -->
             </div>
+
         </div>
 
         <div class="parteabajo">
@@ -105,12 +115,12 @@
                     $0
                 </div>
             </div>
-            <div class="clear-cart">
+            {{-- <div class="clear-cart">
                 <a href="#" class="clear-button">
                     <i class="fa-solid fa-trash-can clear-icon"></i>
                     Limpiar Canasta
                 </a>
-            </div>
+            </div> --}}
         </div>
     </aside>
 
@@ -158,6 +168,7 @@
     <script src="{{ asset('assets/js/modales_login.js') }}"></script>
     <script src="{{ asset('assets/js/carrito.js') }}"></script>
     <script src="{{ asset('assets/js/menuHamburguesa.js') }}"></script>
+    <script src="{{ asset('assets/js/factura.js') }}"></script>
 </body>
 
 </html>

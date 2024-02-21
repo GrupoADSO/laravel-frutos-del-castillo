@@ -52,7 +52,7 @@ class SliderController extends Controller
         ];
 
         Slider::create($dataCategoria);
-        return redirect()->route('slider');
+        return redirect()->route('slider')->with('alertaDeAccion','El Slider fue  agregado correctamente!'); 
     }
 
     /**
@@ -107,7 +107,7 @@ class SliderController extends Controller
             'ruta' => $url,
         ]);
 
-        return redirect()->route('slider');
+        return redirect()->route('slider')->with('alertaDeAccion','El Slider fue actualizado correctamente!');
 
     }
 
@@ -121,6 +121,6 @@ class SliderController extends Controller
         Storage::delete($rutaImagen);
 
         $ruta->delete();
-        return redirect()->route('slider');
+        return redirect()->route('slider')->with('alertaDeAccion','El Slider fue  eliminado correctamente!');
     }
 }

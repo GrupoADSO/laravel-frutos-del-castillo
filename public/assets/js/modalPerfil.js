@@ -20,3 +20,4 @@ window.addEventListener('click', (event) => {
     document.body.classList.remove('bloquear-body');
   }
 });
+

@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('imagen_1');
             $table->string('imagen_2');
             $table->integer('descuento')->nullable();
-            $table->unsignedBigInteger('subcategoria_id'); 
-            $table->foreign('subcategoria_id')->references('id')->on('subcategorias');
+            $table->unsignedBigInteger('categoria_id'); 
+            $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->timestamps();
         });
     }

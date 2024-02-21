@@ -4,18 +4,18 @@
 @section('titulo', 'Inicio')
 
 @section('contenido')
-
+    @if (session('alertaDeAccion'))
+        <div class="alerta__acciones">
+            <h1 class="mensaje__alerta" id="mensajeAlertaUsuarioCreado">{{ session('alertaDeAccion') }} <i
+                    class="bi bi-check2-square"></i></h1>
+        </div>
+    @endif
     <section class="tabular--wrapper">
 
         <aside class="contenedor__btns">
             <div class="contendor__boton">
                 <a class="btn__categoria" href="{{ route('crear-categoria') }}">Crear Categoria</a>
             </div>
-            
-            <div class="contendor__boton">
-                <a class="btn__categoria" href="#">Crear subCategoria</a>
-            </div>
-
         </aside>
 
         <table>
@@ -43,22 +43,23 @@
                                 </button>
                             </form>
                             {{-- Eliminar --}}
-                            <form action="{{ route('eliminar-categoria', $categoria->id) }}" method="POST" style="margin: 0">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button>
-                                        <svg class="icon icon-tabler icon-tabler-trash" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M4 7l16 0" />
-                                            <path d="M10 11l0 6" />
-                                            <path d="M14 11l0 6" />
-                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                        </svg>
-                                    </button>
-                                </form>
+                            <form action="{{ route('eliminar-categoria', $categoria->id) }}" method="POST"
+                                style="margin: 0">
+                                @csrf
+                                @method('DELETE')
+                                <button>
+                                    <svg class="icon icon-tabler icon-tabler-trash" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M4 7l16 0" />
+                                        <path d="M10 11l0 6" />
+                                        <path d="M14 11l0 6" />
+                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                    </svg>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

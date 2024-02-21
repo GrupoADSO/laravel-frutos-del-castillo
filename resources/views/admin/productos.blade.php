@@ -1,6 +1,12 @@
 @extends('layouts.dashboard')
 
 @section('contenido')
+    @if (session('alertaDeAccion'))
+        <div class="alerta__acciones">
+            <h1 class="mensaje__alerta" id="mensajeAlertaUsuarioCreado">{{ session('alertaDeAccion') }} <i
+                    class="bi bi-check2-square"></i></h1>
+        </div>
+    @endif
     <section class="tabular--wrapper">
 
         <div class="contendor__boton">
@@ -12,7 +18,8 @@
 
             @foreach ($productos as $producto)
                 <article class="card card__admin-producto  col-6">
-                    <img src="{{ asset($producto->imagen_1) }}" class="card-img-top card-img-top-modificada" alt="{{ $producto->nombre }}">
+                    <img src="{{ asset($producto->imagen_1) }}" class="card-img-top card-img-top-modificada"
+                        alt="{{ $producto->nombre }}">
 
                     <div class="card-body">
                         <h4 class="header--title"> {{ $producto->nombre }} </h4>
@@ -70,5 +77,4 @@
         </div>
 
     </section>
-
 @endsection

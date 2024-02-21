@@ -2,31 +2,33 @@
 
 @section('contenido')
 
+
     <div class="tabular--wrapper">
-        <form action="#" class="row" method="POST">
+        <form action="{{ route('usuarios-actualizar', $usuario->id) }}" class="row" method="POST">
+            @csrf
             <div class="col-6">
                 <label for="nombre-input">Nombre</label>
-                <input type="text" class="form-control form__control__input" id="nombre-input">
+                <input type="text" class="form-control form__control__input" name="nombre_persona" value="{{ $usuario->nombre }}" id="nombre-input">
             </div>
 
             <div class="col-6">
                 <label for="apellido-input">Apellido</label>
-                <input type="text" class="form-control form__control__input" id="apellido-input">
+                <input type="text" class="form-control form__control__input" name="apellido_persona" value="{{ $usuario->apellido }}" id="apellido-input">
             </div>
 
             <div class="col-6">
                 <label for="telefono-input">Telefono</label>
-                <input type="number" class="form-control form__control__input" id="telefono-input">
+                <input type="number" class="form-control form__control__input" name="telefono_persona" value="{{ $usuario->celular }}" id="telefono-input">
             </div>
 
             <div class="col-6">
                 <label for="fecha-nacimiento-input">Fecha Nacimiento</label>
-                <input type="text" class="form-control form__control__input" id="fecha-nacimiento-input">
+                <input type="text" class="form-control form__control__input" name="nacimiento_persona" value="{{ $usuario->fecha_nacimiento }}" id="fecha-nacimiento-input">
             </div>
 
             <div class="col-12">
                 <label for="email-input">Correo</label>
-                <input type="email" class="form-control form__control__input" id="email-input">
+                <input type="email" class="form-control form__control__input" name="email_persona" value="{{ $usuario->email }}" id="email-input">
             </div>
 
             <div class="g-4">
@@ -86,7 +88,7 @@
                         </button>
                     </form>
                 </td> --}}
-
+                
             </tr>
         </tbody>
     </table>

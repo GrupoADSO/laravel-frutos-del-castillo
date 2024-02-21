@@ -15,4 +15,8 @@ class Categoria extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function producto(){
+        return $this->hasMany(Producto::class,'categoria_id');
+    }
 }

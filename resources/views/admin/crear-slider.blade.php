@@ -13,7 +13,7 @@
                     <img src="https://img.freepik.com/vector-gratis/ilustracion-nube-concepto-almacenamiento-nube_53876-8485.jpg?w=740&t=st=1706836474~exp=1706837074~hmac=003e490e6fc999fae93f04198110fcde48e4306da40637ac8047ef2c222df811"
                         alt="avatar" id="img" />
                     <input type="file" name="foto__slider" id="foto" accept="image/*" />
-                    <label for="foto">imagen categoría</label>
+                    <label for="foto">imagen slider</label>
                     @if ($errors->has('nombre__slider'))
                         <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> La url de la imagen
                             es invalida</small>
