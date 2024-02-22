@@ -65,7 +65,8 @@
                 </div>
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Direccion de envio</h4>
-                    <form class="needs-validation control__form" novalidate>
+                    <form class="needs-validation control__form" action="{{ route('paypal') }}"   method="POST">
+                        @csrf
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label form-label-color">Nombre</label>
@@ -134,10 +135,14 @@
                                     <div class="tarjeta metodo__pago-efecto">
                                         {{-- <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked
                                     required /> --}}
-                                        <a href="https://www.paypal.com/co/home">
-                                            Paypal
-                                            <i class="fa fa-usd center"></i>
-                                        </a>
+                                        
+                                        {{-- <input type="hidden" name="price" value="{{$totalPrice}}"/> --}}
+                                        
+                                        {{-- valor_quemado aki  --}}
+                                        {{-- <input type="hidden" name="price" value="5.000"/> --}}
+                                        <button class="w-100 btn btn-primary btn-lg bgr-color-boton" type="submit">
+                                            Paypal <i class="fa fa-paypal" aria-hidden="true"></i>
+                                        </button>
 
                                     </div>
                                     

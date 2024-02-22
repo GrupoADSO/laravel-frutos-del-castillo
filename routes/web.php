@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\login\LoginController;
+use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UsuariosController;
@@ -106,3 +107,8 @@ Route::get('/sobre_mi', function () {
 Route::get('/informacion_legal', function () {
     return view('paginas.informacion_legal');
 })->name('informacionLegal');
+
+//paypal rutas
+Route::post('paypal/pago', [PaypalController::class, 'pago' ])->name('paypal') ;
+Route::get('paypal/success', [PaypalController::class, 'success' ])->name('paypal_success') ;
+Route::get('paypal/cancel', [PaypalController::class, 'cancel' ])->name('paypal_cancel') ;
