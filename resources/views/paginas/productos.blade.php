@@ -7,7 +7,7 @@
     <!-- inicio menu/slider -->
     <section>
 
-        <h1 class="menu-title">Menú</h1>
+        <h1 class="menu-title">Carta De Sabores</h1>
 
 
 
@@ -44,10 +44,10 @@
 
                             <div class="content__parrafo__agregar">
                                 <h2 class="parrafo-titulo">{{ $productoInfo->nombre }}</h2>
-                                <p class="parrafo__price">$ {{ $productoInfo->precio }}</p>
                                 <p class="parrafo__cart">{{ $productoInfo->descripcion }}</p>
                             </div>
                             <div class="footer__card">
+                                <p class="parrafo__price">$ {{ $productoInfo->precio }}</p>
                                 <div class="agregar__like">
                                     <span class="like" href="#"><i class="fa-regular fa-heart"></i></span>
                                 </div>

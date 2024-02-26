@@ -25,7 +25,6 @@ class Producto extends Model
 
     protected $attributes = [
         'disponibilidad' => 1,
-        'imagen_2' => 'null',
     ];
 
 

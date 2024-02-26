@@ -14,8 +14,8 @@ class FacturaController extends Controller
 
     public function index()
     {
-        $datosUsuario = User::all();
-        return  view('paginas.factura', compact('datosUsuario'));
+        // $datosUsuario = User::find(5);
+        return  view('paginas.factura');
     }
 
     /**

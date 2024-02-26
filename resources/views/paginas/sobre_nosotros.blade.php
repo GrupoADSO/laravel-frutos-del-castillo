@@ -6,7 +6,7 @@
 @section('contenido')
 
     <section class="contenedor__sobre__mi">
-        <h1 class="title">Sobre Mi</h1>
+        <h1 class="title">Detrás de Nuestro Arte</h1>
 
         <div class="section-cart-sobre-mi">
 

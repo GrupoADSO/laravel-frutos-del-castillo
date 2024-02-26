@@ -22,13 +22,13 @@ class PaypalController extends Controller
             "purchase_units" => [
                 [
                     "amount" => [
-                        "value" => round($request->price, 2),
+                        "value" => round($request->price,2) ,
                         "currency_code" => "USD"
                     ]
                 ]
             ]
         ]);
-
+        // dd($response);
         if (isset($response['id']) && $response['id'] != null) {
             foreach ($response['links'] as $links) {
                 if ($links['rel'] == 'approve') {
@@ -36,7 +36,7 @@ class PaypalController extends Controller
                 }
             }
         } else {
-            return back()->route('paypal_cancel');
+            return route('paypal_cancel');
         }
     }
     public function success(Request $request)

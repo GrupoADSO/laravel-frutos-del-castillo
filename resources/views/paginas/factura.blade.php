@@ -139,9 +139,9 @@
                                         {{-- <input type="hidden" name="price" value="{{$totalPrice}}"/> --}}
                                         
                                         {{-- valor_quemado aki  --}}
-                                        {{-- <input type="hidden" name="price" value="5.000"/> --}}
-                                        <button class="w-100 btn btn-primary btn-lg bgr-color-boton" type="submit">
-                                            Paypal <i class="fa fa-paypal" aria-hidden="true"></i>
+                                        <input type="hidden" name="price" value="5.000"/>
+                                        <button class="w-100 btn btn-primary btn-lg bgr-color-boton btn-pago-distribucion" type="submit">
+                                            Paypal <i class="fa-brands fa-paypal" aria-hidden="true"></i>
                                         </button>
 
                                     </div>

@@ -15,3 +15,10 @@ Sobre la carpeta storage
 
 - php artisan storage:link
 
+
+Para activar la pasarela de pago de paypal se usa el siguiente comando
+
+- composer require srmklive/paypal:~3.0
+- php artisan vendor:publish --provider "Srmklive\PayPal\Providers\PayPalServiceProvider"
+
+este paquete utiliza la API Rest de PayPal internamente. Si está utilizando PayPal Express Checkout, consulte el archivo LÉAME para la versión 1 aquí: 

@@ -30,9 +30,6 @@ class User extends Authenticatable
         'updated_at'
     ];
 
-    protected $attributes = [
-        'estado' => 1,
-    ];
 
     /**
      * The attributes that should be hidden for serialization.

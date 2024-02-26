@@ -45,7 +45,6 @@ class ProductoController extends Controller
         $validator = Validator::make($request->all(), [
             'nombre__producto' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'precio__producto' => 'required|numeric',
-            'tamanio__producto' => 'required|string|regex:/^[a-zA-Z\s]+$/   ',
             'foto__producto' => 'required|mimes:png,jpg,jpeg ',
             'descuento__producto' => 'required|numeric',
             'descripcion__producto' => 'required|string',
@@ -66,7 +65,6 @@ class ProductoController extends Controller
         $dataProducto = [
             'nombre' => $request->get('nombre__producto'),
             'precio' => $request->get('precio__producto'),
-            'tamanio' => $request->get('tamanio__producto'),
             'descripcion' => $request->get('descripcion__producto'),
             'imagen_1' => $url,
             'descuento' => $request->get('descuento__producto'),
@@ -94,7 +92,6 @@ class ProductoController extends Controller
         $validator = Validator::make($request->all(), [
             'nombre__producto' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'precio__producto' => 'required|numeric',
-            'tamanio__producto' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'foto__producto' => 'required|mimes:png,jpg,jpeg',
             'descuento__producto' => 'required|numeric',
             'descripcion__producto' => 'required|string',
@@ -121,7 +118,6 @@ class ProductoController extends Controller
         $dataProducto->update([
             'nombre' => $request->get('nombre__producto'),
             'precio' => $request->get('precio__producto'),
-            'tamanio' => $request->get('tamanio__producto'),
             'descripcion' => $request->get('descripcion__producto'),
             'imagen_1' => $url,
             'descuento' => $request->get('descuento__producto'),
