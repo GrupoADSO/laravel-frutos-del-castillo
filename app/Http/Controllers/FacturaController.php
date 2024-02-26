@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FacturaController extends Controller
 {
@@ -15,7 +16,8 @@ class FacturaController extends Controller
     public function index()
     {
         // $datosUsuario = User::find(5);
-        return  view('paginas.factura');
+        $datos = Auth::user();
+        return  view('paginas.factura', compact('datos'));
     }
 
     /**

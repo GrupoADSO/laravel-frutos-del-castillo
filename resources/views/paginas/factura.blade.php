@@ -70,7 +70,7 @@
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label form-label-color">Nombre</label>
-                                <input type="text" class="form-control" id="firstName"  value=""
+                                <input type="text" class="form-control" id="firstName"  value="{{$datos->nombre}}" disabled
                                     required />
                                 <div class="invalid-feedback">
                                     Valid first name is required.
@@ -79,7 +79,7 @@
 
                             <div class="col-sm-6">
                                 <label for="lastName" class="form-label form-label-color">Apellido</label>
-                                <input type="text" class="form-control" id="lastName"  value=""
+                                <input type="text" class="form-control" id="lastName"  value="{{$datos->apellido}}" disabled
                                     required />
                                 <div class="invalid-feedback">
                                     Valid last name is required.
@@ -90,7 +90,7 @@
                                 <label for="username" class="form-label form-label-color">email</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text bgr-color-span">@</span>
-                                    <input type="email" class="form-control" id="email"  value=""
+                                    <input type="email" class="form-control" id="email"  value="{{$datos->email}}" disabled
                                         required />
                                     <div class="invalid-feedback">
                                         Please enter a valid email address for shipping updates.
@@ -98,11 +98,9 @@
                                 </div>
                             </div>
 
-
-
                             <div class="col-12">
                                 <label for="address" class="form-label form-label-color">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="1234 Main St"
+                                <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="direccion"
                                     required />
                                 <div class="invalid-feedback">
                                     Please enter your shipping address.
@@ -112,7 +110,7 @@
                             <div class="col-12">
                                 <label for="address2" class="form-label form-label-color">Indicaciones <span
                                         class="text-muted-color text-muted ">(Optional)</span></label>
-                                <input type="text" class="form-control" id="address2"
+                                <input type="text" class="form-control" id="address2" name="indicaciones"
                                     placeholder="apartam ento o casa" />
                             </div>
 
@@ -133,23 +131,13 @@
 
                                 <div class="metodo__pago">
                                     <div class="tarjeta metodo__pago-efecto">
-                                        {{-- <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked
-                                    required /> --}}
-                                        
-                                        {{-- <input type="hidden" name="price" value="{{$totalPrice}}"/> --}}
-                                        
-                                        {{-- valor_quemado aki  --}}
                                         <input type="hidden" name="price" value="5.000"/>
                                         <button class="w-100 btn btn-primary btn-lg bgr-color-boton btn-pago-distribucion" type="submit">
                                             Paypal <i class="fa-brands fa-paypal" aria-hidden="true"></i>
                                         </button>
-
                                     </div>
-                                    
                                 </div>
                             </div>
-
-
 
                             <hr class="my-4" />
 
@@ -163,6 +151,5 @@
     </div>
 
     <script src="{{ 'assets/dist/js/bootstrap.bundle.min.js' }}"></script>
-
 
 @endsection

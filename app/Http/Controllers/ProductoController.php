@@ -58,7 +58,6 @@ class ProductoController extends Controller
                 ->withInput();
         }
 
-
         $imagen = $request->file('foto__producto')->store('public/imagen-produto');
         $url = Storage::url($imagen);
 
