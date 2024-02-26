@@ -15,13 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->double('precio');
-            $table->string('tamanio')->nullable(); 
             $table->string('descripcion');
             $table->integer('disponibilidad');
             $table->string('imagen_1');
-            $table->string('imagen_2');
             $table->integer('descuento')->nullable();
-            $table->unsignedBigInteger('categoria_id'); 
+            $table->unsignedBigInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->timestamps();
         });

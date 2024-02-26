@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('calificacion', function (Blueprint $table) {
             $table->id();
-            $table->string('comentario')->nullable();
             $table->float('puntuacion');
-            $table->unsignedBigInteger('producto_id'); 
-            $table->unsignedBigInteger('user_id'); 
+            $table->unsignedBigInteger('producto_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('producto_id')->references('id')->on('productos');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
