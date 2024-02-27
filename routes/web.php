@@ -21,6 +21,7 @@ Route::get('Login/cerrarSesion', [LoginController::class, 'finalizarSesionUsuari
 
 // controla las imagenes de la categoria/slider
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
+Route::get('detalle_factura/pdf', [PaypalController::class,'generatePDF' ])->name('paginas.detalle_factura_pdf');
 
 
 

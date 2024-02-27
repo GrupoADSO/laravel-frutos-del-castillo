@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PaypalController extends Controller
 {
@@ -60,5 +63,17 @@ class PaypalController extends Controller
     public function cancel(Request $request)
     {
         return "Se rechazo la compra por pobre";
+    }
+
+    public function generatePDF(Request $request)
+    {
+        $direccion = $request->query('direccion');
+        $indicaciones = $request->query('indicaciones');
+        $datos = Auth::user();
+        $pdf = Pdf::loadView('paginas.detalle_factura_pdf', compact('direccion', 'indicaciones', 'datos'));
+        return $pdf->stream();
+        /* return $pdf->download('usuarios/pdf'); */
+        /* return view('usuarios/pdf', compact('data')); */
+        
     }
 }

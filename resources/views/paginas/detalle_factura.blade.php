@@ -62,6 +62,7 @@
                         </div>
                     </form>
                 </div>
+                <a href="{{ url('detalle_factura/pdf') }}" class="btn btn-primary">Descargar PDF</a>
             </div>
         </main>
     </div>
