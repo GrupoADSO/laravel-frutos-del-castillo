@@ -9,7 +9,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <link rel="shortcut icon" href="{{ asset('img/img-header/FrutosDelCastillo-logo.png') }}" type="image/x-icon">
-    
+
     <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
     <title>Dashboard</title>
 </head>
@@ -56,6 +56,13 @@
                         <i class="fa-solid fa-sliders"></i> Slider
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('mostrar-pedidos') }}">
+                        <i class="fa-solid fa-sliders"></i> Pedidos
+                    </a>
+                </li>
+
                 <li class="logout">
                     <a href="/">
                         <i class="fas fa-sign-out-alt"></i>

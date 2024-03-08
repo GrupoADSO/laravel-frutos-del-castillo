@@ -18,4 +18,10 @@ class Factura extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function compra()
+    {
+        return $this->belongsTo(Compra::class, 'compra_id');
+    }
+
 }

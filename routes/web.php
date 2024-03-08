@@ -6,12 +6,12 @@ use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\login\LoginController;
 use App\Http\Controllers\PaypalController;
+use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
-
-
+use PhpOffice\PhpPresentation\Shape\Table\Row;
 
 // RUTAS PARA EL LOGIN
 Route::post('Login/sesion', [LoginController::class, 'iniciarSesion'])->name('login');
@@ -87,6 +87,11 @@ Route::controller(ProductoController::class)->group(function () {
 
 });
 
+
+Route::controller(PedidosController::class)->group(function (){
+    Route::get('/pedidos', 'mostrarPedidos')->name('mostrar-pedidos');
+    Route::get('/pedidos/gestion/{compraId}', 'gestionarPedido')->name('gestionar-pedido');
+});
 
 
 Route::controller(SliderController::class)->group(function () {

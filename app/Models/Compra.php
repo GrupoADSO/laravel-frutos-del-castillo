@@ -20,4 +20,15 @@ class Compra extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function factura()
+    {
+        return $this->hasOne(Factura::class, 'compra_id');
+    }
+    
 }
