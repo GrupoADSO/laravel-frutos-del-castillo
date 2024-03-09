@@ -37,7 +37,7 @@
                         </div>
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 py-2">
                             <label for="nombre-input">Nombre</label>
                             <input type="text" class="form-control form__control__input" name="nombre__producto"
                                 id="nombre-input" value="{{ $productoId->nombre }}">
@@ -53,15 +53,6 @@
                                 id="nombre-input" value="{{ $productoId->precio }}">
                             @if ($errors->has('precio__precio'))
                                 <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> solo se aceptan numeros</small>
-                            @endif
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="nombre-input">Tamaño</label>
-                            <input type="text" class="form-control form__control__input" name="tamanio__producto"
-                                id="nombre-input" value="{{ $productoId->tamanio }}">
-                            @if ($errors->has('tamanio__producto'))
-                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> el tamaño del producto es invalido</small>
                             @endif
                         </div>
 

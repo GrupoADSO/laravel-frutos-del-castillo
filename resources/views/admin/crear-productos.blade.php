@@ -38,7 +38,7 @@
                             </select>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 py-2">
                             <label for="nombre-input">Nombre</label>
                             <input type="text" name="nombre__producto" class="form-control form__control__input"
                                 id="nombre-input" value="{{ old('nombre__producto') }}">

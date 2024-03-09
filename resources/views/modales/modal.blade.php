@@ -1,5 +1,5 @@
 <div class="modal-content-perfil" id="modalPerfil">
-    <span class="close closeModalUno">&times;</span>
+    <span class="close closeModalUno"><i class="fa-solid fa-xmark"></i></span>
 
     <h2>Bienvenidos a Frutos del Castillo</h2>
     <form action="{{ route('login') }}" method="post">
@@ -36,7 +36,7 @@
 
 
 <div class="modal-content-perfil" id="modalSignup">
-    <span class="close closeModalDos">&times;</span>
+    <span class="close closeModalDos"><i class="fa-solid fa-xmark"></i></span>
     <h2>Registrate Ya!!</h2>
     <form action="{{ route('crearUsuario') }}" method="post">
         @csrf
@@ -87,7 +87,7 @@
 </div>
 
 <div class="modal_content_recuperar_contraseña_email" id="content_recuperar_contraseña_email">
-    <span class="close cerrarModalOlvidar">&times;</span>
+    <span class="close cerrarModalOlvidar"><i class="fa-solid fa-xmark"></i></span>
 
     <h2>Recupera tu cuenta con tu email</h2>
     <form action="#" method="post">
@@ -103,7 +103,7 @@
 </div>
 
 <div class="modal_content_recuperar_contraseña" id="modalDosEnviar">
-    <span class="close closeModalDosEnviar">&times;</span>
+    <span class="close closeModalDosEnviar"><i class="fa-solid fa-xmark"></i></span>
 
     <h2>Ingresa el codigo de validacón</h2>
     <form action="#" method="post">
@@ -118,7 +118,7 @@
 </div>
 
 <div class="modal_content_recuperar_contraseña_codigo" id="modalTresRecuperar">
-    <span class="close  closeTresRecuperar">&times;</span>
+    <span class="close  closeTresRecuperar"><i class="fa-solid fa-xmark"></i></span>
 
     <h2>Ingresa tu nueva contraseña</h2>
     <!-- <form action="#" method="post"> -->

@@ -32,7 +32,7 @@
                         @else
                             <li class="list-group-item color--text">Disponible: No</li>
                         @endif
-                        <li class="list-group-item color--text">Tamaño: {{ $producto->tamanio }}</li>
+                        <li class="list-group-item color--text">Descuento: <span>{{ $producto->descuento }}</span></li>
                     </ul>
 
                     <div class="card-body form__productos ">

@@ -4,18 +4,18 @@ const containerProductLike = document.querySelectorAll(".card__producto__histori
 const heartIcon = document.querySelectorAll(".agregar__like");
 let liked = [];
 
+
 // Crear dos funciones llamadas como los import de icons 
 // retornarlas con backtips y agregar un atributo que se llame
 // data-hidden
 
-const iconLike = ()=>{
-    const like = `<i class="fa-regular fa-heart"></i>`;
-    return like;
+const iconLiked = ()=>{
+    return `<i class="fa-regular fa-heart"></i>`;
 }
 
-const iconDisLike = ()=>{
-    const disLike = `<i class="fa-regular fa-heart"></i>`;
-    return disLike;
+const iconUnlike = ()=>{
+    return `<i class="fa-regular fa-heart"></i>`;
+
 }
 
 
@@ -82,6 +82,7 @@ const changeIcon = () => {
             } else {
                 heartIcon[i].innerHTML = iconLiked();
                 heartIcon[i].setAttribute("data-hidden", "true");
+                console.log('estoy aqui perra');
             }
         });
     }

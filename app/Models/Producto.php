@@ -9,8 +9,6 @@ class Producto extends Model
 {
     use HasFactory;
 
-    // protected $table = 'elementos_catalogo';
-
     protected $fillable = [
         'nombre',
         'precio',
@@ -26,9 +24,5 @@ class Producto extends Model
         'disponibilidad' => 1,
     ];
 
-
-    public function categoria(){
-        return $this->belongsTo(Categoria::class, 'categoria_id');
-    }
 
 }

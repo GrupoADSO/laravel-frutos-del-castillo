@@ -25,3 +25,4 @@ class Factura extends Model
     }
 
 }
+

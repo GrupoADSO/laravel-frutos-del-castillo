@@ -31,4 +31,10 @@ class Compra extends Model
         return $this->hasOne(Factura::class, 'compra_id');
     }
     
+
+    protected $attributes = [
+        'iva' => 0,
+        'estado' => 1,
+    ];
+
 }

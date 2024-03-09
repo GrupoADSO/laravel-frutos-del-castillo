@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('titulo')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -95,7 +96,7 @@
 
             <i class="fa-solid fa-location-dot icon__ubicacion"></i>
 
-            <h6 class="ri">Direccion los almendros</h6>
+            <h6 class="ri">{{ Session::get('ultima_direccion') }}</h6>
         </div>
         <div class="compras-content">
 

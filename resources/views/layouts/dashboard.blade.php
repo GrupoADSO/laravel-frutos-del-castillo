@@ -28,9 +28,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('perfil-admin') }}">
                         <i class=" fas fa-user"></i>
-                        Profile
+                        Perfil
                     </a>
                 </li>
                 <li>
@@ -39,12 +39,6 @@
                         Categorias
                     </a>
                 </li>
-                {{-- <li>
-                    <a href="{{ route('usuarios') }}">
-                        <i class="fas fa-users"></i>
-                        Usuarios
-                    </a>
-                </li> --}}
                 <li>
                     <a href="{{ route('admin-productos') }}">
                         <i class="fa-brands fa-product-hunt"></i>
@@ -60,13 +54,16 @@
                 <li>
                     <a href="{{ route('mostrar-pedidos') }}">
                         <i class="fa-solid fa-sliders"></i> Pedidos
+                    <a href="#">
+                        <i class="fa-solid fa-gear"></i>
+                        informacion
                     </a>
                 </li>
 
                 <li class="logout">
                     <a href="/">
                         <i class="fas fa-sign-out-alt"></i>
-                        Logout
+                        Salir
                     </a>
                 </li>
             </ul>

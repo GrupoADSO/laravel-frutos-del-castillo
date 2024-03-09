@@ -48,12 +48,14 @@
                             </div>
                             <div class="footer__card">
                                 <p class="parrafo__price">$ {{ $productoInfo->precio }}</p>
-                                <div class="agregar__like">
-                                    <span class="like" href="#"><i class="fa-regular fa-heart"></i></span>
-                                </div>
-
-                                <div class="agregar__carrito">
-                                    <span class="add-button" href="#"><i class="fa-solid fa-plus"></i></span>
+                                <div class="contenedor__acciones">
+                                    <div class="agregar__like">
+                                        <span class="like" href="#"><i class="fa-regular fa-heart"></i></span>
+                                    </div>
+                                    
+                                    <div class="agregar__carrito">
+                                        <span class="add-button" href="#"><i class="fa-solid fa-plus"></i></span>
+                                    </div>
                                 </div>
 
                             </div>

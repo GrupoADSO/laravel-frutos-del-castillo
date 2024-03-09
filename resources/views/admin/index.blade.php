@@ -10,38 +10,41 @@
 
 
     <section class="card--container">
-        <h3 class="main--title">Today's data</h3>
+        <h3 class="main--title">Datos del día</h3>
         <article class="card--wrapper">
             <article class="payment--card">
                 <article class="card--header">
                     <article class="amount">
-                        <p class="title">Payment amount</p>
-                        <p class="amount--value">$500.00</p>
+                        <p class="title">Usuarios Registrados</p>
+                        <p class="amount--value">{{ $totalUsuarios }}</p>
                     </article>
-                    <i class="fas fa-dollar-sign icon"></i>
+                    <i class="fas fa-users icon"></i>
                 </article>
                 <p class="card-detail">**** **** **** 3484</p>
             </article>
+
             <article class="payment--card">
                 <article class="card--header">
                     <article class="amount">
-                        <p class="title">Payment order</p>
-                        <p class="amount--value">$200.00</p>
+                        <p class="title">productos Registrados</p>
+                        <p class="amount--value">{{ $totalProductos }}</p>
                     </article>
                     <i class="fas fa-list icon"></i>
                 </article>
                 <p class="card-detail">**** **** **** 5542</p>
             </article>
+
             <article class="payment--card">
                 <article class="card--header">
                     <article class="amount">
-                        <p class="title">Payment customer</p>
-                        <p class="amount--value">$350.00</p>
+                        <p class="title">Compras Realizados</p>
+                        <p class="amount--value">{{ $totalCompras }}</p>
                     </article>
-                    <i class="fas fa-users icon"></i>
+                    <i class="fas fa-dollar-sign icon"></i>
                 </article>
                 <p class="card-detail">**** **** **** 8896</p>
             </article>
+            
             <article class="payment--card">
                 <article class="card--header">
                     <article class="amount">
@@ -52,7 +55,7 @@
                 </article>
                 <p class="card-detail">**** **** **** 7745</p>
             </article>
-        </article>
+        </article>  
     </section>
 
     <section class="tabular--wrapper">
@@ -72,27 +75,21 @@
                     <th scope="col">Apellido</th>
                     <th scope="col">Email</th>
                     <th scope="col">Telefono</th>
-                    <th scope="col">Estado</th>
                     <th scope="col">opciones</th>
                 </tr>
             </thead>
             <tbody>
-                @if ($DatosUsuarios->isEmpty())
+                @if ($datosUsuarios->isEmpty())
                 <tr>
                     <th colspan="6" class="header--title">{{ $mensaje }}</th>
                 </tr>
                 @endif
-                @foreach ($DatosUsuarios as $usuario)
+                @foreach ($datosUsuarios as $usuario)
                     <tr>
                         <td>{{ $usuario->nombre }}</td>
                         <td>{{ $usuario->apellido }}</td>
                         <td>{{ $usuario->email }}</td>
                         <td>{{ $usuario->celular }}</td>
-                        @if ($usuario->estado == 1)
-                            <td>Activo</td>
-                        @else
-                            <td>Innactivo</td>
-                        @endif
                         <td>
                             <form action="{{ route('usuarios-editar',$usuario->id) }}" method="GET" style="margin: 0">
                                 <button>

@@ -1,193 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-        <style>
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
-                }
-            }
-    
-            .titulo{
-                text-align: center
-            }
-            
-            span{
-                font-size: 25px;
-            }
-    
-         .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-    }
-    
-    .titulo__header {
-        font-family: "boring-sans-atrial";
-        font-weight: bold;
-        font-size: 3rem;
-        color: var(--color-secondary);
-        margin: 0px;
-    }
-    
-    .titulo__header-button {
-        font-size: 4rem;
-        text-align: center;
-        margin: .5em 0;
-    }
-    
-    .text-muted-longitud {
-        width: 140px;
-        height: 13px;
-        display: inline-block;
-        overflow: hidden;
-        writing-mode: lr;
-        text-overflow: ellipsis;
-        text-wrap: nowrap;
-    }
-    
-    .main-content h4,
-    .main-content h6,
-    .main-content span {
-        color: var(--color-secondary);
-    }
-    
-    .color-text-factura {
-        color: var(--color-secondary);
-    }
-    
-    .metodo__pago-efecto:hover {
-        background-color: var(--color-secondary);
-    }
-    
-    .needs-validation input,
-    .needs-validation span {
-        border-color: var(--color-primary);
-    }
-    
-    .bgr-color-span,
-    .bgr-color-boton {
-        background: var(--color-primary);
-        color: var(--color-neutral);
-    }
-    
-    .bgr-color-boton {
-        border: none;
-    }
-    
-    .bgr-color-boton:hover {
-        background: var(--color-secondary);
-    }
-    
-    
-    .metodo__pago {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .btn-pago-distribucion {
-        display: flex;
-        justify-content: space-around;
-        gap: 5em;
-    }
-    
-    .tarjeta {
-        width: 250px;
-        height: 60px;
-        background-color: var(--color-primary);
-        border-radius: 10px;
-        margin: 5px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-    
-    .tarjeta label,
-    .tarjeta a {
-        font-size: 1.2rem;
-        color: var(--color-neutral);
-    
-    }
-    
-    .tarjeta a {
-        width: 100%;
-        display: flex;
-        text-decoration: none;
-        justify-content: space-around;
-        gap: 5em;
-    }
-    
-    .tarjeta i {
-        font-size: 1.5rem;
-        color: var(--color-neutral);
-        display: flex;
-        justify-content: center;
-    }
-    
-    .text-muted-color,
-    .form-label-color {
-        color: var(--color-secondary-opacity) !important;
-    }
-    
-    .form-label-color {
-        font-size: 1.2rem;
-    }
-        </style>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .contenedor__factura-pdf {
+            width: 600px;
+            /* text-align: center;   */
+            padding: 0 2em;
+        }
+
+        .session__factura-info{
+            position: relative;
+        }
+
+        .titulo {
+            margin: 0;
+            text-align: left;
+        }
+
+        .texto-center{
+            text-align: left;
+        }
+        .texto-left{
+            text-align: left;
+        }
+
+        .texto-left-position{
+            position: absolute;
+            top: -15px;
+            right: 0;
+        }
+        .texto-margen{
+            margin: 0;
+        }
+        .codigo__factura{
+            display: flex;
+            width: 100%
+        }
+
+        span {
+            font-size: 25px;
+        }
+
+        .titulo__header {
+            font-weight: bold;
+            font-size: 1.6rem;
+            margin: 0px;
+        }
+
+        .color-text-factura {
+            color: color: black;
+            ;
+        }
+
+        .tbl-pdf{
+            margin-top: 1em;
+            width: 100%;
+        }
+
+        .tbl-pdf  td{
+            height: 2em;
+        }
+
+        .body-tbl td { 
+            text-align: center;
+        }
         
-        <div class="container">
-            <h1 class="titulo__header titulo__header-button titulo">Detalles de tu compra</h1>
-            <main class="main-content">
-                <div class="row g-5">
-                    <div class="col-md-5 col-lg-4 order-md-last">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="color-text-factura" >Productos comprados</span><br><br>
-                            <span class="color-text-factura" >Fecha y hora de la compra: <?php echo date('Y-m-d H:i:s'); ?></span>
-                        </h4>
-                        <ul class="list-group mb-3">
-                        </ul>
-    
-                    </div>
-                    <div class="col-md-7 col-lg-8">
-                            <div class="row g-3">
-                                <div class="col-sm-6">
-                                    <span class="color-text-factura" >Nombre: {{$datos->nombre}}</span>
-                                </div><br>
-    
-                                <div class="col-sm-6">
-                                    <span for="lastName" class="color-text-factura">Apellido: {{$datos->apellido}}</span>
-                                </div><br>
-                                
-                                <div class="col-sm-6">
-                                    <span for="lastName" class="color-text-factura">Email: {{$datos->email}}</span>
-                                </div><br>
-    
-                                <div class="col-sm-6">
-                                    <span for="lastName" class="color-text-factura">Fecha de nacimiento: {{$datos->fecha_nacimiento}}</span>
-                                </div><br>
-    
-                                <div class="col-sm-6">
-                                    <span for="lastName" class="color-text-factura">Telefono: {{$datos->celular}}</span>
-                                </div><br>
-    
-                            </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-        <script src="{{ 'assets/dist/js/bootstrap.bundle.min.js' }}"></script>
-    </body>
-
-    </html>
+        .footer-tbl th,
+        .footer-tbl td{
+            text-align: right;
+        }
+        
 
 
+    </style>
+</head>
 
+<body>
 
+    <div class="contenedor__factura-pdf">
+        <section>
+            <h1 class="titulo__header titulo">Pizzeria la romana</h1>
+
+            <div class="session__factura-info">
+                <p class="texto-center">Nit: 00000000</p>
+                <p class="texto-left-position">Codigo: FV0001</p>
+            </div>
+
+            <p class="color-text-factura texto-margen">Fecha: {{ $comprasUsuario->fecha_hora }}</p>
+            <hr>
+            <section>
+                <h2 class="titulo">Datos del comprador</h2>
+                <p class="color-text-factura">Cliente: {{ $datosUsuario->nombre }}
+                    {{ $datosUsuario->apellido }}</p>
+                <p for="lastName" class="color-text-factura">Email: {{ $datosUsuario->email }}</p>
+                <p for="lastName" class="color-text-factura">Telefono: {{ $datosUsuario->celular }}</p>
+            </section>
+        </section>
+
+        <section>
+            <h3 class="color-text-factura titulo">Productos comprados</h4>
+                <table class="tbl-pdf">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>SubTotal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="body-tbl">
+                        {{ $contador = 1 }}
+                        @foreach ($facturaUsuario as $datos)
+                        <tr>
+                            <td>{{ $contador }}</td>
+                            <td>{{ $datos->nombre_producto  }}</td>
+                            <td>{{ $datos->cantidad_producto }}</td>
+                            <td>{{ $datos->subtotal }}</td>
+                            <td>{{ $datos->iva }}</td>
+                            {{ $contador++ }}
+                        </tr>
+                            @endforeach
+                    </tbody>
+                    <tfoot class="footer-tbl">
+                        <th colspan="3">Total</th>
+                            <td>{{ $comprasUsuario->costo_total }}</td>
+                    </tfoot>
+                </table>
+        </section>
+
+    </div>
+</body>
+
+</html>

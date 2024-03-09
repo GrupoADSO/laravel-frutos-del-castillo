@@ -37,26 +37,18 @@ Route::controller(UsuariosController::class)->group(function () {
 
 // Rutas para los productos
 Route::get('/productos', [ProductoController::class, 'index'])->name('producto');
-
-// RUTAS PARA MANEJAR EL MENÚ
-// trae las subcategorias de la categoria principal
-Route::get('/categorias', [CategoriaController::class, 'obtenerCategorias']);
-    // Route::get('/subcategorias', [CategoriaController::class, 'obtenerSubcategorias']);
-
-
 Route::get('/productos/{categoria}', [ProductoController::class, 'obtenerProductosDeCategoria']);
 
+Route::get('/categorias', [CategoriaController::class, 'obtenerCategorias']);
 
 Route::get('/factura',[FacturaController::class, 'index'])->name('factura');
-
-
-
-
 
 
 // ruta admin principal
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin', 'index')->name('inicio-admin');
+    Route::get('perfil', 'edit')->name('perfil-admin');
+    Route::post('perfil-actualizar/{id}', 'update')->name('perfil-admin-actualizar');
 });
 
 //ruta de las categorias
@@ -105,7 +97,6 @@ Route::controller(SliderController::class)->group(function () {
 });
 
 
-
 Route::get('/sobre_mi', function () {
     return view('paginas.sobre_nosotros');
 })->name('sobreMi');
@@ -117,4 +108,6 @@ Route::get('/informacion_legal', function () {
 //paypal rutas
 Route::post('paypal/pago', [PaypalController::class, 'pago' ])->name('paypal');
 Route::get('paypal/success', [PaypalController::class, 'success' ])->name('paypal_success') ;
+Route::post('/pago/{valor}', [PaypalController::class, 'recibirPago' ]);
+Route::post('/factura/{productos}', [PaypalController::class, 'recibirFactura' ]);
 Route::get('paypal/cancel', [PaypalController::class, 'cancel' ])->name('paypal_cancel') ;

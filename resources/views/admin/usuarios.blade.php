@@ -4,7 +4,7 @@
 
 
     <div class="tabular--wrapper">
-        <form action="{{ route('usuarios-actualizar', $usuario->id) }}" class="row" method="POST">
+        <form action="{{ route('usuarios-actualizar', $usuario->id) }}" class="row" id="miFormulario" method="POST">
             @csrf
             <div class="col-6">
                 <label for="nombre-input">Nombre</label>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="g-4">
-                <button class="btn__formulario-button">Limpiar</button>
+                <button class="btn__formulario-button" id="limpiar">Limpiar</button>
                     <button class="btn__formulario-button">Enviar</button>
             </div>
         </form>
@@ -93,6 +93,12 @@
         </tbody>
     </table>
 </section>
+<script>
+    document.getElementById('limpiar').addEventListener('click', function(e) {
+        e.preventDefault()
+        document.getElementById('miFormulario').reset();
+    });
+</script>
 
 
 @endsection

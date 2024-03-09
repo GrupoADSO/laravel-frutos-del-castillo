@@ -5,18 +5,6 @@
 
 @section('contenido')
 
-    <style>
-      
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-       
-    </style>
-
     <div class="container">
         <h1 class="titulo__header titulo__header-button">Factura</h1>
         <main class="main-content">
@@ -24,48 +12,15 @@
                 <div class="col-md-5 col-lg-4 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="color-text-factura">Tu Carrito</span>
-                        <!-- agregar color a fuente -->
                     </h4>
                     <ul class="list-group mb-3">
-                        {{-- <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Nombre producto</h6>
-                                <small class="text-muted-color text-muted ">breve descripción</small>
-                            </div>
-                            <span class="text-muted-color text-muted ">$12000</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Second product</h6>
-                                <small class="text-muted-color text-muted ">Brief description</small>
-                            </div>
-                            <span class="text-muted-color text-muted ">$8</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Third item</h6>
-                                <small class="text-muted-color text-muted ">Brief description</small>
-                            </div>
-                            <span class="text-muted-color text-muted ">$5</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between bg-light">
-                            <div class="text-success">
-                                <h6 class="my-0">Promo code</h6>
-                                <small class="text-muted-color">EXAMPLECODE</small>
-                            </div>
-                            <span class="text-muted-color">−$5</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>Total (COP)</span>
-                            <strong>$120000</strong>
-                        </li> --}}  
                     </ul>
-
-
+                    
                 </div>
+
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Direccion de envio</h4>
-                    <form class="needs-validation control__form" action="{{ route('paypal') }}"   method="POST">
+                    <form class="needs-validation control__form" action="{{ route('paypal') }}"  id="form-compra" method="POST">
                         @csrf
                         <div class="row g-3">
                             <div class="col-sm-6">
@@ -100,7 +55,7 @@
 
                             <div class="col-12">
                                 <label for="address" class="form-label form-label-color">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="direccion"
+                                <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="direccion" value="{{ $direccionUser }}"
                                     required />
                                 <div class="invalid-feedback">
                                     Please enter your shipping address.
@@ -131,7 +86,7 @@
 
                                 <div class="metodo__pago">
                                     <div class="tarjeta metodo__pago-efecto">
-                                        <input type="hidden" name="price" value="5.000"/>
+                                        <input type="hidden" name="price" value="00.000"/>
                                         <button class="w-100 btn btn-primary btn-lg bgr-color-boton btn-pago-distribucion" type="submit">
                                             Paypal <i class="fa-brands fa-paypal" aria-hidden="true"></i>
                                         </button>
@@ -150,6 +105,5 @@
         </main>
     </div>
 
-    <script src="{{ 'assets/dist/js/bootstrap.bundle.min.js' }}"></script>
 
 @endsection

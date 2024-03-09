@@ -1,15 +1,18 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use App\Models\Compra;
+use App\Models\Factura;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Session;
 
 class PaypalController extends Controller
 {
+    public $pago = 100;
     public function pago(Request $request)
     {
         $provider = new PayPalClient;
@@ -44,8 +47,11 @@ class PaypalController extends Controller
 
     public function success(Request $request)
     {
+        $pagoTotal = Session::get('pago');
+        $productos = Session::get('productos');
         $direccion = $request->query('direccion');
         $indicaciones = $request->query('indicaciones');
+        // dd($productos);
 
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
@@ -53,8 +59,36 @@ class PaypalController extends Controller
         $response = $provider->capturePaymentOrder($request->token);
 
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
-            $datos = Auth::user();
-            return view('paginas.detalle_factura', compact('direccion', 'indicaciones', 'datos'));
+            $fechaActual =  Now();
+            $datosCompra = [
+                'fecha_hora' => $fechaActual,
+                'costo_total' => $pagoTotal,
+                'direccion' => $request->get('direccion'),
+                'comentario' => $request->get('indicaciones'),
+                'user_id' => Auth::id(),
+            ];
+            Compra::create($datosCompra);
+            Session::forget('pago');
+
+            $compra = Compra::Select('id','direccion','comentario')->where('user_id', Auth::id())->latest()->first();
+
+
+            foreach ($productos as $producto) {
+                // Crear una nueva factura para cada producto en esta compra
+                $factura = new Factura();
+                $factura->cantidad_producto = 1;
+                $factura->precio = trim($producto['precio'], '$ ');
+                $factura->subtotal = trim($producto['precio'], '$ ');
+                $factura->compra_id = $compra->id;
+                $factura->producto_id = $producto['id'];
+                $factura->save();
+            }
+
+
+            $datosUsuario = Auth::user();
+            // $direccion = Compra::Select('direccion','comentario')->where('user_id', Auth::id())->latest()->first();
+
+            return view('paginas.detalle_factura', compact('compra', 'datosUsuario'));
         } else {
             return redirect()->route('paypal_cancel');
         }
@@ -62,18 +96,36 @@ class PaypalController extends Controller
 
     public function cancel(Request $request)
     {
-        return "Se rechazo la compra por pobre";
+        return "Paypal rechazo la compra";
     }
 
     public function generatePDF(Request $request)
     {
-        $direccion = $request->query('direccion');
-        $indicaciones = $request->query('indicaciones');
-        $datos = Auth::user();
-        $pdf = Pdf::loadView('paginas.detalle_factura_pdf', compact('direccion', 'indicaciones', 'datos'));
+
+        $datosUsuario = Auth::user();
+        $comprasUsuario = Compra::where('user_id', Auth::id())->latest()->first();
+        $direccion = Compra::Select('direccion')->where('user_id', Auth::id())->latest()->first();
+        $facturaUsuario = Factura::select('facturas.*', 'compras.fecha_hora', 'productos.nombre as nombre_producto')
+            ->join('compras', 'facturas.compra_id', '=', 'compras.id')
+            ->join('productos', 'facturas.producto_id', '=', 'productos.id')
+            ->where('compras.id', $comprasUsuario->id)
+            ->get();
+
+        $pdf = Pdf::loadView('paginas.detalle_factura_pdf', compact('comprasUsuario', 'datosUsuario', 'facturaUsuario'));
         return $pdf->stream();
-        /* return $pdf->download('usuarios/pdf'); */
-        /* return view('usuarios/pdf', compact('data')); */
-        
+    }
+
+    public function recibirPago($request)
+    {
+        $pagoTotal = $request;
+        Session::put('pago', $pagoTotal);
+        return response()->json(['mensaje' => 'Dato recibido con exito']);
+    }
+
+    public function recibirFactura(Request $request)
+    {
+        $arrayProductos = $request->input('productos');
+        Session::put('productos', $arrayProductos);
+        return response()->json(['message' => 'Array recibido con exito']);
     }
 }

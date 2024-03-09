@@ -12,13 +12,14 @@ const envioValue = document.getElementById("envio__value"); // No
 const imageSource = document.querySelectorAll(".content__car__menu img");
 const valueProducts = document.querySelectorAll(".parrafo__price");
 const addButton = document.getElementsByClassName("agregar__carrito");
+let priceInput = document.querySelector('input[name="price"]');
 const nameProduct = document.getElementsByClassName("parrafo-titulo");
 const containerCartContent = document.getElementById(
     "cart__content"
 );
 const addProductAlert = document.getElementById("add__alert-product");
 const descriptionProduct = document.getElementsByClassName('parrafo__cart')
-const containerFactura = document.querySelector('.list-group')
+const containerFactura = document.querySelectorAll('.list-group');
 let contadorCarrito = document.getElementById("contador-carrito");
 let HTML = ''
 let additionQuantity = 0; // Beta
@@ -56,7 +57,7 @@ const addProductToLocalStorage = ({
         imagen: img,
         precio: costo,
         cantidad: quantity,
-        descripcion : description
+        descripcion: description
     };
 
     return product;
@@ -69,21 +70,43 @@ const showCart = () => {
         data.forEach((producto) => {
             const { id, title, imagen, precio, cantidad } = producto;
             // let totalProduct = value * quantity;
-            createTagProduct += `    
-            <div class=>
-            <h4 class="titulo__carta-carrito">${title}</h4>
-            <div class="cart-content-producto">
-            <div class="header__card header__card-img">
-              <img src="${imagen}" class="imagen-cart">
-              </div>
-              <div class="detail-box">
-                  <p class="parrafo__price parrafo__cart-menu">${precio}</p>
-                  <input type="number" class="cantidad" value="${cantidad}">
-                  <i class="fa-solid fa-times cart-remove" data-id='${id}'></i>
-                  </div>
-                  </div>
-                  </div>
-            `
+            // createTagProduct += `    
+            // <div class="" >
+            // <h4 class="titulo__carta-carrito">${title}</h4>
+            // <div class="cart-content-producto">
+
+            
+            // <div class="header__card header__card-img">
+            //   <img src="${imagen}" class="imagen-cart">
+            //   </div>
+              
+            //   <div class="detail-box">
+            //     <p class="parrafo__price parrafo__cart-menu">${precio}</p>
+            //     <input type="number" class="cantidad" value="${cantidad}">
+            //     <i class="fa-solid fa-times cart-remove" data-id='${id}'></i>
+            //     </div>
+
+            //     </div>
+            // `;
+                createTagProduct += `
+                <div class="cart-content-producto">
+                
+                <div class="header__card header__card-img">
+                <img src="${imagen}" class="imagen-cart">
+                </div>
+
+                <div class="detail-box">
+
+                <h4 class="titulo__carta-carrito">${title}</h4>
+                 <p class="parrafo__price parrafo__cart-menu">${precio}</p>
+                 <p class="cantidad">X1</p>
+                 <i class="fa-solid fa-times cart-remove" data-id='${id}'></i>
+                 
+                 </div>
+
+                </div>
+                                
+                `;
         });
     } else
         createTagProduct = `<p class="message__cart--empty" >No hay elementos en el carrito :(</p>`;
@@ -131,7 +154,7 @@ const handleClickAddProduct = () => {
     for (let i = 0; i < addButton.length; i++) {
         addButton[i].addEventListener("click", () => {
             const id = containerProduct[i].getAttribute("data-id");
-            // if (validateExistenceProduct(id).includes(true)) return;
+            if (validateExistenceProduct(id).includes(true)) return;
 
             products.push(
                 addProductToLocalStorage({
@@ -140,7 +163,7 @@ const handleClickAddProduct = () => {
                     img: imageSource[i].src,
                     costo: valueProducts[i].textContent,
                     quantity: 1,
-                    description : descriptionProduct[i].textContent
+                    description: descriptionProduct[i].textContent
                 })
             );
             validateProducts(products);
@@ -194,8 +217,8 @@ let value = 0
 
 const showProductsInBill = () => {
     getLocalStorage().forEach(product => {
-        console.log(product);
-        const {id, imagen, precio, title, cantidad, descripcion} = product
+        // console.log(product);
+        const { id, imagen, precio, title, cantidad, descripcion } = product
         HTML += `
         <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
@@ -204,14 +227,89 @@ const showProductsInBill = () => {
             </div>
                 <span class="text-muted-color text-muted ">${precio}</span>
         </li>
-        <li class="list-group-item d-flex justify-content-between">
-        <span>Total (COP)</span>
-        <strong>$ ${value += +precio.slice(1)}</strong>
-    </li>
-        `   
+        `
+        value += +precio.slice(1);
+        if (priceInput) priceInput.value = value;
     });
-    if(containerFactura) containerFactura.innerHTML = HTML
+
+    HTML += `
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Total (COP)</span>
+                <strong>$ ${value}</strong>
+            </li>`;
+    containerFactura.forEach((productos) => {
+        if (containerFactura) {
+            productos.innerHTML = HTML
+            enviarPago(value);
+        }
+    })
 }
+
+
+
+const enviarPago = (pago) => {
+    const tokenCSRF = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const url = `/pago/${pago}`;
+    const datosPago = {
+        pago: pago
+    };
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': tokenCSRF
+        },
+        body: JSON.stringify(datosPago)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la solicitud de pago');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Respuesta del servidor:', data);
+        })
+        .catch(error => {
+            console.error('Error al enviar datos de pago:', error);
+        });
+}
+
+
+const enviarFactura = () => {
+    const tokenCSRF = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    let arrayProductos = getLocalStorage();
+    const url = `/factura/${arrayProductos}`;
+    if (arrayProductos.length === 0) return;
+    // const datosProductos = {
+    //     producto : 'hola'
+    // }
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': tokenCSRF
+        },
+        body: JSON.stringify({ productos: arrayProductos })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la solicitud de factura');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Respuesta del servidor:', data);
+        })
+        .catch(error => {
+            console.error('Error al enviar datos de factura:', error);
+        });
+
+}
+
+enviarFactura()
+
 
 showProductsInBill()
 
@@ -220,3 +318,4 @@ closeCart()
 handleClickAddProduct()
 updateCounter()
 // updateValues()
+

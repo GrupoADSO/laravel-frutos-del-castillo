@@ -17,7 +17,7 @@
 
     <aside id="modal-dos" class="custom-modal">
         <div class="custom-modal-content">
-            <span class="custom-close">&times;</span>
+            <span class="custom-close"><i class="fa-solid fa-xmark"></i></span>
 
             <form action="{{ route('editar-perfil', $usuario->id) }}" class="form__control__perfil-dos" method="POST">
                 @csrf
@@ -71,7 +71,7 @@
     <!--  codigo del modal -->
     <aside id="modal" class="modal__historial">
         <div class="modal-content">
-            <span id="close__historial" class="close">&times;</span>
+            <span id="close__historial" class="close"><i class="fa-solid fa-xmark"></i></span>
             <h1 class="productos1"> Historial de compras</h1>
             <div class="card__container contenedor__card__historia">
 
@@ -90,102 +90,6 @@
                     </div>
                     <div class="pie__card"></div>
                 </article>
-
-
-
-                <article class="card__menu cards__modal__historial">
-                    <a class="like-button" href="#"><i class="fa-regular fa-heart"></i><strong>145M</strong></a>
-                    <div class="content__car__menu " id="image-container" data-modal-target="myModal">
-                        <img src="/assets/img/img-carta-producto/hamburguesa.jpg" alt="producto">
-                    </div>
-                    <div class="content__parrafo__agregar">
-                        <h2>Hamburguesa en salsa</h2>
-                        <p class="parrafo__cart">Lorem, ipsum dolor sit amet
-                            consectetur adipisicing elit. Maxime doloribus
-                            excepturi reiciendis error distinctio! Maxime
-                            distinctio quibusdam tempora repellat perferendis
-                            ratione quae quo?</p>
-                    </div>
-                    <div class="pie__card"></div>
-                </article>
-
-
-
-                <article class="card__menu cards__modal__historial">
-                    <a class="like-button" href="#"><i class="fa-regular fa-heart"></i><strong>145M</strong></a>
-                    <div class="content__car__menu " id="image-container" data-modal-target="myModal">
-                        <img src="/assets/img/img-carta-producto/hamburguesa.jpg" alt="producto">
-                    </div>
-                    <div class="content__parrafo__agregar">
-                        <h2>Hamburguesa en salsa</h2>
-                        <p class="parrafo__cart">Lorem, ipsum dolor sit amet
-                            consectetur adipisicing elit. Maxime doloribus
-                            excepturi reiciendis error distinctio! Maxime
-                            distinctio quibusdam tempora repellat perferendis
-                            ratione quae quo?</p>
-                    </div>
-                    <div class="pie__card"></div>
-                </article>
-
-
-
-                <article class="card__menu cards__modal__historial">
-                    <a class="like-button" href="#"><i class="fa-regular fa-heart"></i><strong>145M</strong></a>
-                    <div class="content__car__menu " id="image-container" data-modal-target="myModal">
-                        <img src="/assets/img/img-carta-producto/hamburguesa.jpg" alt="producto">
-                    </div>
-                    <div class="content__parrafo__agregar">
-                        <h2>Hamburguesa en salsa</h2>
-                        <p class="parrafo__cart">Lorem, ipsum dolor sit amet
-                            consectetur adipisicing elit. Maxime doloribus
-                            excepturi reiciendis error distinctio! Maxime
-                            distinctio quibusdam tempora repellat perferendis
-                            ratione quae quo?</p>
-                    </div>
-                    <div class="pie__card"></div>
-                </article>
-
-
-
-                <article class="card__menu cards__modal__historial">
-                    <a class="like-button" href="#"><i class="fa-regular fa-heart"></i><strong>145M</strong></a>
-                    <div class="content__car__menu " id="image-container" data-modal-target="myModal">
-                        <img src="/assets/img/img-carta-producto/hamburguesa.jpg" alt="producto">
-                    </div>
-                    <div class="content__parrafo__agregar">
-                        <h2>Hamburguesa en salsa</h2>
-                        <p class="parrafo__cart">Lorem, ipsum dolor sit amet
-                            consectetur adipisicing elit. Maxime doloribus
-                            excepturi reiciendis error distinctio! Maxime
-                            distinctio quibusdam tempora repellat perferendis
-                            ratione quae quo?</p>
-                    </div>
-                    <div class="pie__card"></div>
-                </article>
-
-
-
-                <article class="card__menu cards__modal__historial">
-                    <a class="like-button" href="#"><i class="fa-regular fa-heart"></i><strong>145M</strong></a>
-                    <div class="content__car__menu " id="image-container" data-modal-target="myModal">
-                        <img src="/assets/img/img-carta-producto/hamburguesa.jpg" alt="producto">
-                    </div>
-                    <div class="content__parrafo__agregar">
-                        <h2>Hamburguesa en salsa</h2>
-                        <p class="parrafo__cart">Lorem, ipsum dolor sit amet
-                            consectetur adipisicing elit. Maxime doloribus
-                            excepturi reiciendis error distinctio! Maxime
-                            distinctio quibusdam tempora repellat perferendis
-                            ratione quae quo?</p>
-                    </div>
-                    <div class="pie__card"></div>
-                </article>
-
-
-
-
-
-
             </div>
         </div>
     </aside>
@@ -212,11 +116,11 @@
 
             <div class="form__group">
                 <i class="fa-solid fa-user"></i>
-                <input type="text" class="form__input" value="{{ $usuario->nombre }}">
+                <input type="text" class="form__input" value="{{ $usuario->nombre }}" readonly>
             </div>
             <div class="form__group">
                 <i class="fa-solid fa-user"></i>
-                <input type="text" class="form__input" value="{{ $usuario->apellido }}">
+                <input type="text" class="form__input" value="{{ $usuario->apellido }}" readonly>
             </div>
 
             <div class="form__group">

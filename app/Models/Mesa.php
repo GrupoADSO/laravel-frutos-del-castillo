@@ -15,4 +15,8 @@ class Mesa extends Model
         'created_at',
         'updated_at'
     ];
+
+    protected $attributes = [
+        'mesa_id' => 0,
+    ];
 }

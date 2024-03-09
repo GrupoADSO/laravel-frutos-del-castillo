@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
     const abrirModalBtn = document.getElementById("logoAbrirModal");
     const modal = document.getElementById("modalPerfil");
     const closeModal = document.querySelector(".closeModalUno");
@@ -144,6 +143,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    
-});
 
