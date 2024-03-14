@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Compra;
 use App\Models\User;
 use App\Models\Factura;
+use App\Models\Producto;
 
 class PedidosController extends Controller {
 
@@ -26,11 +27,13 @@ class PedidosController extends Controller {
         $compra = Compra::with('usuario')->findOrFail($compraId);
 
         // Obtener la factura asociada a la compra
-        $factura = Factura::where('compra_id', $compraId)->first();
+        $factura = Factura::where('compra_id', $compraId)->get();
 
-        dd($factura);
-
+        foreach($factura as $item){
+            $producto = Producto::where('id', $item->producto_id)->get();
+        }
+        
         // Pasar la compra, usuario y factura a la vista
-        return view('admin.gestionar-pedido', compact('compra', 'factura'));
+        return view('admin.gestionar-pedido', compact('compra', 'factura', 'producto'));
     }
 }

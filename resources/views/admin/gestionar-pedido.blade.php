@@ -9,22 +9,26 @@
 
             <div class="col-md-6">
                 <label for="nombre-input">Nombre del cliente</label>
-                <input type="text" class="form-control form__control__input" value="{{$compra->usuario->nombre }}" disabled>
+                <input type="text" class="form-control form__control__input" value="{{$compra->usuario->nombre }}"
+                    disabled>
             </div>
 
             <div class="col-md-6">
                 <label for="nombre-input">Apellido del cliente</label>
-                <input type="text" class="form-control form__control__input" value="{{$compra->usuario->apellido }}" disabled>
+                <input type="text" class="form-control form__control__input" value="{{$compra->usuario->apellido }}"
+                    disabled>
             </div>
 
             <div class="col-md-6">
                 <label for="nombre-input">Correo electronico</label>
-                <input type="text" class="form-control form__control__input" value="{{$compra->usuario->email }}" disabled>
+                <input type="text" class="form-control form__control__input" value="{{$compra->usuario->email }}"
+                    disabled>
             </div>
 
             <div class="col-md-6">
                 <label for="nombre-input">Telefono</label>
-                <input type="text" class="form-control form__control__input" value="{{$compra->usuario->celular }}" disabled>
+                <input type="text" class="form-control form__control__input" value="{{$compra->usuario->celular }}"
+                    disabled>
             </div>
 
             <div class="col-md-6">
@@ -44,21 +48,44 @@
 
             <div class="col-md-6">
                 <label for="nombre-input">Dirección del cliente</label>
-                <input type="text" class="form-control form__control__input" value="{{$compra->direccion }}" disabled>
+                <input type="text" class="form-control form__control__input" value="{{ $compra->direccion }}" disabled>
             </div>
 
+            {{-- @foreach ($factura as $item) --}}
             <div class="col-md-6">
                 <label for="nombre-input">Cantidad de productos comprados</label>
-                <input type="text" class="form-control form__control__input" value="{{ $factura->cantidad_producto }}" disabled>
+                {{-- <input type="text" class="form-control form__control__input" value="{{ $item->cantidad_producto }}"
+                    --}} disabled>
             </div>
 
             <div class="col-md-6">
                 <label for="nombre-input">Precio por producto</label>
-                <input type="text" class="form-control form__control__input" value="{{ $factura->precio }}" disabled>
+                {{-- <input type="text" class="form-control form__control__input" value="{{ $item->precio }}" disabled>
+                --}}
             </div>
 
+            {{-- @foreach ($item->producto as $test)
+            @endforeach --}}
+            {{-- <p>
+                {{ $test }}
+            </p> --}}
+            {{-- @endforeach --}}
         </div>
     </div>
+
+
+
+    @foreach ($producto as $item)
+    <p>
+        {{ $item }}
+    </p>
+    @foreach ($item->factura as $test)
+    <p>
+        {{ $test }}
+    </p>
+    <br>
+    @endforeach
+    @endforeach
 
 </section>
 

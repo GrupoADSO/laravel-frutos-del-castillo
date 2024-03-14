@@ -24,5 +24,8 @@ class Producto extends Model
         'disponibilidad' => 1,
     ];
 
+    public function factura(){
+        return $this->hasMany(Factura::class,'producto_id');
+    }
 
 }

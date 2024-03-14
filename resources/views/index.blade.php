@@ -4,48 +4,51 @@
 
 @section('contenido')
 
-    {{-- importante: se debe de organizar las rutas para cada caso, es decir slider para slider y asi. --}}
+{{-- importante: se debe de organizar las rutas para cada caso, es decir slider para slider y asi. --}}
 
-    <div class="slider-container">
-        <div class="slider-slide">
-            @foreach ($sliders as $slider)
-                <img src="{{ asset($slider->ruta) }}" alt="{{ $slider->nombre }}" class="img-slider" />
-            @endforeach
-        </div>
-        <!-- Botones de control slider -->
-        <div class="slider-controls">
-            <button class="btn-prev" onclick="changeSlide(-1)">&#10094;</button>
-            <button class="btn-next" onclick="changeSlide(1)">&#10095;</button>
-        </div>
-    </div>
-
-    <!-- Inicio contenedor cartas o categorias -->
-
-    <section class="card__container">
-
-        <h1 class="titulo__categorias">
-            <span class="logo-queso"><i class="fa-solid fa-cheese"></i></span>
-            Categorías
-        </h1>
-
-        @foreach ($categorias as $categoria)
-            <article class="card__categoria">
-                <div class="header__card">
-                    <img src="{{ asset($categoria->imagen) }}" alt="{{ $categoria->nombre }}">
-                </div>
-                <div class="boton__categoria">
-                    <h2>
-                        <a href="{{ route('producto') }}" class="enlace__categoria" >{{ $categoria->nombre }}</a>
-                    </h2>
-                </div>
-            </article>
+<div class="slider-container">
+    <div class="slider-slide">
+        @foreach ($sliders as $slider)
+        <img src="{{ asset($slider->ruta) }}" alt="{{ $slider->nombre }}" class="img-slider" />
         @endforeach
+    </div>
+    <!-- Botones de control slider -->
+    <div class="slider-controls">
+        <button class="btn-prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="btn-next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+</div>
 
-    </section>
+<!-- Inicio contenedor cartas o categorias -->
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="{{ asset('assets/js/script.js') }}"></script>
-    <script src="{{ asset('assets/js/menuDeProductos.js') }}"></script>
+<section class="card__container">
 
+    <h1 class="titulo__categorias">
+        <span class="logo-queso"><i class="fa-solid fa-cheese"></i></span>
+        Categorías
+    </h1>
+
+    @foreach ($categorias as $categoria)
+    <article class="card__categoria">
+        <div class="header__card">
+            <img src="{{ asset($categoria->imagen) }}" alt="{{ $categoria->nombre }}">
+        </div>
+        <div class="boton__categoria">
+            <h2 class="titulo__articulo-categoria">
+                <a href="{{ route('producto') }}" class="test" data-id="{{ $categoria->id }}">
+                    <button class="enlace__categoria">
+                        {{ $categoria->nombre }}
+                    </button>
+                </a>
+            </h2>
+        </div>
+    </article>
+    @endforeach
+
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="{{ asset('assets/js/menuDeProductos.js') }}"></script>
 
 @endsection
