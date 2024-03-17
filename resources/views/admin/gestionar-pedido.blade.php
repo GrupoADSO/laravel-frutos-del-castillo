@@ -51,10 +51,9 @@
                 <input type="text" class="form-control form__control__input" value="{{ $compra->direccion }}" disabled>
             </div>
 
-            {{-- @foreach ($factura as $item) --}}
             <div class="col-md-6">
                 <label for="nombre-input">Cantidad de productos comprados</label>
-                {{-- <input type="text" class="form-control form__control__input" value="{{ $item->cantidad_producto }}"
+                {{-- <input type="text" class="form-control form__control__input" value="{{ $fac->cantidad_producto }}"
                     --}} disabled>
             </div>
 
@@ -63,28 +62,15 @@
                 {{-- <input type="text" class="form-control form__control__input" value="{{ $item->precio }}" disabled>
                 --}}
             </div>
-
-            {{-- @foreach ($item->producto as $test)
-            @endforeach --}}
-            {{-- <p>
-                {{ $test }}
-            </p> --}}
-            {{-- @endforeach --}}
         </div>
     </div>
 
 
 
-    @foreach ($producto as $item)
+    @foreach ($factura as $item)
     <p>
-        {{ $item }}
+        {{ $item->producto->nombre }}
     </p>
-    @foreach ($item->factura as $test)
-    <p>
-        {{ $test }}
-    </p>
-    <br>
-    @endforeach
     @endforeach
 
 </section>

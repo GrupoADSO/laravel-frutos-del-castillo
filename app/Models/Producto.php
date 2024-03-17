@@ -23,9 +23,4 @@ class Producto extends Model
     protected $attributes = [
         'disponibilidad' => 1,
     ];
-
-    public function factura(){
-        return $this->hasMany(Factura::class,'producto_id');
-    }
-
 }

@@ -25,8 +25,7 @@ class Factura extends Model
     }
 
     public function producto(){
-        return $this->belongsTo(Factura::class,'producto_id');
+        return $this->belongsTo(Producto::class,'producto_id');
     }
-
 }
 

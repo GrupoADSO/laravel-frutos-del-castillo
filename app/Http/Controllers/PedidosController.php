@@ -26,14 +26,11 @@ class PedidosController extends Controller {
         // Obtener la compra y su usuario asociado
         $compra = Compra::with('usuario')->findOrFail($compraId);
 
+        
         // Obtener la factura asociada a la compra
         $factura = Factura::where('compra_id', $compraId)->get();
-
-        foreach($factura as $item){
-            $producto = Producto::where('id', $item->producto_id)->get();
-        }
         
         // Pasar la compra, usuario y factura a la vista
-        return view('admin.gestionar-pedido', compact('compra', 'factura', 'producto'));
+        return view('admin.gestionar-pedido', compact('compra', 'factura'));
     }
 }
