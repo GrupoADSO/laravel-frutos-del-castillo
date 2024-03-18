@@ -47,7 +47,7 @@
                                 <p class="parrafo__cart">{{ $productoInfo->descripcion }}</p>
                             </div>
                             <div class="footer__card">
-                                <p class="parrafo__price">$ {{ $productoInfo->precio }}</p>
+                                <p class="parrafo__price">$ {{ $productoInfo->precio * $productoInfo->descuento }}</p>
                                 <div class="contenedor__acciones">
                                     <div class="agregar__like">
                                         <span class="like" href="#"><i class="fa-regular fa-heart"></i></span>

@@ -83,6 +83,8 @@ Route::controller(ProductoController::class)->group(function () {
 Route::controller(PedidosController::class)->group(function (){
     Route::get('/pedidos', 'mostrarPedidos')->name('mostrar-pedidos');
     Route::get('/pedidos/gestion/{compraId}', 'gestionarPedido')->name('gestionar-pedido');
+    Route::post('/cambiarEstadoPedidoGestionado/{compraId}', 'pedidoGestionado')->name('pedido-gestionado');
+    Route::post('/cambiarEstadoPedidoCancelado/{compraId}', 'pedidoCancelado')->name('pedido-cancelado');
 });
 
 
