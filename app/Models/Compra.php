@@ -33,7 +33,7 @@ class Compra extends Model
     
     protected $attributes = [
         'iva' => 0,
-        'estado' => 1,
+        'estado' => 0
     ];
 
 }

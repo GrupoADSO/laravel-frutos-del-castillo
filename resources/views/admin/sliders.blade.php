@@ -27,7 +27,7 @@
                     <div class="card-footer">
                         <div class="card-body form__productos ">
                             @csrf
-                            <form action="{{ route('editar-slider', $slider->id) }}" method="GET" style="margin: 0">
+                            <form action="{{ route('editar-slider', encrypt($slider->id)) }}" method="GET" style="margin: 0">
                                 <button class="form__productos-button">
                                     <svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -38,7 +38,7 @@
                                     </svg>
                                 </button>
                             </form>
-                            <form action="{{ route('eliminar-slider', $slider->id) }}" method="POST" style="margin: 0">
+                            <form action="{{ route('eliminar-slider', encrypt($slider->id)) }}" method="POST" style="margin: 0">
                                 @csrf
                                 @method('delete')
                                 <button class="form__productos-button">

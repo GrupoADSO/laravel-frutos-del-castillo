@@ -21,7 +21,6 @@ Route::get('Login/cerrarSesion', [LoginController::class, 'finalizarSesionUsuari
 
 // controla las imagenes de la categoria/slider
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
-Route::get('detalle_factura/pdf', [PaypalController::class,'generatePDF' ])->name('paginas.detalle_factura_pdf');
 
 
 
@@ -37,12 +36,10 @@ Route::controller(UsuariosController::class)->group(function () {
 
 // Rutas para los productos
 Route::get('/productos', [ProductoController::class, 'index'])->name('producto');
-Route::get('/productos/{categoria}', [ProductoController::class, 'obtenerProductosDeCategoria']);
 
 Route::get('/categorias', [CategoriaController::class, 'obtenerCategorias']);
 
 Route::get('/factura',[FacturaController::class, 'index'])->name('factura');
-
 
 // ruta admin principal
 Route::controller(AdminController::class)->group(function () {
@@ -112,4 +109,5 @@ Route::post('paypal/pago', [PaypalController::class, 'pago' ])->name('paypal');
 Route::get('paypal/success', [PaypalController::class, 'success' ])->name('paypal_success') ;
 Route::post('/pago/{valor}', [PaypalController::class, 'recibirPago' ]);
 Route::post('/factura/{productos}', [PaypalController::class, 'recibirFactura' ]);
+Route::get('detalle_factura/pdf', [PaypalController::class,'generatePDF' ])->name('paginas.detalle_factura_pdf');
 Route::get('paypal/cancel', [PaypalController::class, 'cancel' ])->name('paypal_cancel') ;

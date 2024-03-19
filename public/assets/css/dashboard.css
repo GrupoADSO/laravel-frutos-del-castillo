@@ -139,7 +139,7 @@
     color: var(--color-secondary-opacity);
 }
 
-.busqueda{
+.busqueda {
     border: none;
     color: none;
     background-color: transparent
@@ -200,7 +200,7 @@
     }
 }
 
-.user--info-rigth{
+.user--info-rigth {
     display: flex;
     justify-content: end;
 }
@@ -262,20 +262,30 @@
 
 
 .amount--value {
-    font-size: 24px;
+    width: 200px;
     font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
     font-weight: 600;
+    overflow: hidden;
+    writing-mode: rl;
+    text-overflow: ellipsis;
 }
 
-.icon {
+.icon,
+.icon-tarjeta {
     color: var(--color-neutral);
-    padding: .6rem;
+    padding: 0.3em;
     height: 40px;
     width: 40px;
     text-align: center;
     border-radius: 50%;
     font-size: 1.5rem;
     background: var(--color-secondary);
+}
+
+.icon-tarjeta {
+    padding: 0;
+    padding-top: .3em;
 }
 
 .card-detail {
@@ -332,6 +342,15 @@
 /* color inputs */
 .form__control__input {
     background-color: rgb(231, 234, 237);
+}
+
+.paginacion {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    column-gap: 1em;
 }
 
 /*Next thing*/

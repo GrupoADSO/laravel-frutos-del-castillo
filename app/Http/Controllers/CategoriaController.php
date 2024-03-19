@@ -44,28 +44,31 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //  dd($request->toArray());
-        $validator = Validator::make($request->all(), [
-            'nombre__categoria' => 'required|string|regex:/^[a-zA-Z\s]+$/',
-            'foto__categoria' => 'required|mimes:png,jpg,jpeg',
-        ]);
+        try {
+            $validator = Validator::make($request->all(), [
+                'nombre__categoria' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'foto__categoria' => 'required|mimes:png,jpg,jpeg',
+            ]);
 
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput();
+            if ($validator->fails()) {
+                return back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $imagen = $request->file('foto__categoria')->store('public/imagen-categoria');
+            $url = Storage::url($imagen);
+
+            $dataCategoria = [
+                'nombre' => $request->get('nombre__categoria'),
+                'imagen' => $url,
+            ];
+
+            Categoria::create($dataCategoria);
+            return redirect()->route('categorias')->with('alertaDeAccion', 'La categoria fue creada correctamente');
+        } catch (\Throwable $th) {
+            return 'error al subir la carga de datos';
         }
-
-        $imagen = $request->file('foto__categoria')->store('public/imagen-categoria');
-        $url = Storage::url($imagen);
-
-        $dataCategoria = [
-            'nombre' => $request->get('nombre__categoria'),
-            'imagen' => $url,
-        ];
-
-        Categoria::create($dataCategoria);
-        return redirect()->route('categorias')->with('alertaDeAccion', 'La categoria fue creada correctamente');
     }
 
 
@@ -74,9 +77,13 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
-        //
-        $Categoriaid = Categoria::find($id);
-        return view('admin.editar-categoria', compact('Categoriaid'));
+        try {
+            $idCategoria =  decrypt($id);
+            $Categoriaid = Categoria::find($idCategoria);
+            return view('admin.editar-categoria', compact('Categoriaid'));
+        } catch (\Throwable $th) {
+            return 'error al subir la carga de datos';
+        }
     }
 
     /**
@@ -86,35 +93,38 @@ class CategoriaController extends Controller
     /*se debe de borrar la foto*/
     public function update(Request $request, string $id)
     {
-        // dd($request);
-        // dd($request->toArray());
-        $Categoriaid = Categoria::find($id);
-        $validator = Validator::make($request->all(), [
-            'cambiar__nombre__cate' => 'required|string|regex:/^[a-zA-Z\s]+$/',
-            'cambiar__foto__cate' => 'required|mimes:png,jpg,jpeg',
-        ]);
+        try {
+            $idCategoria =  decrypt($id);
+            $Categoriaid = Categoria::find($idCategoria);
+            $validator = Validator::make($request->all(), [
+                'cambiar__nombre__cate' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'cambiar__foto__cate' => 'required|mimes:png,jpg,jpeg',
+            ]);
 
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput();
+            if ($validator->fails()) {
+                return back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $url = '';
+            if ($request->hasFile("cambiar__foto__cate")) {
+                $rutaImagen = str_replace('storage', 'public', $Categoriaid->imagen);
+                Storage::delete($rutaImagen);
+
+                $imagen = $request->file('cambiar__foto__cate')->store('public/imagen-categoria');
+                $url = Storage::url($imagen);
+            }
+
+            $Categoriaid->update([
+                'nombre' => $request->get('cambiar__nombre__cate'),
+                'imagen' => $url,
+            ]);
+
+            return redirect()->route('categorias')->with('alertaDeAccion', 'La categoria fue actualizada correctamente');
+        } catch (\Throwable $th) {
+            return 'error al subir la carga de datos';
         }
-
-        $url = '';
-        if($request->hasFile( "cambiar__foto__cate" )) {
-            $rutaImagen = str_replace('storage', 'public', $Categoriaid->imagen);
-            Storage::delete($rutaImagen);
-
-            $imagen = $request->file('cambiar__foto__cate')->store('public/imagen-categoria');
-            $url = Storage::url($imagen);
-        }
-
-        $Categoriaid->update([
-            'nombre' => $request->get('cambiar__nombre__cate'),
-            'imagen' => $url,
-        ]);
-
-        return redirect()->route('categorias')->with('alertaDeAccion', 'La categoria fue actualizada correctamente');
     }
 
     /**
@@ -122,8 +132,13 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        $Categoriaid = Categoria::find($id);
-        $Categoriaid->delete();
-        return redirect()->route('categorias')->with('alertaDeAccion', 'La categoria fue eliminada correctamente');
+        try {
+            $idCategoria =  decrypt($id);
+            $Categoriaid = Categoria::find($idCategoria);
+            $Categoriaid->delete();
+            return redirect()->route('categorias')->with('alertaDeAccion', 'La categoria fue eliminada correctamente');
+        } catch (\Throwable $th) {
+            return 'error al subir la carga de datos';
+        }
     }
 }

@@ -8,7 +8,7 @@
         
         <div class="container">
 
-            <form action="{{ route('actualizar-slider', $slider->id) }}" class="row g-3 control-form" method="post" enctype="multipart/form-data">
+            <form action="{{ route('actualizar-slider', encrypt($slider->id)) }}" class="row g-3 control-form" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form__control-img col-4">
                     <img src="{{ $slider->ruta }}"

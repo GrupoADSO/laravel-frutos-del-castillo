@@ -58,11 +58,15 @@
                 </li>
 
                 <li>
+                        <i class="fa-solid fa-motorcycle"></i> Pedidos
+                        </a>
+                </li>
+
+                <li>
                     <a href="#">
                         <i class="fa-solid fa-gear"></i>
                         informacion
                     </a>
-                       
                 </li>
 
                 <li class="logout">

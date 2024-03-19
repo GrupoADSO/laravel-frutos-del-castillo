@@ -37,7 +37,7 @@
 
                     <div class="card-body form__productos ">
 
-                        <form action="{{ route('editar-producto', $producto->id) }}" method="GET" style="margin: 0">
+                        <form action="{{ route('editar-producto', encrypt($producto->id)) }}" method="GET" style="margin: 0">
                             @csrf
                             <button class="form__productos-button">
                                 <svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24"
@@ -50,7 +50,7 @@
                             </button>
                         </form>
 
-                        <form action="{{ route('eliminar-producto', $producto->id) }}" method="POST" style="margin: 0">
+                        <form action="{{ route('eliminar-producto', encrypt($producto->id)) }}" method="POST" style="margin: 0">
                             @csrf
                             @method('delete')
                             <button class="form__productos-button">

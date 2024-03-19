@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Categoria extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'nombre',
@@ -17,6 +18,6 @@ class Categoria extends Model
     ];
 
     public function producto(){
-        return $this->hasMany(Producto::class,'categoria_id');
+        return $this->hasMany(Producto::class,'categoria_id')->where('disponibilidad',1);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Compra;
 use App\Models\Producto;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -21,20 +22,21 @@ class AdminController extends Controller
         $totalUsuarios = User::count();
         $totalProductos = Producto::count();
         $totalCompras = Compra::count();
+        $mesActual = Carbon::now()->format('m');
+        $gananciasDelMes = Compra::whereMonth('created_at', $mesActual)->sum('costo_total');
 
         $datosUsuarios = User::where('nombre', 'LIKE', '%' . $texto . '%')
             ->orWhere('apellido', 'LIKE', '%' . $texto . '%')
-            ->get();
-            
-            $mensaje = '';
+            ->paginate(10);
+        $mensaje = '';
         if ($datosUsuarios->isEmpty()) {
             $mensaje = 'No se encontraron usuarios.';
         }
 
-        return view('admin.index', compact('datosUsuarios', 'mensaje', 'texto', 'totalUsuarios','totalProductos','totalCompras'));
+        return view('admin.index', compact('datosUsuarios', 'mensaje', 'texto', 'totalUsuarios', 'totalProductos', 'totalCompras', 'gananciasDelMes'));
     }
 
-  
+
     /**
      * Show the form for creating a new resource.
      */
@@ -49,7 +51,8 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $datosUsuario =  User::find($id);
+        $descencriptarId = decrypt($id);
+        $datosUsuario =  User::find($descencriptarId);
         $validator = Validator::make($request->all(), [
             'nombre_persona' => 'required|string|regex:/^[a-zA-Z\s]+$/',
             'apellido_persona' => 'required|string|regex:/^[a-zA-Z\s]+$/',
@@ -65,13 +68,11 @@ class AdminController extends Controller
         }
 
         $datosUsuario->update([
-            'nombre'=>$request->get('nombre_persona'),
-            'apellido'=>$request->get('apellido_persona'),
-            'celular'=>$request->get('telefono_persona'),
-            'fechaNacimiento'=>$request->get('nacimiento_persona'),
+            'nombre' => $request->get('nombre_persona'),
+            'apellido' => $request->get('apellido_persona'),
+            'celular' => $request->get('telefono_persona'),
+            'fechaNacimiento' => $request->get('nacimiento_persona'),
         ]);
         return redirect()->route('inicio-admin')->with('alertaDeAccion', 'Tus datos fueron actualizado correctamente');
     }
-
-
 }

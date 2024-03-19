@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('descuento')->nullable();
             $table->unsignedBigInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
