@@ -4,7 +4,7 @@
 
 
     <div class="tabular--wrapper">
-        <form action="{{ route('usuarios-actualizar', $usuario->id) }}" class="row" id="miFormulario" method="POST">
+        <form action="{{ route('usuarios-actualizar',encrypt($usuario->id)) }}" class="row" id="miFormulario" method="POST">
             @csrf
             <div class="col-6">
                 <label for="nombre-input">Nombre</label>

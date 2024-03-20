@@ -30,7 +30,7 @@
                     <tr>
                         <td>{{ $categoria->nombre }}</td>
                         <td>
-                            <form action="{{ route('editar-categoria', $categoria->id) }}" method="GET" style="margin: 0">
+                            <form action="{{ route('editar-categoria', encrypt($categoria->id)) }}" method="GET" style="margin: 0">
                                 @csrf
                                 <button>
                                     <svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24"
@@ -43,7 +43,7 @@
                                 </button>
                             </form>
                             {{-- Eliminar --}}
-                            <form action="{{ route('eliminar-categoria', $categoria->id) }}" method="POST"
+                            <form action="{{ route('eliminar-categoria', encrypt($categoria->id)) }}" method="POST"
                                 style="margin: 0">
                                 @csrf
                                 @method('DELETE')

@@ -18,9 +18,9 @@
                         <p class="title">Usuarios Registrados</p>
                         <p class="amount--value">{{ $totalUsuarios }}</p>
                     </article>
-                    <i class="fas fa-users icon"></i>
+                    <i class="fas fa-users icon "></i>
                 </article>
-                <p class="card-detail">**** **** **** 3484</p>
+                <p class="card-detail">**** **** **** ****</p>
             </article>
 
             <article class="payment--card">
@@ -29,9 +29,9 @@
                         <p class="title">productos Registrados</p>
                         <p class="amount--value">{{ $totalProductos }}</p>
                     </article>
-                    <i class="fas fa-list icon"></i>
+                    <i class="fas fa-list icon "></i>
                 </article>
-                <p class="card-detail">**** **** **** 5542</p>
+                <p class="card-detail">**** **** **** ****</p>
             </article>
 
             <article class="payment--card">
@@ -40,20 +40,20 @@
                         <p class="title">Compras Realizados</p>
                         <p class="amount--value">{{ $totalCompras }}</p>
                     </article>
-                    <i class="fas fa-dollar-sign icon"></i>
+                    <i class="fas fa-dollar-sign icon "></i>
                 </article>
-                <p class="card-detail">**** **** **** 8896</p>
+                <p class="card-detail">**** **** **** ****</96</p>
             </article>
             
             <article class="payment--card">
                 <article class="card--header">
                     <article class="amount">
-                        <p class="title">Payment proceed</p>
-                        <p class="amount--value">$150.00</p>
+                        <p class="title">Ganancias del mes</p>
+                        <p class="amount--value">{{ $gananciasDelMes }}</p>
                     </article>
-                    <i class="fas fa-check icon"></i>
+                    <i class="fas fa-check icon "></i>
                 </article>
-                <p class="card-detail">**** **** **** 7745</p>
+                <p class="card-detail">**** **** **** ****</p>
             </article>
         </article>  
     </section>
@@ -91,7 +91,7 @@
                         <td>{{ $usuario->email }}</td>
                         <td>{{ $usuario->celular }}</td>
                         <td>
-                            <form action="{{ route('usuarios-editar',$usuario->id) }}" method="GET" style="margin: 0">
+                            <form action="{{ route('usuarios-editar',encrypt($usuario->id)) }}" method="GET" style="margin: 0">
                                 <button>
                                     <svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -102,7 +102,7 @@
                                     </svg>
                                 </button>
                             </form>
-                            <form action="{{ route('usuarios-eliminar',$usuario->id) }}" method="POST" style="margin: 0">
+                            <form action="{{ route('usuarios-eliminar',encrypt($usuario->id)) }}" method="POST" style="margin: 0">
                                 @csrf
                                 @method('delete')
                                 <button>
@@ -123,6 +123,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="paginacion">
+            {{ $datosUsuarios->links() }}
+        </div>
     </section>
     <script src="{{ asset('js/alertasLogin.js') }}"></script>
 @endsection

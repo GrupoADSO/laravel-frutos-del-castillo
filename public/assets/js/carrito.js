@@ -69,25 +69,6 @@ const showCart = () => {
     if (data.length > 0) {
         data.forEach((producto) => {
             const { id, title, imagen, precio, cantidad } = producto;
-            // let totalProduct = value * quantity;
-            // createTagProduct += `    
-            // <div class="" >
-            // <h4 class="titulo__carta-carrito">${title}</h4>
-            // <div class="cart-content-producto">
-
-            
-            // <div class="header__card header__card-img">
-            //   <img src="${imagen}" class="imagen-cart">
-            //   </div>
-              
-            //   <div class="detail-box">
-            //     <p class="parrafo__price parrafo__cart-menu">${precio}</p>
-            //     <input type="number" class="cantidad" value="${cantidad}">
-            //     <i class="fa-solid fa-times cart-remove" data-id='${id}'></i>
-            //     </div>
-
-            //     </div>
-            // `;
                 createTagProduct += `
                 <div class="cart-content-producto">
                 
@@ -98,18 +79,20 @@ const showCart = () => {
                 <div class="detail-box">
 
                 <h4 class="titulo__carta-carrito">${title}</h4>
-                 <p class="parrafo__price parrafo__cart-menu">${precio}</p>
-                 <p class="cantidad">X1</p>
-                 <i class="fa-solid fa-times cart-remove" data-id='${id}'></i>
-                 
+                <div class="carta__informacion">
+                <p class="parrafo__price parrafo__cart-menu">${precio}</p>
+                <i class="fa-solid fa-minus cart__icon-color"></i>
+                <p class="cantidad">X1</p>
+                <i class="fa-solid fa-plus cart__icon-color"></i>
+                <i class="fa-solid fa-times cart-remove" data-id='${id}'></i>
+                </div>
                  </div>
-
                 </div>
                                 
                 `;
         });
     } else
-        createTagProduct = `<p class="message__cart--empty" >No hay elementos en el carrito :(</p>`;
+        createTagProduct = `<p class="message__cart--empty" >No hay elementos en el carrito</p>`;
 
     containerCartContent.innerHTML = createTagProduct;
     handleClickDelete();

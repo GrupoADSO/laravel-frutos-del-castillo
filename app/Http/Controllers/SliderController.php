@@ -30,10 +30,10 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $validator = Validator::make($request->all(),[
-            'foto__slider' => 'required|mimes:png,jpg,jpeg,webp',
-            'nombre__slider' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+        try { 
+            $validator = Validator::make($request->all(),[
+                'foto__slider' => 'required|mimes:png,jpg,jpeg,webp',
+                'nombre__slider' => 'required|string|regex:/^[a-zA-Z\s]+$/',
         ]);
 
         if ($validator->fails()) {
@@ -44,34 +44,28 @@ class SliderController extends Controller
 
         $imagen = $request->file('foto__slider')->store('public/imagen-slider');
         $url = Storage::url($imagen);
-
+        
         
         $dataCategoria = [
             'nombre' => $request->get('nombre__slider'),
             'ruta' => $url,
         ];
-
+        
         Slider::create($dataCategoria);
         return redirect()->route('slider')->with('alertaDeAccion','El Slider fue  agregado correctamente!'); 
+    } catch (\Throwable $th) {
+        return 'error al cargar los datos';
+    }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-        $sliderId = Slider::find($id);
-        return view('', compact(''));
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
-        $slider = Slider::find($id);
+        $idDesencriptado = decrypt($id);
+        $slider = Slider::find($idDesencriptado);
         return view('admin.edit-slider', compact('slider'));
     }
 
@@ -80,8 +74,9 @@ class SliderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        $sliderId = Slider::find($id);
+        try {
+        $idDesencriptado = decrypt($id);
+        $sliderId = Slider::find($idDesencriptado);
         $validator = Validator::make($request->all(),[
             'foto__slider' => 'required|mimes:png,jpg,jpeg',
             'nombre__slider' => 'required|string|regex:/^[a-zA-Z\s]+$/',
@@ -108,6 +103,9 @@ class SliderController extends Controller
         ]);
 
         return redirect()->route('slider')->with('alertaDeAccion','El Slider fue actualizado correctamente!');
+        } catch (\Throwable $th) {
+            return 'error al cargar los datos';
+        }
 
     }
 
@@ -116,11 +114,15 @@ class SliderController extends Controller
      */
     public function destroy(string $id)
     {
-        $ruta = Slider::where('id', $id)->first();
+       try {
+        $idDesencriptado = decrypt($id);
+        $ruta = Slider::where('id', $idDesencriptado)->first();
         $rutaImagen = str_replace('storage', 'public', $ruta->ruta);
         Storage::delete($rutaImagen);
-
         $ruta->delete();
         return redirect()->route('slider')->with('alertaDeAccion','El Slider fue  eliminado correctamente!');
+       } catch (\Throwable $th) {
+        return 'error en la carga de datos';
+       }
     }
 }

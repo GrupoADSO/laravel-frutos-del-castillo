@@ -1,5 +1,3 @@
-// import { containerProduct } from "./carrito.js";
-// import { iconLiked, iconUnlike } from "../Icons/icons.js";
 const containerProductLike = document.querySelectorAll(".card__producto__historia");
 const heartIcon = document.querySelectorAll(".agregar__like");
 let liked = [];
@@ -10,14 +8,13 @@ let liked = [];
 // data-hidden
 
 const iconLiked = ()=>{
-    return `<i class="fa-regular fa-heart"></i>`;
+    return `<i class="fa-solid fa-heart"></i>`;
 }
 
 const iconUnlike = ()=>{
     return `<i class="fa-regular fa-heart"></i>`;
 
 }
-
 
 
 const handleClickLike = () => {
@@ -72,6 +69,7 @@ const validateLikes = (newLike) => {
     addObjectToLocalStorage(currentLike);
 };
 
+
 const changeIcon = () => {
     for (let i = 0; i < heartIcon.length; i++) {
         heartIcon[i].addEventListener("click", () => {
@@ -82,7 +80,6 @@ const changeIcon = () => {
             } else {
                 heartIcon[i].innerHTML = iconLiked();
                 heartIcon[i].setAttribute("data-hidden", "true");
-                console.log('estoy aqui perra');
             }
         });
     }
@@ -93,8 +90,15 @@ const paintIcon = () => {
         return icons.uuid;
     });
 
+
     heartIcon.forEach((icons) => {
-        const elementID = Number(icons.parentElement.getAttribute("data-id"));
+        const parentLowestChild = icons.parentNode
+        const parentChild = parentLowestChild.parentNode
+        const parentElement = parentChild.parentNode
+        console.log(parentElement);
+
+        const elementID = Number(parentElement.getAttribute("data-id"));
+        console.log(localIconID.includes(elementID) === true);
         if (localIconID.includes(elementID) === true) {
             icons.innerHTML = iconLiked();
             icons.setAttribute("data-hidden", true);
@@ -115,4 +119,6 @@ const deleteLike = (iconUUID) => {
 // Inicializar el localStorage
 if (getLikesLocalStorage() === null) addObjectToLocalStorage();
 
-// export { paintIcon, changeIcon, handleClickLike };
+paintIcon()
+changeIcon()
+handleClickLike()

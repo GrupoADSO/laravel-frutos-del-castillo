@@ -6,7 +6,7 @@
 
         <div class="container">
 
-            <form action="{{ route('update-categoria', $Categoriaid->id) }}" class="row g-3 control-form" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('update-categoria', encrypt($Categoriaid->id)) }}" class="row g-3 control-form" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form__control-img">
                     <img src="{{ $Categoriaid->imagen }}"

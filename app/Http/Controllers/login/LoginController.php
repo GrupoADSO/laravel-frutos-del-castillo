@@ -48,7 +48,8 @@ class LoginController extends Controller
 
         if (Auth::attempt($datosUsuario)) {
             $usuarioLogueado = Auth::user();
-            $request->session()->put('usuario_id', $usuarioLogueado->id);
+            $usuarioId = encrypt($usuarioLogueado->id);
+            $request->session()->put('usuario_id', $usuarioId);
             $request->session()->put('usuarioLogueado', $usuarioLogueado);
             return redirect()->route('inicio')->with('logueado', 'A iniciado sesión correctamente ' . $usuarioLogueado->nombre);
         }

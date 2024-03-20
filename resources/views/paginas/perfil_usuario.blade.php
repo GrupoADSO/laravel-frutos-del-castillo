@@ -6,12 +6,12 @@
 
 @section('contenido')
 
-@if (session('usuarioEditado'))
-<div class="alerta__usuario__creado">
-    <h1 class="mensaje__alerta" id="mensajeAlertaUsuarioCreado">{{ session('usuarioEditado') }} <i
-            class="bi bi-check2-square"></i></h1>
-</div>
-@endif
+    @if (session('usuarioEditado'))
+        <div class="alerta__usuario__creado">
+            <h1 class="mensaje__alerta" id="mensajeAlertaUsuarioCreado">{{ session('usuarioEditado') }} <i
+                    class="bi bi-check2-square"></i></h1>
+        </div>
+    @endif
 
     <!-- inicio editar perfil -->
 
@@ -19,7 +19,7 @@
         <div class="custom-modal-content">
             <span class="custom-close"><i class="fa-solid fa-xmark"></i></span>
 
-            <form action="{{ route('editar-perfil', $usuario->id) }}" class="form__control__perfil-dos" method="POST">
+            <form action="{{ route('editar-perfil', encrypt($usuario->id)) }}" class="form__control__perfil-dos" method="POST">
                 @csrf
                 <div class="form__container-dos">
                     <i class="fa-solid fa-user form__title-dos"></i>
@@ -28,8 +28,9 @@
                         <i class="fa-solid fa-user "></i>
                         <input type="text" name="nombre" class="form__input-dos" value="{{ $usuario->nombre }}">
                         @if ($errors->has('nombre'))
-                        <div></div>
-                            <small class="alerta__color-rojo "><i class=" alert a-tamaño fa-solid fa-circle-exclamation "></i>
+                            <div></div>
+                            <small class="alerta__color-rojo "><i
+                                    class=" alert a-tamaño fa-solid fa-circle-exclamation "></i>
                                 Solo letras</small>
                         @endif
                     </div>
@@ -38,18 +39,18 @@
                         <i class="fa-solid fa-user "></i>
                         <input type="text" name="apellido" class="form__input-dos" value="{{ $usuario->apellido }}">
                         @if ($errors->has('apellido'))
-                        <small class="alerta__color-rojo "><i class="fa-solid fa-circle-exclamation alerta-tamaño"></i>
-                            Solo letras</small>
-                    @endif
+                            <small class="alerta__color-rojo "><i class="fa-solid fa-circle-exclamation alerta-tamaño"></i>
+                                Solo letras</small>
+                        @endif
                     </div>
 
                     <div class="form__group-dos">
                         <i class="fa-solid fa-phone"></i>
                         <input type="tel" name="telefono" class="form__input-dos" value="{{ $usuario->celular }}">
                         @if ($errors->has('telefono'))
-                        <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation alerta-tamaño"></i>
-                            Solo se acepta un telefono valido</small>
-                    @endif
+                            <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation alerta-tamaño"></i>
+                                Solo se acepta un telefono valido</small>
+                        @endif
                     </div>
 
                     {{-- <div class="form__group-dos">

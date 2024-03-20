@@ -6,7 +6,7 @@
 
         <div class="container">
 
-            <form action="{{ route('update-producto', $productoId->id) }}" class="row g-3 control-form" method="post"
+            <form action="{{ route('update-producto', encrypt($productoId->id)) }}" class="row g-3 control-form" method="post"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="form__control-img col-4">
@@ -14,7 +14,8 @@
                     <input type="file" name="foto__producto" id="foto" accept="image/*" />
                     <label for="foto">imagen producto</label>
                     @if ($errors->has('foto__producto'))
-                        <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> la url es invalidad</small>
+                        <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> la url es
+                            invalidad</small>
                     @endif
 
                     <div class="col-12">
@@ -36,6 +37,19 @@
                             </select>
                         </div>
 
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label">Estado del producto</label>
+                            <select id="inputState" name='disponibilidad' class="form-select form__control__input">
+                                <option value="1" {{ $productoId->disponibilidad == 1 ? 'selected' : '' }}>Disponible</option>
+                                <option value="0" {{ $productoId->disponibilidad == 0 ? 'selected' : '' }}>No Disponible</option>
+                            </select>
+                            @if ($errors->has('disponibilidad'))
+                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i>Argumento no valido</small>
+                            @endif
+                        </div>
+                        
+                        
+
 
                         <div class="col-md-6 py-2">
                             <label for="nombre-input">Nombre</label>
@@ -52,7 +66,8 @@
                             <input type="text" class="form-control form__control__input" name="precio__producto"
                                 id="nombre-input" value="{{ $productoId->precio }}">
                             @if ($errors->has('precio__precio'))
-                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> solo se aceptan numeros</small>
+                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> solo se
+                                    aceptan numeros</small>
                             @endif
                         </div>
 
@@ -61,7 +76,8 @@
                             <input type="text" class="form-control form__control__input" name="descuento__producto"
                                 id="nombre-input" value="{{ $productoId->descuento }}">
                             @if ($errors->has('descuento__producto'))
-                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> solo se aceptan numeros</small>
+                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> solo se
+                                    aceptan numeros</small>
                             @endif
                         </div>
 
@@ -69,7 +85,8 @@
                             <textarea class="form-control form__control__input" id="floatingTextarea" name="descripcion__producto">{{ $productoId->descripcion }}</textarea>
                             <label for="floatingTextarea">Descripcion del producto</label>
                             @if ($errors->has('descripcion__producto'))
-                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> la descripcion no acepta caracteres como: @-/* y
+                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> la
+                                    descripcion no acepta caracteres como: @-/* y
                                     demas</small>
                             @endif
                         </div>
