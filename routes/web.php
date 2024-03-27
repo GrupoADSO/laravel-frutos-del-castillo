@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CalificacionController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InformacionController;
 use App\Http\Controllers\login\LoginController;
 use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\PedidosController;
@@ -11,7 +13,6 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
-use PhpOffice\PhpPresentation\Shape\Table\Row;
 
 // RUTAS PARA EL LOGIN
 Route::post('Login/sesion', [LoginController::class, 'iniciarSesion'])->name('login');
@@ -28,9 +29,11 @@ Route::get('/', [HomeController::class, 'index'])->name('inicio');
 Route::controller(UsuariosController::class)->group(function () {
     Route::get('perfil-usuario/{id}', 'index')->name('perfil');
     Route::post('perfil-usuario/editar/{id}', 'store')->name('editar-perfil');
-
 });
 
+Route::get('/informacion_legal', function () {
+    return view('paginas.informacion_legal');
+})->name('informacionLegal');
 
 
 
@@ -39,9 +42,33 @@ Route::get('/productos', [ProductoController::class, 'index'])->name('producto')
 
 Route::get('/categorias', [CategoriaController::class, 'obtenerCategorias']);
 
-Route::get('/factura',[FacturaController::class, 'index'])->name('factura');
+Route::get('/factura', [FacturaController::class, 'index'])->name('factura');
+
+
+Route::get('/sobre_mi', [InformacionController::class, 'informacionLegal'])->name('sobreMi');
+
+Route::post('/like/{idProducto}', [CalificacionController::class, 'addLike']);
+Route::post('/delete-like/{idProducto}', [CalificacionController::class, 'disLike']);
+
+//paypal rutas
+Route::middleware('auth')->group(function () {
+    Route::post('paypal/pago', [PaypalController::class, 'pago'])->name('paypal');
+    Route::post('/pago/{valor}', [PaypalController::class, 'recibirPago']);
+    Route::get('paypal/success', [PaypalController::class, 'success'])->name('paypal_success');
+    Route::post('/factura/{productos}', [PaypalController::class, 'recibirFactura']);
+    Route::get('detalle_factura/pdf', [PaypalController::class, 'generatePDF'])->name('paginas.detalle_factura_pdf');
+    Route::get('paypal/cancel', [PaypalController::class, 'cancel'])->name('paypal_cancel');
+});
+
+
+
+
+
 
 // ruta admin principal
+
+Route::group(['middleware' => ['role:empleado|super_admin']], function () {
+
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin', 'index')->name('inicio-admin');
     Route::get('perfil', 'edit')->name('perfil-admin');
@@ -60,9 +87,9 @@ Route::controller(CategoriaController::class)->group(function () {
 
 
 Route::controller(UsuariosController::class)->group(function () {
-Route::get("/usuarios/editar/{id}", 'edit')->name('usuarios-editar');
-Route::post("/usuarios/update/{id}", 'update')->name('usuarios-actualizar');
-Route::delete("/usuarios/eliminar/{id}", 'destroy')->name('usuarios-eliminar');
+    Route::get("/usuarios/editar/{id}", 'edit')->name('usuarios-editar');
+    Route::post("/usuarios/update/{id}", 'update')->name('usuarios-actualizar');
+    Route::delete("/usuarios/eliminar/{id}", 'destroy')->name('usuarios-eliminar');
 });
 
 
@@ -70,14 +97,13 @@ Route::controller(ProductoController::class)->group(function () {
     Route::get('/admin-productos', 'mostrarProductos')->name('admin-productos');
     Route::get('/admin-productos/crear', 'create')->name('crear-productos');
     Route::post('/admin-productos/crear/nuevos', 'store')->name('nuevo-producto');
-    Route::get('/admin-productos/editar-producto/{idproducto}','edit')->name('editar-producto');
-    Route::post('/admin-productos/actualizar-producto/{idproducto}','update')->name('update-producto');
-    Route::delete('/admin-productos/eliminar-producto/{idproducto}','destroy')->name('eliminar-producto');
-
+    Route::get('/admin-productos/editar-producto/{idproducto}', 'edit')->name('editar-producto');
+    Route::post('/admin-productos/actualizar-producto/{idproducto}', 'update')->name('update-producto');
+    Route::delete('/admin-productos/eliminar-producto/{idproducto}', 'destroy')->name('eliminar-producto');
 });
 
 
-Route::controller(PedidosController::class)->group(function (){
+Route::controller(PedidosController::class)->group(function () {
     Route::get('/pedidos', 'mostrarPedidos')->name('mostrar-pedidos');
     Route::get('/pedidos/gestion/{compraId}', 'gestionarPedido')->name('gestionar-pedido');
     Route::post('/cambiarEstadoPedidoGestionado/{compraId}', 'pedidoGestionado')->name('pedido-gestionado');
@@ -96,18 +122,13 @@ Route::controller(SliderController::class)->group(function () {
 });
 
 
-Route::get('/sobre_mi', function () {
-    return view('paginas.sobre_nosotros');
-})->name('sobreMi');
+Route::controller(InformacionController::class)->group(function () {
+    Route::get('/informacion', 'index')->name('informacion');
+    Route::get('/informacion-corporativa', 'create')->name('nueva-informacion');
+    Route::post('/informacion-corporativa/crear', 'store')->name('informacion-crear');
+    Route::get('/informacion-corporativa/editar/{id}', 'edit')->name('editar-informacion');
+    Route::get('/informacion-corporativa/actualizar/{id}', 'update')->name('aptualizar-informacion');
+    Route::delete('/informacion-corporativa/eliminar/{id}', 'destroy')->name('eliminar-informacion');
+});
 
-Route::get('/informacion_legal', function () {
-    return view('paginas.informacion_legal');
-})->name('informacionLegal');
-
-//paypal rutas
-Route::post('paypal/pago', [PaypalController::class, 'pago' ])->name('paypal');
-Route::get('paypal/success', [PaypalController::class, 'success' ])->name('paypal_success') ;
-Route::post('/pago/{valor}', [PaypalController::class, 'recibirPago' ]);
-Route::post('/factura/{productos}', [PaypalController::class, 'recibirFactura' ]);
-Route::get('detalle_factura/pdf', [PaypalController::class,'generatePDF' ])->name('paginas.detalle_factura_pdf');
-Route::get('paypal/cancel', [PaypalController::class, 'cancel' ])->name('paypal_cancel') ;
+});

@@ -35,8 +35,8 @@
                     @foreach ($categoria->producto as $productoInfo)
                         <article class="card__menu card__producto__historia" data-id="{{ $productoInfo->id }}">
                             <div class="product">
-                                <a class="like-button" href="#"><i
-                                        class="fa-regular fa-heart"></i><strong>145M</strong></a>
+                                <span class="like-button"><i
+                                        class="fa-regular fa-heart"></i><strong>{{ $productoInfo->calificaciones->count() }}L</strong></span>
                                 <div class="content__car__menu" id="image-container" data-modal-target="myModal">
                                     <img src="{{ $productoInfo->imagen_1 }}" alt="">
                                 </div>
@@ -47,7 +47,7 @@
                                 <p class="parrafo__cart">{{ $productoInfo->descripcion }}</p>
                             </div>
                             <div class="footer__card">
-                                <p class="parrafo__price">$ {{ $productoInfo->precio * $productoInfo->descuento }}</p>
+                                <p class="parrafo__price">$ {{ $productoInfo->precio - ($productoInfo->precio * ($productoInfo->descuento / 100)) }}</p>
                                 <div class="contenedor__acciones">
                                     <div class="agregar__like like">
                                         {{-- Beta --}}
@@ -62,7 +62,7 @@
 
                             </div>
 
-                            <div class="pie__card"></div>
+                            <div class="pie__card">{{ $productoInfo->size }}</div>
                         </article>
                     @endforeach
                 </section>

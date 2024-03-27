@@ -16,6 +16,10 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct(){
+        $this->middleware('role:super_admin')->except(['index','edit']);
+    }
     public function index(Request $request)
     {
         $texto = $request->get('buscar_usuario');

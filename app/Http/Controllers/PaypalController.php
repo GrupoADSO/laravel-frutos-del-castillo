@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Session;
 
 class PaypalController extends Controller
 {
-    public $pago = 100;
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function pago(Request $request)
     {
         $provider = new PayPalClient;
@@ -70,7 +73,7 @@ class PaypalController extends Controller
             Compra::create($datosCompra);
             Session::forget('pago');
 
-            $compra = Compra::Select('id','direccion','comentario')->where('user_id', Auth::id())->latest()->first();
+            $compra = Compra::Select('id', 'direccion', 'comentario')->where('user_id', Auth::id())->latest()->first();
 
 
             foreach ($productos as $producto) {

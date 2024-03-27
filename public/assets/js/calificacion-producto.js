@@ -3,15 +3,13 @@ const heartIcon = document.querySelectorAll(".agregar__like");
 let liked = [];
 
 
-// Crear dos funciones llamadas como los import de icons 
-// retornarlas con backtips y agregar un atributo que se llame
-// data-hidden
 
-const iconLiked = ()=>{
+
+const iconLiked = () => {
     return `<i class="fa-solid fa-heart"></i>`;
 }
 
-const iconUnlike = ()=>{
+const iconUnlike = () => {
     return `<i class="fa-regular fa-heart"></i>`;
 
 }
@@ -25,11 +23,13 @@ const handleClickLike = () => {
 
             if (!isLiked) {
                 addObjectToLocalStorage(deleteLike(id));
+                disLike(id);
                 return;
             }
 
             if (validateLikeExist(id).includes(true)) return;
             addJsonToObject({ id: id, boolean: isLiked });
+            addLike(id); 
         });
     }
 };
@@ -85,6 +85,7 @@ const changeIcon = () => {
     }
 };
 
+
 const paintIcon = () => {
     const localIconID = getLikesLocalStorage().map((icons) => {
         return icons.uuid;
@@ -104,10 +105,15 @@ const paintIcon = () => {
             icons.setAttribute("data-hidden", true);
         } else {
             icons.innerHTML = iconUnlike();
+            // addLike(2);
+            // disLike(elementID);
             // icons.setAttribute("data-hidden", false);
         }
     });
 };
+
+
+
 
 const deleteLike = (iconUUID) => {
     return getLikesLocalStorage().filter((icon) => {
@@ -115,6 +121,61 @@ const deleteLike = (iconUUID) => {
         return iconUUID !== uuid;
     });
 };
+
+
+function addLike(idLike) {
+    const tokenCSRF = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const url = `/like/${idLike}`;
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': tokenCSRF
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la solicitud');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Respuesta del servidor:', data);
+        })
+        .catch(error => {
+            console.error('Error al enviar dato:', error);
+        });
+}
+
+function disLike(idLike) {
+    console.log('dis'+idLike);
+    const tokenCSRF = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    console.log(tokenCSRF);
+    const url = `/delete-like/${idLike}`;
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': tokenCSRF
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la solicitud');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Respuesta del servidor:', data);
+        })
+        .catch(error => {
+            console.error('Error al enviar dato:', error);
+        });
+}
+
+
+
+
 
 // Inicializar el localStorage
 if (getLikesLocalStorage() === null) addObjectToLocalStorage();

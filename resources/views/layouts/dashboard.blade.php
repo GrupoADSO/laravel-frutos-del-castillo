@@ -54,23 +54,17 @@
                 <li>
                     <a href="{{ route('mostrar-pedidos') }}">
                         <i class="fa-solid fa-motorcycle"></i> Pedidos
-                        </a>
+                    </a>
                 </li>
 
                 <li>
-                        <i class="fa-solid fa-motorcycle"></i> Pedidos
-                        </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <i class="fa-solid fa-gear"></i>
-                        informacion
+                    <a href="{{ route('informacion') }}">
+                        <i class="fa-solid fa-gear"></i> Ajustes
                     </a>
                 </li>
 
                 <li class="logout">
-                    <a href="/">
+                    <a href="{{ route('cerrarSesion') }}">
                         <i class="fas fa-sign-out-alt"></i>
                         Salir
                     </a>

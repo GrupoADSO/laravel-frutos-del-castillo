@@ -10,18 +10,14 @@ use Validator;
 
 class CategoriaController extends Controller
 {
-    // cambiar la consulta || el boton de la categoria debe ser un formulario con el id
+    public function __construct(){
+        $this->middleware('role:super_admin',['except'=>['index','obtenerCategorias']]);
+    }
+
     public function obtenerCategorias()
     {
         $categorias = Categoria::all();
         return view('paginas.productos', compact('categorias'));
-    }
-
-
-    public function obtenerSubcategorias()
-    {
-        $subcategorias = Subcategoria::all();
-        return response()->json($subcategorias);
     }
 
 
@@ -46,7 +42,7 @@ class CategoriaController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'nombre__categoria' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'nombre__categoria' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
                 'foto__categoria' => 'required|mimes:png,jpg,jpeg',
             ]);
 
@@ -97,7 +93,7 @@ class CategoriaController extends Controller
             $idCategoria =  decrypt($id);
             $Categoriaid = Categoria::find($idCategoria);
             $validator = Validator::make($request->all(), [
-                'cambiar__nombre__cate' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'cambiar__nombre__cate' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
                 'cambiar__foto__cate' => 'required|mimes:png,jpg,jpeg',
             ]);
 

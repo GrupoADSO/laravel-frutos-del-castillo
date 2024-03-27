@@ -1,46 +1,28 @@
 @extends('layouts.dashboard')
 
 @section('contenido')
-    @if (session('alertaDeAccion'))
-        <div class="alerta__acciones">
-            <h1 class="mensaje__alerta" id="mensajeAlertaUsuarioCreado">{{ session('alertaDeAccion') }} <i
-                    class="bi bi-check2-square"></i></h1>
-        </div>
-    @endif
     <section class="tabular--wrapper">
-        <h1 class="title header--title">Producto actuales</h1>
+        <h1 class="title header--title">Informacion Corporativa</h1>
 
         @role('super_admin')
-        <aside class="contendor__boton">
-            <a class="btn__categoria" href="{{ route('crear-productos') }}">crear producto</a>
+        <aside class="contenedor__btns">
+            <div class="contendor__boton">
+                <a class="btn__categoria" href="{{ route('nueva-informacion') }}">Crear Información</a>
+            </div>
         </aside>
         @endrole
 
+
         <div class="container row">
 
-            @foreach ($productos as $producto)
-                <article class="card card__admin-producto  col-6">
-                    <img src="{{ asset($producto->imagen_1) }}" class="card-img-top card-img-top-modificada"
-                        alt="{{ $producto->nombre }}">
-
-                    <div class="card-body">
-                        <h4 class="header--title"> {{ $producto->nombre }} </h4>
-                        <p class="card-text header--title">{{ $producto->descripcion }}.</p>
-                    </div>
-                    <ul class="list-group list-group-flus">
-                        <li class="list-group-item color--text">Precio: <span>{{ $producto->precio }}</span></li>
-                        @if ($producto->disponibilidad == 1)
-                            <li class="list-group-item color--text">Disponible: Si</li>
-                        @else
-                            <li class="list-group-item color--text">Disponible: No</li>
-                        @endif
-                        <li class="list-group-item color--text">Descuento: <span>{{ $producto->descuento }}</span>%</li>
-                        <li class="list-group-item color--text">Tamaño: {{ $producto->size }}</li>
-                    </ul>
+            @foreach ($informacionEmpresarial as $informacion)
+            <div class="card ms-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $informacion->nombre }}</h5>
+                    <p class="card-text">{{ $informacion->descripcion }}</p>
                     @role('super_admin')
-                    <div class="card-body form__productos ">
-
-                        <form action="{{ route('editar-producto', encrypt($producto->id)) }}" method="GET" style="margin: 0">
+                    <div class="d-flex justify-content-between">
+                        <form action="{{ route('editar-informacion', encrypt($informacion->id)) }}" method="GET" style="margin: 0" class="">
                             @csrf
                             <button class="form__productos-button">
                                 <svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24"
@@ -53,7 +35,7 @@
                             </button>
                         </form>
 
-                        <form action="{{ route('eliminar-producto', encrypt($producto->id)) }}" method="POST" style="margin: 0">
+                        <form action="{{ route('eliminar-informacion',encrypt($informacion->id)) }}" method="POST" style="margin: 0" class="">
                             @csrf
                             @method('delete')
                             <button class="form__productos-button">
@@ -72,13 +54,12 @@
                     </div>
                     @endrole
 
-                </article>
+                </div>
+            </div>
+
             @endforeach
-
-
-
-
         </div>
 
     </section>
+
 @endsection

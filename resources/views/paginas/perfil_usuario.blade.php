@@ -53,11 +53,6 @@
                         @endif
                     </div>
 
-                    {{-- <div class="form__group-dos">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <input type="text" name="direccion" placeholder="Direccion" class="form__input-dos">
-                    </div> --}}
-
                     <div class="form__group-dos">
                         <button class="form__submit form__submit-editar"> Gurdar Cambios</button>
                     </div>
@@ -76,21 +71,23 @@
             <h1 class="productos1"> Historial de compras</h1>
             <div class="card__container contenedor__card__historia">
 
+                @foreach ($historialDeCompras as $compra)
                 <article class="card__menu cards__modal__historial">
                     <a class="like-button" href="#"><i class="fa-regular fa-heart"></i><strong>145M</strong></a>
-                    <div class="content__car__menu " id="image-container" data-modal-target="myModal">
-                        <img src="/assets/img/img-carta-producto/hamburguesa.jpg" alt="producto">
+                    <div class="content__car__menu content__car__menu-img" id="image-container" data-modal-target="myModal">
+                        <img src="{{ $compra->factura->producto->imagen_1 }}" alt="producto">
                     </div>
                     <div class="content__parrafo__agregar">
-                        <h2>Hamburguesa en salsa</h2>
-                        <p class="parrafo__cart">Lorem, ipsum dolor sit amet
-                            consectetur adipisicing elit. Maxime doloribus
-                            excepturi reiciendis error distinctio! Maxime
-                            distinctio quibusdam tempora repellat perferendis
-                            ratione quae quo?</p>
+                        <h2>{{ $compra->factura->producto->nombre }}</h2>
+                        <p class="parrafo__cart text__maximo"> {{ $compra->factura->producto->descripcion }}</p>
+                    </div>
+                    <div class="footer__card">
+                        <p class="parrafo__price">$ {{ $compra->factura->producto->precio - ($compra->factura->producto->precio * ($compra->factura->producto->descuento / 100)) }}</p>
+
                     </div>
                     <div class="pie__card"></div>
                 </article>
+                @endforeach
             </div>
         </div>
     </aside>
@@ -136,7 +133,7 @@
 
             <div class="form__group">
                 <i class="fa-solid fa-location-dot"></i>
-                <input type="text" class="form__input" value="pasarla desde la compra" readonly>
+                <input type="text" class="form__input" value="{{ Session::get('ultima_direccion') }}" readonly>
             </div>
 
         </div>

@@ -9,26 +9,32 @@
             <h1 class="mensaje__alerta" id="mensajeAlertaUsuarioCreado">{{ session('alertaDeAccion') }} <i
                     class="bi bi-check2-square"></i></h1>
         </div>
-    @endif
-    <section class="tabular--wrapper">
+        @endif
+        <section class="tabular--wrapper">
+        <h1 class="title header--title">Categorias activas</h1>
 
+        @role('super_admin')
         <aside class="contenedor__btns">
             <div class="contendor__boton">
                 <a class="btn__categoria" href="{{ route('crear-categoria') }}">Crear Categoria</a>
             </div>
         </aside>
+        @endrole
 
         <table>
             <thead>
                 <tr>
                     <th scope="col">Nombre Categoria</th>
+                    @role('super_admin')
                     <th scope="col">Acciones</th>
+                    @endrole
                 </tr>
             </thead>
             <tbody>
                 @foreach ($categorias as $categoria)
                     <tr>
                         <td>{{ $categoria->nombre }}</td>
+                        @role('super_admin')
                         <td>
                             <form action="{{ route('editar-categoria', encrypt($categoria->id)) }}" method="GET" style="margin: 0">
                                 @csrf
@@ -61,6 +67,7 @@
                                 </button>
                             </form>
                         </td>
+                        @endrole
                     </tr>
                 @endforeach
             </tbody>

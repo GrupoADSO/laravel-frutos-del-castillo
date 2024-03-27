@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('titulo')</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
@@ -50,6 +49,9 @@
                     <div class="menu__usuario">
                         <ul>
                             <li><a href="{{ route('perfil', session('usuario_id')) }}">Mi Perfil</a></li>
+                            @role('super_admin|empleado')
+                            <li><a href="{{ route('inicio-admin')}} ">Dashboard</a></li>
+                            @endrole
                             <li><a href="{{ route('cerrarSesion') }}">Cerrar sesión</a></li>
                         </ul>
                     </div>
@@ -140,7 +142,7 @@
     <footer class="footer">
         <nav class="footer__nav">
             <h3 class="titulo">informacion</h3>
-            <a href="/paginas/informacion_legal.html" class="link">informacion
+            <a href="{{ route('informacionLegal') }}" class="link">informacion
                 legal</a>
             <a href="#" class="link">Politicad de privacidad</a>
             <a href="#" class="link">Tratamiento de datos</a>
