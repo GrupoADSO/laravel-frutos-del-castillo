@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('disponibilidad');
             $table->string('size');
             $table->string('imagen_1');
-            $table->string('estado');
             $table->integer('descuento')->nullable();
             $table->unsignedBigInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias');

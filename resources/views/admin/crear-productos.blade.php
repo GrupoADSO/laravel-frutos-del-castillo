@@ -58,6 +58,16 @@
                         </div>
 
                         <div class="col-md-6">
+                            <label for="nombre-input">Tamaño</label>
+                            <input type="text" name="tamanio__producto" class="form-control form__control__input"
+                                id="nombre-input" value="{{ old('precio__producto') }}" placeholder="ejem.grande,mediana..">
+                            @if ($errors->has('tamanio__producto'))
+                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i>EL tamaño es invalido</small>
+                            @endif
+
+                        </div>
+
+                        <div class="col-md-6">
                             <label for="nombre-input">Descuento</label>
                             <input type="text" name="descuento__producto" class="form-control form__control__input"
                                 id="nombre-input" value="{{ old('descuento__producto') }}" >

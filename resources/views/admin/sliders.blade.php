@@ -8,12 +8,14 @@
         </div>
     @endif
     <section class="tabular--wrapper">
-
-        <div class="contendor__boton">
-            <a class="btn__categoria" href="{{ route('crear-slider') }}">Crear slider</a>
-        </div>
-
         <h1 class="title header--title">Slider activos</h1>
+        @role('super_admin')
+        
+        <aside class="contendor__boton">
+            <a class="btn__categoria" href="{{ route('crear-slider') }}">Crear slider</a>
+        </aside>
+        @endrole
+
 
         <div class="container row">
 
@@ -24,8 +26,10 @@
                     <div class="card-body">
                         <h5 class="card-title header--title">{{ $slider->nombre }}</h5>
                     </div>
-                    <div class="card-footer">
-                        <div class="card-body form__productos ">
+                    
+        @role('super_admin')
+        <div class="card-footer">
+            <div class="card-body form__productos ">
                             @csrf
                             <form action="{{ route('editar-slider', encrypt($slider->id)) }}" method="GET" style="margin: 0">
                                 <button class="form__productos-button">
@@ -56,6 +60,8 @@
                             </form>
                         </div>
                     </div>
+                    @endrole
+
                 </article>
             @endforeach
 

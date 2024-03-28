@@ -11,18 +11,23 @@ use Validator;
 class ProductoController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('role:super_admin', ['except' => ['index', 'mostrarProductos']]);
+    }
+
     public function index()
     {
-        // $categorias = Categoria::all();
-        $categorias = Categoria::has('producto')->get();
+        $categorias = Categoria::has('producto')->with('producto.calificaciones')->get();
         return view('paginas.productos', compact('categorias'));
     }
 
-    public function mostrarProductos()
-    {
-        $productos = Producto::all();
-        return view('admin.productos', compact('productos'));
-    }
+    // public function mostrarProductos()
+    // {
+    //     $productos = Producto::with('calificaciones')->get();
+        
+    //     return view('admin.productos', compact('productos'));
+    // }
 
     public function create()
     {
@@ -35,11 +40,12 @@ class ProductoController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'nombre__producto' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'nombre__producto' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
                 'precio__producto' => 'required|numeric',
                 'foto__producto' => 'required|mimes:png,jpg,jpeg ',
                 'descuento__producto' => 'required|numeric',
-                'descripcion__producto' => 'required|string',
+                'tamanio__producto' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
+                'descripcion__producto' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
                 'seleccion__categoria' => 'required|numeric',
             ]);
 
@@ -58,6 +64,7 @@ class ProductoController extends Controller
                 'precio' => $request->get('precio__producto'),
                 'descripcion' => $request->get('descripcion__producto'),
                 'imagen_1' => $url,
+                'size' => $request->get('tamanio__producto'),
                 'descuento' => $request->get('descuento__producto'),
                 'categoria_id' => $request->get('seleccion__categoria'),
             ];
@@ -65,7 +72,7 @@ class ProductoController extends Controller
             Producto::create($dataProducto);
             return redirect()->route('admin-productos')->with('alertaDeAccion', 'El producto fue creado correctamente');
         } catch (\Throwable $th) {
-            return 'error al subir la carga de datos';
+            return 'error al subir la carga de datos ' . $th;
         }
     }
 
@@ -89,11 +96,12 @@ class ProductoController extends Controller
             $idProducto = decrypt($id);
             $dataProducto =  Producto::find($idProducto);
             $validator = Validator::make($request->all(), [
-                'nombre__producto' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'nombre__producto' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
                 'precio__producto' => 'required|numeric',
                 'foto__producto' => 'required|mimes:png,jpg,jpeg',
                 'descuento__producto' => 'required|numeric',
-                'descripcion__producto' => 'required|string',
+                'tamanio__producto' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
+                'descripcion__producto' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
                 'disponibilidad' => 'required|numeric',
                 'seleccion__categoria' => 'required|numeric',
             ]);
@@ -118,7 +126,8 @@ class ProductoController extends Controller
                 'nombre' => $request->get('nombre__producto'),
                 'precio' => $request->get('precio__producto'),
                 'descripcion' => $request->get('descripcion__producto'),
-                'disponibilidad' =>$disponible,//la disponibilidad no esta llegando
+                'size' => $request->get('tamanio__producto'),
+                'disponibilidad' => $disponible,
                 'imagen_1' => $url,
                 'descuento' => $request->get('descuento__producto'),
                 'categoria_id' => $request->get('seleccion__categoria'),

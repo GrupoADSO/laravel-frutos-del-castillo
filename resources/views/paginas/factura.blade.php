@@ -78,8 +78,6 @@
                         <div class="my-3">
                             <div class="metodo__pago ">
                                 <div class="tarjeta">
-                                    <input id="credit" name="paymentMethod" type="checkbox" class="form-check-input"
-                                        checked required />
                                     <label class="form-check-label" for="credit">Efectivo</label>
                                     <i class="fa fa-usd center"></i>
                                 </div>
@@ -95,10 +93,6 @@
                             </div>
 
                             <hr class="my-4" />
-
-                            <button class="w-100 btn btn-primary btn-lg bgr-color-boton" type="submit">
-                                Paga Ya!!
-                            </button>
                     </form>
                 </div>
             </div>

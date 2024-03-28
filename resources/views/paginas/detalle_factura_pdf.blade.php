@@ -114,6 +114,7 @@
                         <tr>
                             <th>#</th>
                             <th>Producto</th>
+                            <th>Tamaño</th>
                             <th>Cantidad</th>
                             <th>SubTotal</th>
                         </tr>
@@ -124,6 +125,7 @@
                         <tr>
                             <td>{{ $contador }}</td>
                             <td>{{ $datos->nombre_producto  }}</td>
+                            <td>{{ $datos->producto->size }}</td>
                             <td>{{ $datos->cantidad_producto }}</td>
                             <td>{{ $datos->subtotal }}</td>
                             <td>{{ $datos->iva }}</td>

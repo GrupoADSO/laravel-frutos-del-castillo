@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Storage;
 use Validator;
 class SliderController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('role:super_admin',['except'=>['index']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -33,7 +38,7 @@ class SliderController extends Controller
         try { 
             $validator = Validator::make($request->all(),[
                 'foto__slider' => 'required|mimes:png,jpg,jpeg,webp',
-                'nombre__slider' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+                'nombre__slider' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
         ]);
 
         if ($validator->fails()) {
@@ -79,7 +84,7 @@ class SliderController extends Controller
         $sliderId = Slider::find($idDesencriptado);
         $validator = Validator::make($request->all(),[
             'foto__slider' => 'required|mimes:png,jpg,jpeg',
-            'nombre__slider' => 'required|string|regex:/^[a-zA-Z\s]+$/',
+            'nombre__slider' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
         ]);
 
         if ($validator->fails()) {

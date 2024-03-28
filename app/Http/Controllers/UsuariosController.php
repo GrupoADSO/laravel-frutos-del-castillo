@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Compra;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
@@ -9,19 +10,26 @@ use Validator;
 class UsuariosController extends Controller
 {
 
-    // public function __construct(){
-    //     $this->middleware('auth',['only'=>['index']]);
-    // }
+    public function __construct(){
+        $this->middleware('role:super_admin',['except'=>['index','store']]);
+    }
 
     public function index(string $id)
     {
         try {
             $desecriptarId = decrypt($id);
             $usuario =  User::find($desecriptarId);
-            return view('paginas.perfil_usuario', compact('usuario'));
+
+            $historialDeCompras = Compra::where('user_id', $desecriptarId)
+            ->where('estado', 1)
+            ->with('factura')
+            ->get();
+        
+            // dd($historialDeCompras);
+            
+            return view('paginas.perfil_usuario', compact('usuario', 'historialDeCompras'));
         } catch (\Throwable $th) {
-            // se recomienda crear una vista para el manejo de errores
-            return 'error en la carga de datos';    
+            return 'error en la carga de datos ' . $th;
         }
     }
 
@@ -64,8 +72,8 @@ class UsuariosController extends Controller
     public function edit(string $id)
     {
         try {
-            $idUser = decrypt($id);
-            $usuario =  User::find($idUser);
+            // $idUser = decrypt($id);
+            $usuario =  User::find($id);
             return view('admin.usuarios', compact('usuario'));
         } catch (\Throwable $th) {
             return 'error en la carga de datos';

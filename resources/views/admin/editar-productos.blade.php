@@ -65,9 +65,18 @@
                             <label for="nombre-input">Precio</label>
                             <input type="text" class="form-control form__control__input" name="precio__producto"
                                 id="nombre-input" value="{{ $productoId->precio }}">
-                            @if ($errors->has('precio__precio'))
+                            @if ($errors->has('precio__producto'))
                                 <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> solo se
                                     aceptan numeros</small>
+                            @endif
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="nombre-input">Tamaño</label>
+                            <input type="text" class="form-control form__control__input" name="tamanio__producto"
+                                id="nombre-input" value="{{ $productoId->size }}" placeholder="ejem.grande,mediana..">
+                            @if ($errors->has('tamanio__producto'))
+                                <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i>Tamaño invalido</small>
                             @endif
                         </div>
 

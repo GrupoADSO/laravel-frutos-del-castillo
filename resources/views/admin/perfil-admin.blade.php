@@ -2,11 +2,17 @@
 
 @section('contenido')
     <section class="tabular--wrapper">
+        @role('super_admin')
         <h1 class="title header--title">Actualiza Tus Datos (Administrador)</h1>
+        @endrole
 
+        @role('empleado')
+        <h1 class="title header--title">Tus datos personales</h1>
+        @endrole
         <div class="container">
 
-            <form action="{{ route('perfil-admin-actualizar', encrypt($datosAdmin->id)) }}" class="row" id="miFormulario" method="POST">
+            <form action="{{ route('perfil-admin-actualizar', encrypt($datosAdmin->id)) }}" class="row" id="miFormulario"
+                method="POST">
                 @csrf
                 <div class="col-6">
                     <label for="nombre-input">Nombre</label>
@@ -38,10 +44,12 @@
                         value="{{ $datosAdmin->email }}" id="email-input">
                 </div>
 
-                <div class="g-4">
-                    <button class="btn__formulario-button" id="limpiar">Limpiar</button>
-                    <button class="btn__formulario-button">Enviar</button>
-                </div>
+                @can('acceso_total')
+                    <div class="g-4">
+                        <button class="btn__formulario-button" id="limpiar">Limpiar</button>
+                        <button class="btn__formulario-button">Enviar</button>
+                    </div>
+                @endcan
             </form>
 
         </div>

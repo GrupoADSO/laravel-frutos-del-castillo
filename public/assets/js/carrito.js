@@ -69,7 +69,7 @@ const showCart = () => {
     if (data.length > 0) {
         data.forEach((producto) => {
             const { id, title, imagen, precio, cantidad } = producto;
-                createTagProduct += `
+            createTagProduct += `
                 <div class="cart-content-producto">
                 
                 <div class="header__card header__card-img">
@@ -264,9 +264,6 @@ const enviarFactura = () => {
     let arrayProductos = getLocalStorage();
     const url = `/factura/${arrayProductos}`;
     if (arrayProductos.length === 0) return;
-    // const datosProductos = {
-    //     producto : 'hola'
-    // }
 
     fetch(url, {
         method: 'POST',
