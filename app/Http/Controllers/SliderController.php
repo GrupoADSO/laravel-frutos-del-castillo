@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Storage;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 class SliderController extends Controller
 {
 
@@ -83,7 +83,7 @@ class SliderController extends Controller
         $idDesencriptado = decrypt($id);
         $sliderId = Slider::find($idDesencriptado);
         $validator = Validator::make($request->all(),[
-            'foto__slider' => 'required|mimes:png,jpg,jpeg',
+            'foto__slider' => 'nullable|mimes:png,jpg,jpeg',
             'nombre__slider' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
         ]);
 
@@ -101,11 +101,18 @@ class SliderController extends Controller
             $imagen = $request->file('foto__slider')->store('public/imagen-slider');
             $url = Storage::url($imagen);
         }
+        if ($url) {
+            $sliderId->update([
+                'nombre' => $request->get('nombre__slider'),
+                'ruta' => $url,
+            ]);
+        } else {
+            $sliderId->update([
+                'nombre' => $request->get('nombre__slider'),
+            ]);
+        }
         
-        $sliderId->update([
-            'nombre' => $request->get('nombre__slider'),
-            'ruta' => $url,
-        ]);
+        
 
         return redirect()->route('slider')->with('alertaDeAccion','El Slider fue actualizado correctamente!');
         } catch (\Throwable $th) {

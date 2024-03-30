@@ -2,8 +2,10 @@
 
 @section('contenido')
     <section class="tabular--wrapper">
-        <h1 class="title header--title">Crear Categoria y asignar subcategoria</h1>
-
+        <h1 class="title header--title">Crear Categoria</h1>
+        <a class="btn__retorno" href="{{ route('categorias') }}">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
         <div class="container">
 
             <form action="{{ route('categoria.store') }}" class="row g-3 control-form" method="POST" enctype="multipart/form-data">

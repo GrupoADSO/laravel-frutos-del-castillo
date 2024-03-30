@@ -27,7 +27,7 @@ Route::get('/', [HomeController::class, 'index'])->name('inicio');
 
 
 Route::controller(UsuariosController::class)->group(function () {
-    Route::get('perfil-usuario/{id}', 'index')->name('perfil');
+    Route::get('perfil-usuario/', 'index')->name('perfil');
     Route::post('perfil-usuario/editar/{id}', 'store')->name('editar-perfil');
 });
 

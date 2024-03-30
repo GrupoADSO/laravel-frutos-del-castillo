@@ -299,8 +299,8 @@
 
 /*seccion tabla*/
 .tabular--wrapper {
+    position: relative;
     background: var(--color-neutral);
-    /*fondo tabla*/
     margin-top: 1rem;
     border-radius: 10px;
     padding: 2rem;
@@ -328,6 +328,21 @@
     text-decoration: none;
     font-size: 1rem;
     color: var(--color-neutral);
+}
+
+
+.btn__retorno{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    padding: .5em;
+    border-radius: 5px;
+    display: inline-block;
+    background-color: var(--color-secondary);
+    color: var(--color-neutral);
+    text-align: center;
+    font-size: 1.2em;
+    text-decoration: none;
 }
 
 

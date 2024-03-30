@@ -19,7 +19,8 @@
         <div class="custom-modal-content">
             <span class="custom-close"><i class="fa-solid fa-xmark"></i></span>
 
-            <form action="{{ route('editar-perfil', encrypt($usuario->id)) }}" class="form__control__perfil-dos" method="POST">
+            <form action="{{ route('editar-perfil', encrypt($usuario->id)) }}" class="form__control__perfil-dos"
+                method="POST">
                 @csrf
                 <div class="form__container-dos">
                     <i class="fa-solid fa-user form__title-dos"></i>
@@ -72,21 +73,23 @@
             <div class="card__container contenedor__card__historia">
 
                 @foreach ($historialDeCompras as $compra)
-                <article class="card__menu cards__modal__historial">
-                    <a class="like-button" href="#"><i class="fa-regular fa-heart"></i><strong>145M</strong></a>
-                    <div class="content__car__menu content__car__menu-img" id="image-container" data-modal-target="myModal">
-                        <img src="{{ $compra->factura->producto->imagen_1 }}" alt="producto">
-                    </div>
-                    <div class="content__parrafo__agregar">
-                        <h2>{{ $compra->factura->producto->nombre }}</h2>
-                        <p class="parrafo__cart text__maximo"> {{ $compra->factura->producto->descripcion }}</p>
-                    </div>
-                    <div class="footer__card">
-                        <p class="parrafo__price">$ {{ $compra->factura->producto->precio - ($compra->factura->producto->precio * ($compra->factura->producto->descuento / 100)) }}</p>
+                    <article class="card__menu cards__modal__historial">
+                        <div class="content__car__menu content__car__menu-img" id="image-container"
+                            data-modal-target="myModal">
+                            <img src="{{ $compra->factura->producto->imagen_1 }}" alt="producto">
+                        </div>
+                        <div class="content__parrafo__agregar">
+                            <h2>{{ $compra->factura->producto->nombre }}</h2>
+                            <p class="parrafo__cart text__maximo"> {{ $compra->factura->producto->descripcion }}</p>
+                        </div>
+                        <div class="footer__card">
+                            <p class="parrafo__price">$
+                                {{ $compra->factura->producto->precio - $compra->factura->producto->precio * ($compra->factura->producto->descuento / 100) }}
+                            </p>
 
-                    </div>
-                    <div class="pie__card"></div>
-                </article>
+                        </div>
+                        <div class="pie__card"></div>
+                    </article>
                 @endforeach
             </div>
         </div>

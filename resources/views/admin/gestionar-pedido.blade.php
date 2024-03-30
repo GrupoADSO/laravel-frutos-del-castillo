@@ -3,7 +3,9 @@
 @section('contenido')
 
 <section class="tabular--wrapper">
-
+    <a class="btn__retorno" href="{{ route('mostrar-pedidos') }}">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
     <div class="col g-5">
         <div class="row">
 

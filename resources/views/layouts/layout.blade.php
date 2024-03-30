@@ -48,7 +48,7 @@
                     <label for="toggle-menu" class="boton-icon boton-icon-label"><i class="fa-solid fa-user"></i></label>
                     <div class="menu__usuario">
                         <ul>
-                            <li><a href="{{ route('perfil', session('usuario_id')) }}">Mi Perfil</a></li>
+                            <li><a href="{{ route('perfil')}}">Mi Perfil</a></li>
                             @role('super_admin|empleado')
                             <li><a href="{{ route('inicio-admin')}} ">Dashboard</a></li>
                             @endrole

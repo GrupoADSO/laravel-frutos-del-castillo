@@ -558,13 +558,14 @@ body {
     position: relative;
     width: 18em;
     height: 22em;
-    overflow: hidden;
-    border: .2em solid var(--color-primary);
-    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-content: center;
+    overflow: hidden;
+    border: .2em solid var(--color-primary);
+    border-radius: 5px;
 }
+
 
 .header__card {
     position: relative;
@@ -1638,8 +1639,9 @@ body {
 
 }
 
-
 /* fin informacion legal     */
+
+
 
 
 

@@ -44,27 +44,42 @@
             <i class="fa-solid fa-user icon__login"></i>
             <input class="input__login" name="nombre" type="text" placeholder="Nombre">
         </div>
+        @if ($errors->has('nombre'))
+        <div><i class="bi bi-x-circle"></i>El campo nombre es incorrecto</div>
+    @endif
 
         <div class="contenedor__input__login">
             <i class="fa-solid fa-user icon__login"></i>
             <input class="input__login" name="apellido" type="text" placeholder="apellido">
         </div>
+        @if ($errors->has('apellido'))
+        <div><i class="bi bi-x-circle">el campo apellido es incorrecto</i></div>
+    @endif
 
         <div class="contenedor__input__login">
             <i class="fa-solid fa-calendar icon__login"></i>
             <label for="signup-fecha-nacimiento">Fecha de Nacimiento</label>
             <input id="signup-fecha-nacimiento" name="fecha_nacimiento" class="input__login" type="date">
         </div>
+        @if ($errors->has('fecha_nacimiento'))
+        <div><i class="bi bi-x-circle"></i>Debes ser mayor de edad</div>
+    @endif
 
         <div class="contenedor__input__login">
             <i class="fa-solid fa-envelope icon__login"></i>
             <input class="input__login" name="email" type="text" placeholder="Email">
         </div>
+        @if ($errors->has('email'))
+            <div><i class="bi bi-x-circle"></i>Ingresa otro correo</div>
+        @endif
 
         <div class="contenedor__input__login">
             <i class="fa-solid fa-mobile icon__login"></i>
             <input class="input__login" name="celular" type="number" placeholder="Teléfono">
         </div>
+        @if ($errors->has('telefono'))
+        <div><i class="bi bi-x-circle"></i>Telefono invalido</div>
+    @endif
 
         <div class="contenedor__input__login">
             <i class="fa-solid fa-lock icon__login"></i>
@@ -75,7 +90,7 @@
             <input class="input__login" name="password_verification" type="password" placeholder="Confirmar Contraseña">
         </div>
         @if ($errors->has('password_verification'))
-            <div><i class="bi bi-x-circle"></i> {{ $errors->first('password_verification') }}</div>
+            <div><i class="bi bi-x-circle"></i>Las Contraseñas no coinciden</div>
         @endif
 
         <div id="policy-checkbox">

@@ -6,7 +6,7 @@ use App\Models\Categoria;
 use App\Models\Subcategoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class CategoriaController extends Controller
 {
@@ -94,7 +94,7 @@ class CategoriaController extends Controller
             $Categoriaid = Categoria::find($idCategoria);
             $validator = Validator::make($request->all(), [
                 'cambiar__nombre__cate' => ['required', 'regex:/^[áéíóúÁÉÍÓÚñÑa-zA-Z$#(). ]*$/'],
-                'cambiar__foto__cate' => 'required|mimes:png,jpg,jpeg',
+                'cambiar__foto__cate' => 'nullable|mimes:png,jpg,jpeg',
             ]);
 
             if ($validator->fails()) {
@@ -112,10 +112,17 @@ class CategoriaController extends Controller
                 $url = Storage::url($imagen);
             }
 
-            $Categoriaid->update([
-                'nombre' => $request->get('cambiar__nombre__cate'),
-                'imagen' => $url,
-            ]);
+            if ($url) {
+                $Categoriaid->update([
+                    'nombre' => $request->get('cambiar__nombre__cate'),
+                    'imagen' => $url,
+                ]);
+            }else{
+                $Categoriaid->update([
+                    'nombre' => $request->get('cambiar__nombre__cate'),
+                ]);
+
+            }
 
             return redirect()->route('categorias')->with('alertaDeAccion', 'La categoria fue actualizada correctamente');
         } catch (\Throwable $th) {

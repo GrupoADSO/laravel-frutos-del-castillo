@@ -7,36 +7,38 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 
 class LoginController extends Controller
 {
 
-    // METODO PARA CREAR USUARIOS EN EL LOGIN
     public function crearUsuario(Request $request)
     {
-        $datosUsuario = $request->validate([
-            'nombre' => 'required|min:4|max:30|string',
-            'apellido' => 'required|min:4|max:30|string',
-            'fecha_nacimiento' => 'required|date_format:Y-m-d',
-            'email' => 'required|email',
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|min:4|max:30|string|regex:/^[a-zA-Z\s]+$/',
+            'apellido' => 'required|min:4|max:30|string|regex:/^[a-zA-Z\s]+$/',
+            'fecha_nacimiento' => 'required|date_format:Y-m-d|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
+            'email' => 'required|email|unique:users,email',
             'celular' => 'required|numeric',
             'password' => 'required|min:4|max:15',
+            'password_verification' => 'required|same:password',
         ]);
 
-        if ($datosUsuario['password'] !== $request->input('password_verification')) {
-            return back()->withErrors([
-                'password_verification' => 'Las contraseñas no coinciden',
-            ])->onlyInput('password_verification');
-        } else {
-            $datosUsuario["password"] = Hash::make($request->input('password'));
-
-
-            User::create($datosUsuario)->assignRole('usuario');
-
-            return redirect()->route('inicio')->with('usuarioCreado', 'La creación de la cuenta se realizó con éxito. ¡Accede a tu cuenta ahora mismo!');
+        if ($validator->fails()) {
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
         }
+        
+        $datosUsuario = $request->all();
+        $datosUsuario["password"] = Hash::make($request->input('password'));
+
+        User::create($datosUsuario)->assignRole('usuario');
+
+        return redirect()->route('inicio')->with('usuarioCreado', 'La creación de la cuenta se realizó con éxito. ¡Accede a tu cuenta ahora mismo!');
     }
+
 
     // METODO PARA INICIAR SESION DENTRO DEL LOGIN
     public function iniciarSesion(Request $request)

@@ -3,7 +3,9 @@
 @section('contenido')
     <section class="tabular--wrapper">
         <h1 class="title header--title">Crear Categoria y asignar subcategoria</h1>
-
+        <a class="btn__retorno" href="{{ route('slider') }}">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
         <div class="container">
 
             <form action="{{ route('nuevo-slider') }}" class="row g-3 control-form" method="post"

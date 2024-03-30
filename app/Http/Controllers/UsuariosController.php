@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Compra;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class UsuariosController extends Controller
@@ -14,13 +15,12 @@ class UsuariosController extends Controller
         $this->middleware('role:super_admin',['except'=>['index','store']]);
     }
 
-    public function index(string $id)
+    public function index()
     {
         try {
-            $desecriptarId = decrypt($id);
-            $usuario =  User::find($desecriptarId);
-
-            $historialDeCompras = Compra::where('user_id', $desecriptarId)
+            $userId = Auth::id();
+            $usuario =  User::find($userId);
+            $historialDeCompras = Compra::where('user_id', $userId)
             ->where('estado', 1)
             ->with('factura')
             ->get();

@@ -128,7 +128,7 @@ const deleteProductFromLocalStorage = (dataId) => {
 
 const validateExistenceProduct = (uuid) => {
     return getLocalStorage().map((product) => {
-        return product.id === uuid;
+        // return product.id === uuid;
     });
 };
 

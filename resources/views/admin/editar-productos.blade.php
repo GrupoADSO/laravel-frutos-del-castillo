@@ -3,7 +3,9 @@
 @section('contenido')
     <section class="tabular--wrapper">
         <h1 class="title header--title">Editar producto</h1>
-
+        <a class="btn__retorno" href="{{ route('admin-productos') }}">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
         <div class="container">
 
             <form action="{{ route('update-producto', encrypt($productoId->id)) }}" class="row g-3 control-form" method="post"

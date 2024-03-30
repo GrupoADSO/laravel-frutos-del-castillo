@@ -3,19 +3,22 @@
 @section('contenido')
     <section class="tabular--wrapper">
         <h1 class="title header--title">Crear Categoria y asignar subcategoria</h1>
+        <a class="btn__retorno" href="{{ route('categorias') }}">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
 
         <div class="container">
 
             <form action="{{ route('update-categoria', encrypt($Categoriaid->id)) }}" class="row g-3 control-form" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form__control-img">
-                    <img src="{{ $Categoriaid->imagen }}"
+                    <img src="{{ asset($Categoriaid->imagen) }}"
                         alt="avatar" id="img" />
-                    <input type="file" name="cambiar__foto__cate" id="foto" accept="image/*" />
+                    <input type="file" name="cambiar__foto__cate" id="foto" value="" accept="image/*" />
                     
                     <label for="foto">imagen categoría</label>
                     @if($errors->has('cambiar__foto__cate'))
-                        <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> La url de la imagen es valido</small>
+                        <small class="alerta__color-rojo"><i class="fa-solid fa-circle-exclamation"></i> La url de la imagen no es valida</small>
                     @endif
                     <div class="col-12">
                         <button class="btn__formulario-button">Enviar</button>
