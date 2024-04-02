@@ -25,8 +25,8 @@ class ProductoController extends Controller
 
     public function mostrarProductos()
     {
-        $productos = Producto::with('calificaciones')->get();
-        
+        $productos = Producto::with('calificaciones')->where('disponibilidad',1)->get();
+
         return view('admin.productos', compact('productos'));
     }
 
@@ -121,7 +121,7 @@ class ProductoController extends Controller
                 $imagen = $request->file('foto__producto')->store('public/imagen-produto');
                 $url = Storage::url($imagen);
             }
-            if ($url){
+            if ($url) {
                 $disponible = $request->get('disponibilidad');
                 $dataProducto->update([
                     'nombre' => $request->get('nombre__producto'),
@@ -133,8 +133,7 @@ class ProductoController extends Controller
                     'descuento' => $request->get('descuento__producto'),
                     'categoria_id' => $request->get('seleccion__categoria'),
                 ]);
-                
-            }else{
+            } else {
                 $disponible = $request->get('disponibilidad');
                 $dataProducto->update([
                     'nombre' => $request->get('nombre__producto'),
@@ -145,7 +144,6 @@ class ProductoController extends Controller
                     'descuento' => $request->get('descuento__producto'),
                     'categoria_id' => $request->get('seleccion__categoria'),
                 ]);
-
             }
 
 
@@ -160,12 +158,11 @@ class ProductoController extends Controller
     {
         try {
             $idProducto = decrypt($id);
-            $datosProductos = Producto::where('id', $idProducto)->first();
-            if ($datosProductos->delete()) {
-                $rutaImagen = str_replace('storage', 'public', $datosProductos->imagen_1);
-                Storage::delete($rutaImagen);
-                return redirect()->route('admin-productos')->with('alertaDeAccion', 'El producto fue eliminado correctamente');
-            }
+            $producto = Producto::findOrFail($idProducto);
+            $producto->disponibilidad = 0;
+            $producto->save();
+            $rutaImagen = str_replace('storage', 'public', $producto->imagen_1);
+            Storage::delete($rutaImagen);
         } catch (\Throwable $th) {
             return 'error al tratar de eliminar los productos';
         }

@@ -31,12 +31,16 @@
                         <div class="col-md-6">
                             <label for="inputState" class="form-label">Categoria</label>
                             <select id="inputState" name='seleccion__categoria' class="form-select form__control__input">
-                                <option selected value="{{ $productoId->categoria_id }}">{{ $productoId->nombre }}
-                                </option>
-                                @foreach ($categorias as $categoria)
-                                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-                                @endforeach
-                            </select>
+                                    <option selected value="{{ $productoId->categoria->id }}">{{ $productoId->categoria->nombre }}</option>
+                                    @foreach ($categorias as $categoria)
+                                        @if ($categoria->id !== $productoId->categoria->id)
+                                            <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                
+                                
+                            
                         </div>
 
                         <div class="col-md-6">

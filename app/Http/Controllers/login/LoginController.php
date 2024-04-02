@@ -19,7 +19,7 @@ class LoginController extends Controller
             'nombre' => 'required|min:4|max:30|string|regex:/^[a-zA-Z\s]+$/',
             'apellido' => 'required|min:4|max:30|string|regex:/^[a-zA-Z\s]+$/',
             'fecha_nacimiento' => 'required|date_format:Y-m-d|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email|regex:/^[^\x00-\x1F\x7F-\xFF]+$/',
             'celular' => 'required|numeric',
             'password' => 'required|min:4|max:15',
             'password_verification' => 'required|same:password',
