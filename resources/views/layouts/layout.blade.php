@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,34 +32,32 @@
 
             <ul class="lista__paginas-header">
                 <li class="{{ Request::is('/') ? 'submenu' : '' }}"><a href="{{ route('inicio') }}">Inicio</a></li>
-                <li <?php if (basename($_SERVER['PHP_SELF']) == 'productos') {
-                    echo 'class="submenu"';
-                } ?>><a href="{{ route('producto') }}">Menu</a></li>
-                <li <?php if (basename($_SERVER['PHP_SELF']) == 'sobre_mi') {
-                    echo 'class="submenu"';
-                } ?>><a href="{{ route('sobreMi') }}">Sobre
+                <li <?php if (basename($_SERVER['PHP_SELF'])=='productos' ) { echo 'class="submenu"' ; } ?>><a
+                        href="{{ route('producto') }}">Menu</a></li>
+                <li <?php if (basename($_SERVER['PHP_SELF'])=='sobre_mi' ) { echo 'class="submenu"' ; } ?>><a
+                        href="{{ route('sobreMi') }}">Sobre
                         Nosotros</a></li>
             </ul>
         </nav>
 
         <nav class="header__icon">
             @auth
-                <div class="contenedor__seccion">
-                    <input type="checkbox" id="toggle-menu" class="boton-icon-checkbox">
-                    <label for="toggle-menu" class="boton-icon boton-icon-label"><i class="fa-solid fa-user"></i></label>
-                    <div class="menu__usuario">
-                        <ul>
-                            <li><a href="{{ route('perfil')}}">Mi Perfil</a></li>
-                            @role('super_admin|empleado')
-                            <li><a href="{{ route('inicio-admin')}} ">Dashboard</a></li>
-                            @endrole
-                            <li><a href="{{ route('cerrarSesion') }}">Cerrar sesión</a></li>
-                        </ul>
-                    </div>
+            <div class="contenedor__seccion">
+                <input type="checkbox" id="toggle-menu" class="boton-icon-checkbox">
+                <label for="toggle-menu" class="boton-icon boton-icon-label"><i class="fa-solid fa-user"></i></label>
+                <div class="menu__usuario">
+                    <ul>
+                        <li><a href="{{ route('perfil')}}">Mi Perfil</a></li>
+                        @role('super_admin|empleado')
+                        <li><a href="{{ route('inicio-admin')}} ">Dashboard</a></li>
+                        @endrole
+                        <li><a href="{{ route('cerrarSesion') }}">Cerrar sesión</a></li>
+                    </ul>
                 </div>
+            </div>
             @endauth
             @guest
-                <button class="boton-icon" id="logoAbrirModal"><i class="fa-solid fa-user"></i></button>
+            <button class="boton-icon" id="logoAbrirModal"><i class="fa-solid fa-user"></i></button>
             @endguest
             <a href="#" class="boton-icon" id="cart-icon"><i class="fa-solid fa-cart-shopping"></i><span
                     id="contador-carrito">0</span></a>
@@ -71,16 +70,16 @@
     <!-- fin de header -->
 
     @if (session('logueado'))
-        <div class="alerta__inicio__session">
-            <h1 class="mensaje__alerta" id="mensajeAlertaInicioSession">{{ session('logueado') }}</h1>
-        </div>
+    <div class="alerta__inicio__session">
+        <h1 class="mensaje__alerta" id="mensajeAlertaInicioSession">{{ session('logueado') }}</h1>
+    </div>
     @endif
 
     @if (session('usuarioCreado'))
-        <div class="alerta__usuario__creado">
-            <h1 class="mensaje__alerta" id="mensajeAlertaUsuarioCreado">{{ session('usuarioCreado') }} <i
-                    class="bi bi-check2-square"></i></h1>
-        </div>
+    <div class="alerta__usuario__creado">
+        <h1 class="mensaje__alerta" id="mensajeAlertaUsuarioCreado">{{ session('usuarioCreado') }} <i
+                class="bi bi-check2-square"></i></h1>
+    </div>
     @endif
 
     <div id="login-modal" class="modal-perfil"></div>
@@ -114,7 +113,7 @@
                     <p class="pay-button">Ir a
                         Pagar</p>
                 </a>
-                <div class="subtotal">
+                <div id="total__value" class="subtotal">
                     $0
                 </div>
             </div>
