@@ -1,19 +1,16 @@
-const containerProductLike = document.querySelectorAll(".card__producto__historia");
+const containerProductLike = document.querySelectorAll(
+    ".card__producto__historia"
+);
 const heartIcon = document.querySelectorAll(".agregar__like");
 let liked = [];
 
-
-
-
 const iconLiked = () => {
     return `<i class="fa-solid fa-heart"></i>`;
-}
+};
 
 const iconUnlike = () => {
     return `<i class="fa-regular fa-heart"></i>`;
-
-}
-
+};
 
 const handleClickLike = () => {
     for (let i = 0; i < heartIcon.length; i++) {
@@ -29,7 +26,7 @@ const handleClickLike = () => {
 
             if (validateLikeExist(id).includes(true)) return;
             addJsonToObject({ id: id, boolean: isLiked });
-            addLike(id); 
+            addLike(id);
         });
     }
 };
@@ -69,7 +66,6 @@ const validateLikes = (newLike) => {
     addObjectToLocalStorage(currentLike);
 };
 
-
 const changeIcon = () => {
     for (let i = 0; i < heartIcon.length; i++) {
         heartIcon[i].addEventListener("click", () => {
@@ -85,21 +81,16 @@ const changeIcon = () => {
     }
 };
 
-
 const paintIcon = () => {
     const localIconID = getLikesLocalStorage().map((icons) => {
         return icons.uuid;
     });
 
-
     heartIcon.forEach((icons) => {
-        const parentLowestChild = icons.parentNode
-        const parentChild = parentLowestChild.parentNode
-        const parentElement = parentChild.parentNode
-        console.log(parentElement);
-
+        const parentLowestChild = icons.parentNode;
+        const parentChild = parentLowestChild.parentNode;
+        const parentElement = parentChild.parentNode;
         const elementID = Number(parentElement.getAttribute("data-id"));
-        console.log(localIconID.includes(elementID) === true);
         if (localIconID.includes(elementID) === true) {
             icons.innerHTML = iconLiked();
             icons.setAttribute("data-hidden", true);
@@ -112,9 +103,6 @@ const paintIcon = () => {
     });
 };
 
-
-
-
 const deleteLike = (iconUUID) => {
     return getLikesLocalStorage().filter((icon) => {
         const { uuid } = icon;
@@ -122,64 +110,63 @@ const deleteLike = (iconUUID) => {
     });
 };
 
-
 function addLike(idLike) {
-    const tokenCSRF = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const tokenCSRF = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content");
     const url = `/like/${idLike}`;
     fetch(url, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': tokenCSRF
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": tokenCSRF,
         },
     })
-        .then(response => {
+        .then((response) => {
             if (!response.ok) {
-                throw new Error('Error en la solicitud');
+                throw new Error("Error en la solicitud");
             }
             return response.json();
         })
-        .then(data => {
-            console.log('Respuesta del servidor:', data);
+        .then((data) => {
+            console.log("Respuesta del servidor:", data);
         })
-        .catch(error => {
-            console.error('Error al enviar dato:', error);
+        .catch((error) => {
+            console.error("Error al enviar dato:", error);
         });
 }
 
 function disLike(idLike) {
-    console.log('dis'+idLike);
-    const tokenCSRF = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    console.log("dis" + idLike);
+    const tokenCSRF = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content");
     console.log(tokenCSRF);
     const url = `/delete-like/${idLike}`;
     fetch(url, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': tokenCSRF
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": tokenCSRF,
         },
     })
-        .then(response => {
+        .then((response) => {
             if (!response.ok) {
-                throw new Error('Error en la solicitud');
+                throw new Error("Error en la solicitud");
             }
             return response.json();
         })
-        .then(data => {
-            console.log('Respuesta del servidor:', data);
+        .then((data) => {
+            console.log("Respuesta del servidor:", data);
         })
-        .catch(error => {
-            console.error('Error al enviar dato:', error);
+        .catch((error) => {
+            console.error("Error al enviar dato:", error);
         });
 }
-
-
-
-
 
 // Inicializar el localStorage
 if (getLikesLocalStorage() === null) addObjectToLocalStorage();
 
-paintIcon()
-changeIcon()
-handleClickLike()
+paintIcon();
+changeIcon();
+handleClickLike();
